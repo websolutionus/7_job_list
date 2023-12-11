@@ -19,6 +19,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const CANDIDATE_DASHBOARD = '/candidate/dashboard';
     public const COMPANY_DASHBOARD = '/company/dashboard';
+    public const ADMIN_DASHBOARD = '/admin/dashboard';
+
 
 
     /**
