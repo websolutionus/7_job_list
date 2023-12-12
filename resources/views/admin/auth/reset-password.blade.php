@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <h1>Admin Reset Form</h1>
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
