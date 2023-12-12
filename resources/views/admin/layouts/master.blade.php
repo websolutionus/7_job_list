@@ -34,7 +34,7 @@
 
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+          Copyright &copy; {{ date('Y') }} <div class="bullet"></div> Design By <a href="www.websolutionus.com">websolutionus</a>
         </div>
         <div class="footer-right">
 
@@ -44,7 +44,7 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="{{ asset('admin/assets/modules/jquery.min.j') }}s"></script>
+  <script src="{{ asset('admin/assets/modules/jquery.min.js') }}"></script>
   <script src="{{ asset('admin/assets/modules/popper.js') }}"></script>
   <script src="{{ asset('admin/assets/modules/tooltip.js') }}"></script>
   <script src="{{ asset('admin/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -57,7 +57,7 @@
   <script src="{{ asset('admin/assets/modules/chart.min.js') }}"></script>
   <script src="{{ asset('admin/assets/modules/jqvmap/dist/jquery.vmap.min.js') }}"></script>
   <script src="{{ asset('admin/assets/modules/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
-  <script src="assets/modules/summernote/summernote-bs4.js"></script>
+  <script src="{{ asset('admin/assets/modules/summernote/summernote-bs4.js') }}"></script>
   <script src="{{ asset('admin/assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
   <!-- Page Specific JS File -->
