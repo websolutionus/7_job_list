@@ -60,30 +60,34 @@
             <div class="card-header"><h4>Login</h4></div>
 
             <div class="card-body">
-              <form method="POST" action="#" class="needs-validation" novalidate="">
+            <!-- Session Status -->
+            <x-auth-session-status class="mb-4" :status="session('status')" />
+
+              <form method="POST" action="{{ route('admin.login') }}">
+                @csrf
+
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
-                  <div class="invalid-feedback">
-                    Please fill in your email
-                  </div>
+                  <input id="email" type="email" value="{{ old('email') }}" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" tabindex="1" required autofocus>
+
+                  <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
+                <!-- Password -->
                 <div class="form-group">
                   <div class="d-block">
                       <label for="password" class="control-label">Password</label>
                     <div class="float-right">
-                      <a href="auth-forgot-password.html" class="text-small">
+                      <a href="{{ route('admin.password.request') }}" class="text-small">
                         Forgot Password?
                       </a>
                     </div>
                   </div>
                   <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                  <div class="invalid-feedback">
-                    please fill in your password
-                  </div>
+                  <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
+                <!-- Remember Me -->
                 <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
@@ -97,29 +101,12 @@
                   </button>
                 </div>
               </form>
-              <div class="text-center mt-4 mb-3">
-                <div class="text-job text-muted">Login With Social</div>
-              </div>
-              <div class="row sm-gutters">
-                <div class="col-6">
-                  <a class="btn btn-block btn-social btn-facebook">
-                    <span class="fab fa-facebook"></span> Facebook
-                  </a>
-                </div>
-                <div class="col-6">
-                  <a class="btn btn-block btn-social btn-twitter">
-                    <span class="fab fa-twitter"></span> Twitter
-                  </a>
-                </div>
-              </div>
 
             </div>
           </div>
-          <div class="mt-5 text-muted text-center">
-            Don't have an account? <a href="auth-register.html">Create One</a>
-          </div>
+
           <div class="simple-footer">
-            Copyright &copy; Stisla 2018
+            Copyright &copy; websolutionus {{ date('Y') }}
           </div>
         </div>
       </div>
