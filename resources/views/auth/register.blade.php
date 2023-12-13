@@ -127,14 +127,19 @@
                   <hr>
                   <h6 for="" class="mb-2">Create Account For</h6>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="type" id="typeCandidate" value="candidate" >
+                    <input class="form-check-input" type="radio" name="account_type" id="typeCandidate" value="candidate" >
                     <label class="form-check-label" for="typeCandidate">Candidate</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="type" id="typeCompany" value="company">
+                    <input class="form-check-input" type="radio" name="account_type" id="typeCompany" value="company">
                     <label class="form-check-label" for="typeCompany">Company</label>
                   </div>
 
+                  @if ($errors->has('account_type'))
+                  <div class="invalid-feedback d-block">
+                    {{ $errors->first('account_type') }}
+                  </div>
+                  @endif
                 </div>
               <div class="form-group">
                 <button class="btn btn-default hover-up w-100" type="submit" name="login">Submit &amp;
