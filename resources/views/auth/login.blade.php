@@ -67,7 +67,7 @@
                 <button class="btn btn-default hover-up w-100" type="submit" name="login">Login</button>
               </div>
               <div class="text-muted text-center">Don't have an account?
-                <a href="page-register.html">Registration</a>
+                <a href="{{ route('register') }}">Registration</a>
               </div>
             </form>
             {{-- <div class="text-center mt-20">
