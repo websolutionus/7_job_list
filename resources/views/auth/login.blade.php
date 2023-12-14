@@ -43,11 +43,12 @@
                   </div>
                 </div>
 
-
-
                 <div class="col-xl-12">
                   <div class="form-group">
-                    <label class="form-label" for="input-4">Password *</label>
+                    <div class="d-flex justify-content-between">
+                        <label class="form-label" for="input-4">Password *</label>
+                        <a href="{{ route('password.request') }}">forgot password?</a>
+                    </div>
                     <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="input-4" type="password" required="" name="password"
                       placeholder="************">
 
