@@ -36,6 +36,8 @@ class CompanyProfileController extends Controller
             $data
         );
 
+        notify()->success('Updated Successfully', 'Success!');
+
         return redirect()->back();
 
     }
