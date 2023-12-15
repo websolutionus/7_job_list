@@ -93,7 +93,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Industry Type *</label>
-                                            <select name="" id="" class="form-control">
+                                            <select name="" id="" class="form-control select-active">
                                                 <option value="">Select</option>
                                                 <option value="">test1</option>
                                             </select>
