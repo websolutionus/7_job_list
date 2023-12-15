@@ -91,9 +91,9 @@
 
 
                                     <div class="col-md-4">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Industry Type *</label>
-                                            <select name="" id="" class="form-control select-active">
+                                            <select name="" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
                                                 <option value="">test1</option>
                                             </select>
@@ -101,9 +101,9 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Organization Type *</label>
-                                            <select name="" id="" class="form-control">
+                                            <select name="" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
                                                 <option value="">test1</option>
                                             </select>
@@ -111,9 +111,9 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Team Size *</label>
-                                            <select name="" id="" class="form-control">
+                                            <select name="" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
                                                 <option value="">test1</option>
                                             </select>
@@ -123,7 +123,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Establishment Date</label>
-                                            <input type="date" class="form-control">
+                                            <input type="text" class="form-control datepicker">
                                         </div>
                                     </div>
 
@@ -149,27 +149,27 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Country *</label>
-                                            <select name="" id="" class="form-control">
+                                            <select name="" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
                                                 <option value="">test1</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">State</label>
-                                            <select name="" id="" class="form-control">
+                                            <select name="" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
                                                 <option value="">test1</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">City</label>
-                                            <select name="" id="" class="form-control">
+                                            <select name="" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
                                                 <option value="">test1</option>
                                             </select>
