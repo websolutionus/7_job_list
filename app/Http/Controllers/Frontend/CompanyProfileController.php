@@ -14,7 +14,8 @@ class CompanyProfileController extends Controller
     use FileUploadTrait;
 
     function index() : View {
-        return view('frontend.company-dashboard.profile.index');
+        $companyInfo = Company::where('user_id', auth()->user()->id)->first();
+        return view('frontend.company-dashboard.profile.index', compact('companyInfo'));
     }
 
     function updateCompanyInfo(CompanyInfoUpdateRequest $request)
@@ -29,7 +30,7 @@ class CompanyProfileController extends Controller
         $data['name'] = $request->name;
         $data['bio'] = $request->bio;
         $data['vision'] = $request->vision;
-        
+
         Company::updateOrCreate(
             ['user_id' => auth()->user()->id],
             $data
