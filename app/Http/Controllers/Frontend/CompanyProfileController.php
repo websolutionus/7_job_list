@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use App\Traits\FileUploadTrait;
 use Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Validation\Rules;
 
 class CompanyProfileController extends Controller
 {
@@ -79,6 +80,17 @@ class CompanyProfileController extends Controller
         ]);
 
         Auth::user()->update($validatedData);
+        notify()->success('Updated Successfully', 'Success!');
+
+        return redirect()->back();
+    }
+
+    function updatePassword(Request $request) : RedirectResponse {
+        $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+        ]);
+
+        Auth::user()->update(['password' => bcrypt($request->password)]);
         notify()->success('Updated Successfully', 'Success!');
 
         return redirect()->back();

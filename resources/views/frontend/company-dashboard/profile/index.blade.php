@@ -259,15 +259,17 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">User Name *</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
                                                 value="{{ auth()->user()->name }}" name="name">
+                                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Email *</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
                                                 value="{{ auth()->user()->email }}" name="email">
+                                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -282,24 +284,31 @@
                                 <br>
 
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="font-sm color-text-mutted mb-10">Password *</label>
-                                        <input type="password" class="form-control">
+                               <form action="{{ route("company.profile.password-update") }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="font-sm color-text-mutted mb-10">Password *</label>
+                                            <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password">
+                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="font-sm color-text-mutted mb-10">Confirm Password *</label>
-                                        <input type="password" class="form-control">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="font-sm color-text-mutted mb-10">Confirm Password *</label>
+                                            <input type="password" class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" name="password_confirmation">
+                                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <button class="btn btn-default btn-shadow">Save</button>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <button class="btn btn-default btn-shadow">Save</button>
+                                        </div>
                                     </div>
-                                </div>
+                                   </div>
+                               </form>
 
                             </div>
                         </div>
