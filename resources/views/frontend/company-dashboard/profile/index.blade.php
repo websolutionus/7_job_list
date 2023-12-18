@@ -136,7 +136,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Establishment Date</label>
-                                            <input type="text" name="establishment_date" class="form-control datepicker {{ $errors->has('establishment_date') ? 'is-invalid' : '' }}">
+                                            <input type="text" name="establishment_date" class="form-control datepicker {{ $errors->has('establishment_date') ? 'is-invalid' : '' }}" value="{{ $companyInfo?->establishment_date }}">
                                             <x-input-error :messages="$errors->get('establishment_date')" class="mt-2" />
 
                                         </div>
@@ -145,7 +145,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Website</label>
-                                            <input type="text" name="website" class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}">
+                                            <input type="text" name="website" class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}" value="{{ $companyInfo?->website }}">
                                             <x-input-error :messages="$errors->get('website')" class="mt-2" />
                                         </div>
                                     </div>
@@ -153,7 +153,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Email *</label>
-                                            <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}">
+                                            <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ $companyInfo?->email }}">
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
                                         </div>
@@ -162,7 +162,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Phone *</label>
-                                            <input type="text" name="phone" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}">
+                                            <input type="text" name="phone" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" value="{{ $companyInfo?->phone }}">
                                             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
 
                                         </div>
@@ -171,7 +171,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Country *</label>
-                                            <select name="country" id="" class="form-control form-icons select-active {{ $errors->has('country') ? 'is-invalid' : '' }}">
+                                            <select name="country" id="" class="form-control form-icons select-active {{ $errors->has('country') ? 'is-invalid' : '' }}" value="{{ $companyInfo?->country }}">
                                                 <option value="">Select</option>
                                                 <option value="0">test1</option>
                                             </select>
@@ -182,7 +182,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">State</label>
-                                            <select name="state" id="" class="form-control form-icons select-active {{ $errors->has('state') ? 'is-invalid' : '' }}">
+                                            <select name="state" id="" class="form-control form-icons select-active {{ $errors->has('state') ? 'is-invalid' : '' }}" value="{{ $companyInfo?->state }}">
                                                 <option value="">Select</option>
                                                 <option value="0">test1</option>
                                             </select>
@@ -193,7 +193,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">City</label>
-                                            <select name="city" id="" class="form-control form-icons select-active {{ $errors->has('city') ? 'is-invalid' : '' }}">
+                                            <select name="city" id="" class="form-control form-icons select-active {{ $errors->has('city') ? 'is-invalid' : '' }}" value="{{ $companyInfo?->city }}">
                                                 <option value="">Select</option>
                                                 <option value="0">test1</option>
                                             </select>
@@ -205,7 +205,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Addesss</label>
-                                            <input type="text" name="address" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}">
+                                            <input type="text" name="address" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" value="{{ $companyInfo?->address }}">
                                             <x-input-error :messages="$errors->get('address')" class="mt-2" />
 
                                         </div>
@@ -214,7 +214,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Map Link</label>
-                                            <input type="text" name="map_link" class="form-control">
+                                            <input type="text" name="map_link" class="form-control" value="{{ $companyInfo?->map_link }}">
                                         </div>
                                     </div>
 
