@@ -43,7 +43,7 @@ Route::group(
 
 });
 
-/** Company Dashboard Routes */
+/** Company Routes */
 Route::group(
     [
         'middleware' => ['auth', 'verified', 'user.role:company'],
@@ -57,6 +57,7 @@ Route::group(
     /** Company Profile Routes */
     Route::get('/profile', [CompanyProfileController::class, 'index'])->name('profile');
     Route::post('/profile/company-info', [CompanyProfileController::class, 'updateCompanyInfo'])->name('profile.company-info');
+    Route::post('/profile/founding-info', [CompanyProfileController::class, 'updateFoundingInfo'])->name('profile.founding-info');
 
 
 });

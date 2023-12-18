@@ -95,16 +95,15 @@
                             </form>
                         </div>
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <form action="">
+                            <form action="{{ route('company.profile.founding-info') }}" method="POST">
+                                @csrf
                                 <div class="row">
-
-
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Industry Type *</label>
-                                            <select name="" id="" class="form-control form-icons select-active">
+                                            <select name="industry_type" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
-                                                <option value="">test1</option>
+                                                <option value="0">test1</option>
                                             </select>
                                         </div>
                                     </div>
@@ -112,9 +111,9 @@
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Organization Type *</label>
-                                            <select name="" id="" class="form-control form-icons select-active">
+                                            <select name="organization_type" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
-                                                <option value="">test1</option>
+                                                <option value="0">test1</option>
                                             </select>
                                         </div>
                                     </div>
@@ -122,9 +121,9 @@
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Team Size *</label>
-                                            <select name="" id="" class="form-control form-icons select-active">
+                                            <select name="team_size" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
-                                                <option value="">test1</option>
+                                                <option value="0">test1</option>
                                             </select>
                                         </div>
                                     </div>
@@ -132,55 +131,55 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Establishment Date</label>
-                                            <input type="text" class="form-control datepicker">
+                                            <input type="text" name="establishment_date" class="form-control datepicker">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Website</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="website" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Email *</label>
-                                            <input type="email" class="form-control">
+                                            <input type="email" name="email" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Phone *</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="phone" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Country *</label>
-                                            <select name="" id="" class="form-control form-icons select-active">
+                                            <select name="country" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
-                                                <option value="">test1</option>
+                                                <option value="0">test1</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">State</label>
-                                            <select name="" id="" class="form-control form-icons select-active">
+                                            <select name="state" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
-                                                <option value="">test1</option>
+                                                <option value="0">test1</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">City</label>
-                                            <select name="" id="" class="form-control form-icons select-active">
+                                            <select name="city" id="" class="form-control form-icons select-active">
                                                 <option value="">Select</option>
-                                                <option value="">test1</option>
+                                                <option value="0">test1</option>
                                             </select>
                                         </div>
                                     </div>
@@ -188,14 +187,14 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Addesss</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="address" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Map Link</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="map_link" class="form-control">
                                         </div>
                                     </div>
 
