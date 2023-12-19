@@ -14,4 +14,9 @@ class Notify {
         return notify()->success('Updated Successfully', 'Success!');
     }
 
+    // Deleted Notification
+    static function deletedNotification() {
+        return notify()->success('Deleted Successfully', 'Success!');
+    }
+
 }
