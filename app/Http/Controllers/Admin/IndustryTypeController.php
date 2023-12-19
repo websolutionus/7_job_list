@@ -5,18 +5,26 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\IndustryType;
 use App\Services\Notify;
+use App\Traits\Searchable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class IndustryTypeController extends Controller
 {
+    use Searchable;
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index(Request $request) : View
     {
-        $industryTypes = IndustryType::paginate(20);
+
+        $query = IndustryType::query();
+
+        $this->search($query, ['name']);
+
+        $industryTypes = $query->paginate(20);
+
         return view('admin.industry-type.index', compact('industryTypes'));
     }
 
