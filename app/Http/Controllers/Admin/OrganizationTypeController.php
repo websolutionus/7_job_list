@@ -3,25 +3,35 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\OrganizationType;
+use App\Services\Notify;
+use App\Traits\Searchable;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+use function Ramsey\Uuid\v1;
+
 class OrganizationTypeController extends Controller
 {
+    use Searchable;
     /**
      * Display a listing of the resource.
      */
     public function index() : View
     {
-        return view('admin.organization-type.index');
+        $query = OrganizationType::query();
+        $this->search($query, ['name']);
+        $organizationTypes = $query->paginate(20);
+
+        return view('admin.organization-type.index', compact('organizationTypes'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : View
     {
-        //
+        return view('admin.organization-type.create');
     }
 
     /**
@@ -29,7 +39,17 @@ class OrganizationTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255', 'unique:organization_types,name']
+        ]);
+
+        $type = new OrganizationType();
+        $type->name = $request->name;
+        $type->save();
+
+        Notify::createdNotification();
+
+        return to_route('admin.organization-types.index');
     }
 
     /**
