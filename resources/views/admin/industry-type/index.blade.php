@@ -21,7 +21,7 @@
                                 </div>
                             </form>
                         </div>
-                        <a href="" class="btn btn-primary"> <i class="fas fa-plus-circle"></i> Create new</a>
+                        <a href="{{ route('admin.industry-types.create') }}" class="btn btn-primary"> <i class="fas fa-plus-circle"></i> Create new</a>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">

@@ -2822,3 +2822,7 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
     border-radius: 30px;
 }
 
+.notify {
+    z-index: 9999 !important;
+}
+
