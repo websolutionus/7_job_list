@@ -37,7 +37,7 @@
                                     <td>{{ $type->name }}</td>
                                     <td>{{ $type->slug }}</td>
                                     <td>
-                                        <a href="" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('admin.industry-types.edit', $type->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
                                         <a href="" class="btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>

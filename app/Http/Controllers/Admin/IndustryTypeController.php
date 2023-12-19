@@ -47,19 +47,12 @@ class IndustryTypeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $industryType = IndustryType::findOrFail($id);
+        return view('admin.industry-type.edit', compact('industryType'));
     }
 
     /**
@@ -67,7 +60,17 @@ class IndustryTypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255', 'unique:industry_types,name,'.$id]
+        ]);
+
+        $type = IndustryType::findOrFail($id);
+        $type->name = $request->name;
+        $type->save();
+
+        Notify::updatedNotification();
+
+        return to_route('admin.industry-types.index');
     }
 
     /**

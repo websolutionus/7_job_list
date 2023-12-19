@@ -10,7 +10,7 @@ class Notify {
     }
 
     // Updated Notification
-    static function UpdatedNotification() {
+    static function updatedNotification() {
         return notify()->success('Updated Successfully', 'Success!');
     }
 
