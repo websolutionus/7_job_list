@@ -87,14 +87,15 @@
                                 window.location.reload();
                             },
                             error: function(xhr, status, error) {
-                                console.log(error);
+                                console.log(xhr);
+                                swal(xhr.responseJSON.message, {
+                                    icon: 'error',
+                                });
                             }
                         })
 
-                        swal('Poof! Your imaginary file has been deleted!', {
-                            icon: 'success',
-                        });
-                    } 
+
+                    }
                 });
         });
     </script>

@@ -85,7 +85,7 @@ class IndustryTypeController extends Controller
 
         }catch(\Exception $e) {
             logger($e);
-            return response(['message' => 'error'], 500);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
         }
     }
 }
