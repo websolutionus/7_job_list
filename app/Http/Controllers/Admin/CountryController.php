@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Services\Notify;
 use App\Traits\Searchable;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -19,7 +21,7 @@ class CountryController extends Controller
     {
         $query = Country::query();
         $this->search($query, ['name']);
-        $countries = $query->paginate(20);
+        $countries = $query->orderBy('id', 'DESC')->paginate(20);
 
         return view('admin.location.country.index', compact('countries'));
     }
@@ -27,33 +29,36 @@ class CountryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : View
     {
-        //
+        return view('admin.location.country.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
-        //
-    }
+        $request->validate([
+            'name' => ['required', 'max:255', 'unique:organization_types,name']
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $country = new Country();
+        $country->name = $request->name;
+        $country->save();
+
+        Notify::createdNotification();
+
+        return to_route('admin.countries.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $country = Country::findOrFail($id);
+        return view('admin.location.country.edit', compact('country'));
     }
 
     /**
@@ -61,7 +66,17 @@ class CountryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255', 'unique:organization_types,name,'.$id]
+        ]);
+
+        $country = Country::findOrFail($id);
+        $country->name = $request->name;
+        $country->save();
+
+        Notify::updatedNotification();
+
+        return to_route('admin.countries.index');
     }
 
     /**
@@ -69,6 +84,14 @@ class CountryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Country::findOrFail($id)->delete();
+            Notify::deletedNotification();
+            return response(['message' => 'success'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
     }
 }
