@@ -20,9 +20,7 @@ class IndustryTypeController extends Controller
     {
 
         $query = IndustryType::query();
-
         $this->search($query, ['name']);
-
         $industryTypes = $query->paginate(20);
 
         return view('admin.industry-type.index', compact('industryTypes'));
