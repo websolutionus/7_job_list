@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
+use App\Http\Controllers\Admin\StateContriller;
+use App\Http\Controllers\Admin\StateController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -49,5 +51,12 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Countries Route */
     Route::resource('countries', CountryController::class);
+
+    /** State Route */
+    Route::resource('states', StateController::class);
+
+
+
+
 
 });
