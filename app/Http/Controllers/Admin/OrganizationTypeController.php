@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\OrganizationType;
 use App\Services\Notify;
 use App\Traits\Searchable;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 use function Ramsey\Uuid\v1;
@@ -37,7 +39,7 @@ class OrganizationTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'max:255', 'unique:organization_types,name']
@@ -52,20 +54,14 @@ class OrganizationTypeController extends Controller
         return to_route('admin.organization-types.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $organizationType = OrganizationType::findOrFail($id);
+        return view('admin.organization-type.edit', compact('organizationType'));
     }
 
     /**
@@ -73,14 +69,32 @@ class OrganizationTypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255', 'unique:organization_types,name,'.$id]
+        ]);
+
+        $type = OrganizationType::findOrFail($id);
+        $type->name = $request->name;
+        $type->save();
+
+        Notify::updatedNotification();
+
+        return to_route('admin.organization-types.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id) : Response
     {
-        //
+        try {
+            OrganizationType::findOrFail($id)->delete();
+            Notify::deletedNotification();
+            return response(['message' => 'success'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
     }
 }
