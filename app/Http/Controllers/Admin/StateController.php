@@ -9,6 +9,7 @@ use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class StateController extends Controller
@@ -58,34 +59,47 @@ class StateController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $countries = Country::all();
+        $state = State::findOrFail($id);
+        return view('admin.location.state.edit', compact('countries', 'state'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id) : RedirectResponse
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255'],
+            'country' => ['required', 'integer']
+        ]);
+
+        $state = State::findOrFail($id);
+        $state->name = $request->name;
+        $state->country_id = $request->country;
+        $state->save();
+        Notify::updatedNotification();
+
+        return to_route('admin.states.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id) : Response
     {
-        //
+        try {
+            State::findOrFail($id)->delete();
+            Notify::deletedNotification();
+            return response(['message' => 'success'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
     }
 }
