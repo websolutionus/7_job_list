@@ -3,24 +3,24 @@
 @section('contents')
     <section class="section">
         <div class="section-header">
-            <h1>States</h1>
+            <h1>Cities</h1>
         </div>
 
         <div class="section-body">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Create State</h4>
+                        <h4>Create City</h4>
 
                     </div>
                     <div class="card-body">
                         <form action="{{ route('admin.states.store') }}" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Country</label>
-                                        <select name="country" id="" class="form-control select2 {{ hasError($errors, 'country') }}">
+                                        <select name="country" id="" class="form-control select2 country {{ hasError($errors, 'country') }}">
                                             <option value="">Select</option>
                                             @foreach ($countries as $country)
                                                 <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -29,10 +29,20 @@
                                         <x-input-error :messages="$errors->get('country')" class="mt-2" />
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="">State Name</label>
-                                        <input type="text" class="form-control {{ hasError($errors, 'name') }}" name="name" value="{{ old('name') }}">
+                                        <label for="">States</label>
+                                        <select name="state" id="" class="form-control select2 state {{ hasError($errors, 'state') }}">
+                                            <option value="">Select</option>
+
+                                        </select>
+                                        <x-input-error :messages="$errors->get('state')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">City Name</label>
+                                        <input type="text" class="form-control {{ hasError($errors, 'city') }}" name="city" value="{{ old('city') }}">
                                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                     </div>
                                 </div>
@@ -49,3 +59,25 @@
     </section>
 
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('.country').on('change', function() {
+            let country_id = $(this).val();
+
+            $.ajax({
+                mehtod: 'GET',
+                url: '',
+                data: {},
+                success: function(response) {
+
+                },
+                error: function(xhr, status, error) {
+                    
+                }
+            })
+        })
+    })
+</script>
+@endpush

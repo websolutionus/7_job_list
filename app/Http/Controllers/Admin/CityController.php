@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\City;
+use App\Models\Country;
 use App\Traits\Searchable;
 
 class CityController extends Controller
@@ -27,9 +28,10 @@ class CityController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : View
     {
-        //
+        $countries = Country::all();
+        return view('admin.location.city.create', compact('countries'));
     }
 
     /**
