@@ -87,7 +87,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Vision *</label>
-                                            <textarea class="{{ $errors->has('vision') ? 'is-invalid' : '' }}" name="vision">{{ $companyInfo->vision }}</textarea>
+                                            <textarea class="{{ $errors->has('vision') ? 'is-invalid' : '' }}" name="vision">{{ $companyInfo?->vision }}</textarea>
                                             <x-input-error :messages="$errors->get('vision')" class="mt-2" />
                                         </div>
                                     </div>
@@ -108,7 +108,9 @@
                                             <select name="industry_type" id=""
                                                 class="form-control form-icons select-active {{ $errors->has('industry_type') ? 'is-invalid' : '' }}">
                                                 <option value="">Select</option>
-                                                <option value="0">test1</option>
+                                                @foreach ($industryTypes as $industryType)
+                                                <option value="{{ $industryType->id }}">{{ $industryType->name }}</option>
+                                                @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('industry_type')" class="mt-2" />
                                         </div>
@@ -120,7 +122,9 @@
                                             <select name="organization_type" id=""
                                                 class="form-control form-icons select-active {{ $errors->has('organization_type') ? 'is-invalid' : '' }}">
                                                 <option value="">Select</option>
-                                                <option value="0">test1</option>
+                                                @foreach ($organizationTypes as $organizationType)
+                                                <option value="{{ $organizationType->id }}">{{ $organizationType->name }}</option>
+                                                @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('organization_type')" class="mt-2" />
 
@@ -133,7 +137,9 @@
                                             <select name="team_size" id=""
                                                 class="form-control form-icons select-active {{ $errors->has('team_size') ? 'is-invalid' : '' }}">
                                                 <option value="">Select</option>
-                                                <option value="0">test1</option>
+                                                @foreach ($teamSizes as $teamSize)
+                                                <option value="{{ $teamSize->id }}">{{ $teamSize->name }}</option>
+                                                @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('team_size')" class="mt-2" />
 
