@@ -68,13 +68,20 @@
 
             $.ajax({
                 mehtod: 'GET',
-                url: '',
+                url: '{{ route("admin.get-states", ":id") }}'.replace(":id", country_id),
                 data: {},
                 success: function(response) {
+                    let html = '';
+
+                    $.each(response, function(index, value) {
+                        html += `<option value="${value.id}" >${value.name}</option>`
+                    });
+
+                    $('.state').html(html);
 
                 },
                 error: function(xhr, status, error) {
-                    
+
                 }
             })
         })
