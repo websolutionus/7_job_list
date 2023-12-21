@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\City;
 use App\Models\Country;
+use App\Services\Notify;
 use App\Traits\Searchable;
+use Illuminate\Http\RedirectResponse;
 
 class CityController extends Controller
 {
@@ -37,9 +39,23 @@ class CityController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
-        //
+        $request->validate([
+            'country' => ['required', 'integer'],
+            'state' => ['required', 'integer'],
+            'city' => ['required', 'string', 'max:255']
+        ]);
+
+        $city = new City();
+        $city->name = $request->city;
+        $city->state_id = $request->state;
+        $city->country_id = $request->country;
+        $city->save();
+
+        Notify::createdNotification();
+
+        return to_route('admin.cities.index');
     }
 
     /**

@@ -14,7 +14,7 @@
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.states.store') }}" method="POST">
+                        <form action="{{ route('admin.cities.store') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
@@ -43,7 +43,7 @@
                                     <div class="form-group">
                                         <label for="">City Name</label>
                                         <input type="text" class="form-control {{ hasError($errors, 'city') }}" name="city" value="{{ old('city') }}">
-                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                        <x-input-error :messages="$errors->get('city')" class="mt-2" />
                                     </div>
                                 </div>
                             </div>
