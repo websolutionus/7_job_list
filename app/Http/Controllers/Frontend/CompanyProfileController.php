@@ -10,6 +10,7 @@ use App\Models\Country;
 use App\Models\IndustryType;
 use App\Models\OrganizationType;
 use App\Models\TeamSize;
+use App\Services\Notify;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Traits\FileUploadTrait;
@@ -56,8 +57,6 @@ class CompanyProfileController extends Controller
 
     function updateFoundingInfo(CompanyFoundingInfoUpdateRequest $request) : RedirectResponse {
 
-
-
         Company::updateOrCreate(
             ['user_id' => auth()->user()->id],
             [
@@ -76,7 +75,7 @@ class CompanyProfileController extends Controller
             ]
         );
 
-        notify()->success('Updated Successfully', 'Success!');
+        Notify::updatedNotification();
 
         return redirect()->back();
     }

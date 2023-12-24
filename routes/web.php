@@ -31,6 +31,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('get-state/{country_id}', [LocationController::class, 'getStates'])->name('get-states');
+Route::get('get-cities/{state_id}', [LocationController::class, 'getCities'])->name('get-cities');
+
 
 
 /** Candidate Dashboard Routes */
