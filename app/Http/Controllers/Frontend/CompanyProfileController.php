@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CompanyFoundingInfoUpdateRequest;
 use App\Http\Requests\Frontend\CompanyInfoUpdateRequest;
+use App\Models\City;
 use App\Models\Company;
 use App\Models\Country;
 use App\Models\IndustryType;
 use App\Models\OrganizationType;
+use App\Models\State;
 use App\Models\TeamSize;
 use App\Services\Notify;
 use Illuminate\Http\Request;
@@ -28,7 +30,9 @@ class CompanyProfileController extends Controller
         $organizationTypes = OrganizationType::all();
         $teamSizes = TeamSize::all();
         $countries = Country::all();
-        return view('frontend.company-dashboard.profile.index', compact('companyInfo', 'industryTypes', 'organizationTypes', 'teamSizes', 'countries'));
+        $states = State::select(['id', 'name', 'country_id'])->where('country_id', $companyInfo->country)->get();
+        $cities = City::select(['id', 'name', 'state_id', 'country_id'])->where('state_id', $companyInfo->state)->get();
+        return view('frontend.company-dashboard.profile.index', compact('companyInfo', 'industryTypes', 'organizationTypes', 'teamSizes', 'countries', 'states', 'cities'));
     }
 
     function updateCompanyInfo(CompanyInfoUpdateRequest $request) : RedirectResponse
