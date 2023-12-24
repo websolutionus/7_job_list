@@ -32,13 +32,13 @@
                                     <th style="width: 10%">Action</th>
                                 </tr>
                             <tbody>
-                                @forelse ($languages as $langage)
+                                @forelse ($languages as $language)
                                     <tr>
-                                        <td>{{ $langage->name }}</td>
-                                        <td>{{ $langage->slug }}</td>
+                                        <td>{{ $language->name }}</td>
+                                        <td>{{ $language->slug }}</td>
                                         <td>
-                                            <a href="{{ route('admin.languages.edit', $type->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('admin.languages.destroy', $type->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="{{ route('admin.languages.edit', $language->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.languages.destroy', $language->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @empty

@@ -3,23 +3,23 @@
 @section('contents')
     <section class="section">
         <div class="section-header">
-            <h1>Industry Type</h1>
+            <h1>Languages</h1>
         </div>
 
         <div class="section-body">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Update Industry Type</h4>
+                        <h4>Update Language</h4>
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.industry-types.update', $industryType->id) }}" method="POST">
+                        <form action="{{ route('admin.languages.update', $language->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label for="">Name</label>
-                                <input type="text" class="form-control {{ hasError($errors, 'name') }}" name="name" value="{{ old('name', $industryType->name) }}">
+                                <input type="text" class="form-control {{ hasError($errors, 'name') }}" name="name" value="{{ old('name', $language->name) }}">
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
                             <div class="form-group">
