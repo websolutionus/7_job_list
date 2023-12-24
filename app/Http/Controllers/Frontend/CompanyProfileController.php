@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CompanyFoundingInfoUpdateRequest;
 use App\Http\Requests\Frontend\CompanyInfoUpdateRequest;
 use App\Models\Company;
+use App\Models\Country;
 use App\Models\IndustryType;
 use App\Models\OrganizationType;
 use App\Models\TeamSize;
@@ -25,7 +26,8 @@ class CompanyProfileController extends Controller
         $industryTypes = IndustryType::all();
         $organizationTypes = OrganizationType::all();
         $teamSizes = TeamSize::all();
-        return view('frontend.company-dashboard.profile.index', compact('companyInfo', 'industryTypes', 'organizationTypes', 'teamSizes'));
+        $countries = Country::all();
+        return view('frontend.company-dashboard.profile.index', compact('companyInfo', 'industryTypes', 'organizationTypes', 'teamSizes', 'countries'));
     }
 
     function updateCompanyInfo(CompanyInfoUpdateRequest $request) : RedirectResponse

@@ -193,10 +193,12 @@
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Country *</label>
                                             <select name="country" id=""
-                                                class="form-control form-icons select-active {{ $errors->has('country') ? 'is-invalid' : '' }}"
+                                                class="form-control form-icons country select-active {{ $errors->has('country') ? 'is-invalid' : '' }}"
                                                 value="{{ $companyInfo?->country }}">
                                                 <option value="">Select</option>
-                                                <option value="0">test1</option>
+                                                @foreach ($countries as $country)
+                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('country')" class="mt-2" />
 
@@ -206,7 +208,7 @@
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">State</label>
                                             <select name="state" id=""
-                                                class="form-control form-icons select-active {{ $errors->has('state') ? 'is-invalid' : '' }}"
+                                                class="form-control state form-icons select-active {{ $errors->has('state') ? 'is-invalid' : '' }}"
                                                 value="{{ $companyInfo?->state }}">
                                                 <option value="">Select</option>
                                                 <option value="0">test1</option>
@@ -219,7 +221,7 @@
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">City</label>
                                             <select name="city" id=""
-                                                class="form-control form-icons select-active {{ $errors->has('city') ? 'is-invalid' : '' }}"
+                                                class="form-control city form-icons select-active {{ $errors->has('city') ? 'is-invalid' : '' }}"
                                                 value="{{ $companyInfo?->city }}">
                                                 <option value="">Select</option>
                                                 <option value="0">test1</option>
@@ -325,3 +327,32 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('.country').on('change', function() {
+            let country_id = $(this).val();
+
+            $.ajax({
+                mehtod: 'GET',
+                url: '{{ route("get-states", ":id") }}'.replace(":id", country_id),
+                data: {},
+                success: function(response) {
+                    let html = '';
+
+                    $.each(response, function(index, value) {
+                        html += `<option value="${value.id}" >${value.name}</option>`
+                    });
+
+                    $('.state').html(html);
+
+                },
+                error: function(xhr, status, error) {
+
+                }
+            })
+        })
+    })
+</script>
+@endpush
