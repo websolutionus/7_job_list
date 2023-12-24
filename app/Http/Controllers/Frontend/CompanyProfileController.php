@@ -53,6 +53,13 @@ class CompanyProfileController extends Controller
             $data
         );
 
+        if(isCompanyProfileComplete()) {
+            $companyProfile = Company::where('user_id', auth()->user()->id)->first();
+            $companyProfile->profile_completion = 1;
+            $companyProfile->visibility = 1;
+            $companyProfile->save();
+        }
+
         notify()->success('Updated Successfully', 'Success!');
 
         return redirect()->back();
@@ -60,7 +67,6 @@ class CompanyProfileController extends Controller
     }
 
     function updateFoundingInfo(CompanyFoundingInfoUpdateRequest $request) : RedirectResponse {
-
         Company::updateOrCreate(
             ['user_id' => auth()->user()->id],
             [
@@ -78,6 +84,13 @@ class CompanyProfileController extends Controller
                 'map_link' => $request->map_link
             ]
         );
+
+        if(isCompanyProfileComplete()) {
+            $companyProfile = Company::where('user_id', auth()->user()->id)->first();
+            $companyProfile->profile_completion = 1;
+            $companyProfile->visibility = 1;
+            $companyProfile->save();
+        }
 
         Notify::updatedNotification();
 
