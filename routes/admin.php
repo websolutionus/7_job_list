@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\StateContriller;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LocationController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('cities', CityController::class);
     Route::get('get-states/{country_id}', [LocationController::class, 'getStatesOfCountry'])->name('get-states');
 
+    /** Language Route */
+    Route::resource('languages', LanguageController::class);
 
 
 });
