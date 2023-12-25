@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Candidate extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['user_id', 'cv', 'full_name', 'image',
+    'title', 'experience_id', 'website', 'birth_date'];
 }
