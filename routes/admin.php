@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ProfessionController;
+use App\Http\Controllers\Admin\SkillController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -68,5 +69,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Profession Route */
     Route::resource('professions', ProfessionController::class);
+
+    /** Skills Route */
+    Route::resource('skills', SkillController::class);
 
 });
