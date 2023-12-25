@@ -1,5 +1,5 @@
 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <form action="{{ route('company.profile.company-info') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('candidate.profile.basic-info.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
 
@@ -11,7 +11,15 @@
                         value="" name="profile_picture">
                     <x-input-error :messages="$errors->get('profile_picture')" class="mt-2" />
                 </div>
+                 {{-- <x-image-preview :height="200" :width="200" :source="" /> --}}
+                 <div class="form-group">
+                    <label class="font-sm color-text-mutted mb-10">CV</label>
+                    <input class="form-control {{ $errors->has('cv') ? 'is-invalid' : '' }}" type="file"
+                        value="" name="cv">
+                    <x-input-error :messages="$errors->get('cv')" class="mt-2" />
+                </div>
             </div>
+
 
 
             <div class="col-md-9">
