@@ -51,20 +51,14 @@ class SkillController extends Controller
         return to_route('admin.skills.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $skill = Skill::findOrFail($id);
+        return view('admin.skill.edit', compact('skill'));
     }
 
     /**
@@ -72,7 +66,17 @@ class SkillController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255', 'unique:skills,name,'.$id]
+        ]);
+
+        $profession = Skill::findOrFail($id);
+        $profession->name = $request->name;
+        $profession->save();
+
+        Notify::updatedNotification();
+
+        return to_route('admin.skills.index');
     }
 
     /**
@@ -80,6 +84,14 @@ class SkillController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Skill::findOrFail($id)->delete();
+            Notify::deletedNotification();
+            return response(['message' => 'success'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
     }
 }
