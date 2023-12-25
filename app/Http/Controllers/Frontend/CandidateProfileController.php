@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CandidateBasicProfileUpdateRequest;
 use App\Models\Candidate;
+use App\Models\Experience;
 use App\Services\Notify;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\RedirectResponse;
@@ -16,7 +17,9 @@ class CandidateProfileController extends Controller
     use FileUploadTrait;
 
     function index() : View {
-        return view('frontend.candidate-dashboard.profile.index');
+        $experiences = Experience::all();
+        $candidate = Candidate::where('user_id', auth()->user()->id)->first();
+        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'experiences'));
     }
 
     /** update basic info of candidate profile */

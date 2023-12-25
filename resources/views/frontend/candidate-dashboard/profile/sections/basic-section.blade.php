@@ -4,7 +4,7 @@
         <div class="row">
 
             <div class="col-md-3">
-                {{-- <x-image-preview :height="200" :width="200" :source="" /> --}}
+                <x-image-preview :height="200" :width="200" :source="$candidate?->image" />
                 <div class="form-group">
                     <label class="font-sm color-text-mutted mb-10">Profile Picture *</label>
                     <input class="form-control {{ $errors->has('profile_picture') ? 'is-invalid' : '' }}" type="file"
@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Full Name *</label>
                             <input class="form-control {{ $errors->has('full_name') ? 'is-invalid' : '' }}" type="text"
-                                value="" name="full_name">
+                                value="{{ $candidate->full_name }}" name="full_name">
                             <x-input-error :messages="$errors->get('full_name')" class="mt-2" />
                         </div>
                     </div>
@@ -36,16 +36,21 @@
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Title/Tagline</label>
                             <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text"
-                                value="" name="title">
+                                value="{{ $candidate?->title }}" name="title">
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group select-style">
                             <label class="font-sm color-text-mutted mb-10">Experience Level *</label>
-                            <input class="form-control {{ $errors->has('experience_level') ? 'is-invalid' : '' }}" type="text"
-                                value="" name="experience_level">
+
+                            <select name="experience_level" id="" class="{{ $errors->has('experience_level') ? 'is-invalid' : '' }} form-icons select-active">
+                                <option value="">Select one</option>
+                                @foreach ($experiences as $experience)
+                                    <option @selected($experience->id === $candidate->experience_id) value="{{ $experience->id }}">{{ $experience->name }}</option>
+                                @endforeach
+                            </select>
                             <x-input-error :messages="$errors->get('experience_level')" class="mt-2" />
                         </div>
                     </div>
@@ -53,7 +58,7 @@
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Website</label>
                             <input class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}" type="text"
-                                value="" name="website">
+                                value="{{ $candidate?->website }}" name="website">
                             <x-input-error :messages="$errors->get('website')" class="mt-2" />
                         </div>
                     </div>
@@ -61,7 +66,7 @@
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Date of Birth</label>
                             <input class="form-control datepicker {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}" type="text"
-                                value="" name="date_of_birth">
+                                value="{{ $candidate?->birth_date }}" name="date_of_birth">
                             <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
                         </div>
                     </div>
