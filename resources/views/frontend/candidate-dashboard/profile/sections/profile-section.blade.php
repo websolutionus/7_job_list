@@ -5,18 +5,26 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group select-style">
                             <label class="font-sm color-text-mutted mb-10"> Gender *</label>
-                            <input class="form-control {{ $errors->has('gender') ? 'is-invalid' : '' }}"
-                                type="text" value="" name="gender">
+                            <select name="gender" id=""
+                                class="{{ $errors->has('gender') ? 'is-invalid' : '' }} form-icons select-active">
+                                <option value="">Select one</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
                             <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group select-style">
                             <label class="font-sm color-text-mutted mb-10">Marital Status *</label>
-                            <input class="form-control {{ $errors->has('marital_status') ? 'is-invalid' : '' }}" type="text"
-                                value="" name="marital_status">
+                            <select name="marital_status" id=""
+                                class="{{ $errors->has('marital_status') ? 'is-invalid' : '' }} form-icons select-active">
+                                <option value="">Select one</option>
+                                <option value="single">Single</option>
+                                <option value="married">Married</option>
+                            </select>
                             <x-input-error :messages="$errors->get('marital_status')" class="mt-2" />
                         </div>
                     </div>
@@ -49,27 +57,35 @@
                     </div>
 
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="font-sm color-text-mutted mb-10">Skills you Have</label>
-                            <input class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}"
-                                type="text" value="" name="website">
-                            <x-input-error :messages="$errors->get('website')" class="mt-2" />
+                        <div class="form-group select-style">
+                            <label class="font-sm color-text-mutted mb-10">Skills you have *</label>
+                            <select name="skill_you_have" id=""
+                                class="{{ $errors->has('skill_you_have') ? 'is-invalid' : '' }} form-icons select-active" multiple="">
+                                <option value="">Select one</option>
+                                <option value="single">test 1</option>
+                                <option value="married">test 2</option>
+                            </select>
+                            <x-input-error :messages="$errors->get('skill_you_have')" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="font-sm color-text-mutted mb-10">Languages you know</label>
-                            <input class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}"
-                                type="text" value="" name="website">
-                            <x-input-error :messages="$errors->get('website')" class="mt-2" />
+                        <div class="form-group select-style">
+                            <label class="font-sm color-text-mutted mb-10">Languages you know *</label>
+                            <select name="skill_you_have" id=""
+                                class="{{ $errors->has('skill_you_have') ? 'is-invalid' : '' }} form-icons select-active" multiple="">
+                                <option value="">Select one</option>
+                                <option value="single">test 1</option>
+                                <option value="married">test 2</option>
+                            </select>
+                            <x-input-error :messages="$errors->get('skill_you_have')" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Biography</label>
-                            <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+                            <textarea name="" id="editor" class=""></textarea>
                             <x-input-error :messages="$errors->get('website')" class="mt-2" />
                         </div>
                     </div>
