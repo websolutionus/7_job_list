@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class CandidateSkill extends Model
 {
     use HasFactory;
+
 }

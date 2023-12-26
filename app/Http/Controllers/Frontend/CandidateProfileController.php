@@ -23,9 +23,10 @@ class CandidateProfileController extends Controller
     use FileUploadTrait;
 
     function index() : View {
+        $candidate = Candidate::with(['skills'])->where('user_id', auth()->user()->id)->first();
+     
         $experiences = Experience::all();
         $professions = Profession::all();
-        $candidate = Candidate::where('user_id', auth()->user()->id)->first();
         $skills = Skill::all();
         $languages = Language::all();
         return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'experiences', 'professions', 'skills', 'languages'));
