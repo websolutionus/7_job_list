@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CandidateBasicProfileUpdateRequest;
+use App\Http\Requests\Frontend\CandidateProfileInfoUpdateRequest;
 use App\Models\Candidate;
 use App\Models\Experience;
 use App\Models\Language;
@@ -54,8 +55,23 @@ class CandidateProfileController extends Controller
         return redirect()->back();
     }
 
-    function profileInfoUpdate(Request $request) : RedirectResponse {
-        dd($request->all());
+    function profileInfoUpdate(CandidateProfileInfoUpdateRequest $request) : RedirectResponse {
+
+        $data = [];
+        $data['gender'] = $request->gender;
+        $data['marital_status'] = $request->marital_status;
+        $data['profession_id'] = $request->profession;
+        $data['status'] = $request->availability;
+        $data['bio'] = $request->biography;
+
+         // updating data
+         Candidate::updateOrCreate(
+            ['user_id' => auth()->user()->id],
+            $data
+        );
+
+        Notify::updatedNotification();
+
         return redirect()->back();
     }
 }

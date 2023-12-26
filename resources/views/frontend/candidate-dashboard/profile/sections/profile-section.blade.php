@@ -59,7 +59,7 @@
                     <div class="col-md-12">
                         <div class="form-group select-style">
                             <label class="font-sm color-text-mutted mb-10">Skills you have *</label>
-                            <select name="skill_you_have" id=""
+                            <select name="skill_you_have[]" id=""
                                 class="{{ $errors->has('skill_you_have') ? 'is-invalid' : '' }} form-icons select-active" multiple="">
                                 <option value="">Select one</option>
                                 @foreach ($skills as $skill)
@@ -74,14 +74,14 @@
                     <div class="col-md-12">
                         <div class="form-group select-style">
                             <label class="font-sm color-text-mutted mb-10">Languages you know *</label>
-                            <select name="language_you_have" id=""
-                                class="{{ $errors->has('language_you_have') ? 'is-invalid' : '' }} form-icons select-active" multiple="">
+                            <select name="language_you_know[]" id=""
+                                class="{{ $errors->has('language_you_know') ? 'is-invalid' : '' }} form-icons select-active" multiple="">
                                 <option value="">Select one</option>
                                 @foreach ($languages as $language)
                                     <option value="{{ $language->id }}">{{ $language->name }}</option>
                                 @endforeach
                             </select>
-                            <x-input-error :messages="$errors->get('language_you_have')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('language_you_know')" class="mt-2" />
                         </div>
                     </div>
 
