@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CandidateBasicProfileUpdateRequest;
 use App\Http\Requests\Frontend\CandidateProfileInfoUpdateRequest;
 use App\Models\Candidate;
+use App\Models\CandidateLanguage;
+use App\Models\CandidateSkill;
 use App\Models\Experience;
 use App\Models\Language;
 use App\Models\Profession;
@@ -65,10 +67,24 @@ class CandidateProfileController extends Controller
         $data['bio'] = $request->biography;
 
          // updating data
-         Candidate::updateOrCreate(
+        Candidate::updateOrCreate(
             ['user_id' => auth()->user()->id],
             $data
         );
+
+        foreach($request->language_you_know as $language) {
+            $candidateLang = new CandidateLanguage();
+            $candidateLang->candidate_id = auth()->user()->id;
+            $candidateLang->language_id = $language;
+            $candidateLang->save();
+        }
+
+        foreach($request->skill_you_have as $skill) {
+            $candidateSkill = new CandidateSkill();
+            $candidateSkill->candidate_id = auth()->user()->id;
+            $candidateSkill->skill_id = $skill;
+            $candidateSkill->save();
+        }
 
         Notify::updatedNotification();
 
