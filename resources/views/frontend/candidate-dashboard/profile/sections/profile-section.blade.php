@@ -10,8 +10,8 @@
                             <select name="gender" id=""
                                 class="{{ $errors->has('gender') ? 'is-invalid' : '' }} form-icons select-active">
                                 <option value="">Select one</option>
-                                <option @selected($candidate->gender === 'male') value="male">Male</option>
-                                <option @selected($candidate->gender === 'female') value="female">Female</option>
+                                <option @selected($candidate?->gender === 'male') value="male">Male</option>
+                                <option @selected($candidate?->gender === 'female') value="female">Female</option>
                             </select>
                             <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                         </div>
@@ -22,8 +22,8 @@
                             <select name="marital_status" id=""
                                 class="{{ $errors->has('marital_status') ? 'is-invalid' : '' }} form-icons select-active">
                                 <option value="">Select one</option>
-                                <option @selected($candidate->gender === 'single') value="single">Single</option>
-                                <option @selected($candidate->gender === 'married') value="married">Married</option>
+                                <option @selected($candidate?->marital_status === 'single') value="single">Single</option>
+                                <option @selected($candidate?->marital_status === 'married') value="married">Married</option>
                             </select>
                             <x-input-error :messages="$errors->get('marital_status')" class="mt-2" />
                         </div>
@@ -36,7 +36,7 @@
                                 class="{{ $errors->has('profession') ? 'is-invalid' : '' }} form-icons select-active">
                                 <option value="">Select one</option>
                                 @foreach ($professions as $profession)
-                                    <option @selected($profession->id === $candidate->profession_id) value="{{ $profession->id }}">
+                                    <option @selected($profession->id === $candidate?->profession_id) value="{{ $profession->id }}">
                                         {{ $profession->name }}</option>
                                 @endforeach
                             </select>
@@ -49,8 +49,8 @@
                             <select name="availability" id=""
                                 class="{{ $errors->has('availability') ? 'is-invalid' : '' }} form-icons select-active">
                                 <option value="">Select one</option>
-                                <option @selected($candidate->status === 'available') value="available">Available</option>
-                                <option @selected($candidate->status === 'not_available') value="not_available">Not Available</option>
+                                <option @selected($candidate?->status === 'available') value="available">Available</option>
+                                <option @selected($candidate?->status === 'not_available') value="not_available">Not Available</option>
                             </select>
                             <x-input-error :messages="$errors->get('availability')" class="mt-2" />
                         </div>
@@ -64,7 +64,7 @@
                                 <option value="">Select one</option>
                                 @foreach ($skills as $skill)
                                     @php
-                                        $candidateSkills = $candidate->skills->pluck('skill_id')->toArray();
+                                        $candidateSkills = $candidate?->skills->pluck('skill_id')->toArray() ?? [];
                                     @endphp
 
                                     <option @selected(in_array($skill->id, $candidateSkills)) value="{{ $skill->id }}">{{ $skill->name }}</option>
@@ -82,7 +82,7 @@
                                 class="{{ $errors->has('language_you_know') ? 'is-invalid' : '' }} form-icons select-active" multiple="">
                                 <option value="">Select one</option>
                                 @php
-                                    $candidateLanuages = $candidate->languages->pluck('language_id')->toArray();
+                                    $candidateLanuages = $candidate?->languages->pluck('language_id')->toArray() ?? [];
                                 @endphp
                                 @foreach ($languages as $language)
                                     <option @selected(in_array($language->id, $candidateLanuages)) value="{{ $language->id }}">{{ $language->name }}</option>
@@ -95,7 +95,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Biography *</label>
-                            <textarea name="biography" id="editor" class="{{ hasError($errors, 'biography') }}">{!! $candidate->bio !!}</textarea>
+                            <textarea name="biography" id="editor" class="{{ hasError($errors, 'biography') }}">{!! $candidate?->bio !!}</textarea>
                             <x-input-error :messages="$errors->get('biography')" class="mt-2" />
                         </div>
                     </div>

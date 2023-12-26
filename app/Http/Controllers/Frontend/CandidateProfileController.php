@@ -24,7 +24,7 @@ class CandidateProfileController extends Controller
 
     function index() : View {
         $candidate = Candidate::with(['skills'])->where('user_id', auth()->user()->id)->first();
-     
+
         $experiences = Experience::all();
         $professions = Profession::all();
         $skills = Skill::all();
@@ -73,16 +73,20 @@ class CandidateProfileController extends Controller
             $data
         );
 
+        $candidate = Candidate::where('user_id', auth()->user()->id)->first();
+
+        CandidateLanguage::where('candidate_id', $candidate->id)?->delete();
         foreach($request->language_you_know as $language) {
             $candidateLang = new CandidateLanguage();
-            $candidateLang->candidate_id = auth()->user()->id;
+            $candidateLang->candidate_id = $candidate->id;
             $candidateLang->language_id = $language;
             $candidateLang->save();
         }
 
+        CandidateSkill::where('candidate_id', $candidate->id)?->delete();
         foreach($request->skill_you_have as $skill) {
             $candidateSkill = new CandidateSkill();
-            $candidateSkill->candidate_id = auth()->user()->id;
+            $candidateSkill->candidate_id = $candidate->id;
             $candidateSkill->skill_id = $skill;
             $candidateSkill->save();
         }

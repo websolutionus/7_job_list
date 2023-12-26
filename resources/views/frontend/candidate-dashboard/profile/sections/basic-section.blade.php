@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Full Name *</label>
                             <input class="form-control {{ $errors->has('full_name') ? 'is-invalid' : '' }}" type="text"
-                                value="{{ $candidate->full_name }}" name="full_name">
+                                value="{{ $candidate?->full_name }}" name="full_name">
                             <x-input-error :messages="$errors->get('full_name')" class="mt-2" />
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                             <select name="experience_level" id="" class="{{ $errors->has('experience_level') ? 'is-invalid' : '' }} form-icons select-active">
                                 <option value="">Select one</option>
                                 @foreach ($experiences as $experience)
-                                    <option @selected($experience->id === $candidate->experience_id) value="{{ $experience->id }}">{{ $experience->name }}</option>
+                                    <option @selected($experience->id === $candidate?->experience_id) value="{{ $experience->id }}">{{ $experience->name }}</option>
                                 @endforeach
                             </select>
                             <x-input-error :messages="$errors->get('experience_level')" class="mt-2" />
