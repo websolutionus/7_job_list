@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CandidateBasicProfileUpdateRequest;
 use App\Models\Candidate;
 use App\Models\Experience;
+use App\Models\Language;
 use App\Models\Profession;
+use App\Models\Skill;
 use App\Services\Notify;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\RedirectResponse;
@@ -21,7 +23,9 @@ class CandidateProfileController extends Controller
         $experiences = Experience::all();
         $professions = Profession::all();
         $candidate = Candidate::where('user_id', auth()->user()->id)->first();
-        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'experiences', 'professions'));
+        $skills = Skill::all();
+        $languages = Language::all();
+        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'experiences', 'professions', 'skills', 'languages'));
     }
 
     /** update basic info of candidate profile */
@@ -47,6 +51,11 @@ class CandidateProfileController extends Controller
 
         Notify::updatedNotification();
 
+        return redirect()->back();
+    }
+
+    function profileInfoUpdate(Request $request) : RedirectResponse {
+        dd($request->all());
         return redirect()->back();
     }
 }
