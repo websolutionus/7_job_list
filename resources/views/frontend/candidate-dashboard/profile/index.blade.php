@@ -36,7 +36,7 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                                data-bs-target="#pills-experience" type="button" role="tab" aria-controls="pills-experience"
                                 aria-selected="false">Experience & Education</button>
                         </li>
                         <li class="nav-item" role="presentation">
@@ -49,6 +49,9 @@
                         @include('frontend.candidate-dashboard.profile.sections.basic-section')
 
                         @include('frontend.candidate-dashboard.profile.sections.profile-section')
+
+                        @include('frontend.candidate-dashboard.profile.sections.experience-section')
+
 
                         {{-- <div class="tab-pane fade" id="pills-contact" role="tabpanel"
                             aria-labelledby="pills-contact-tab">
