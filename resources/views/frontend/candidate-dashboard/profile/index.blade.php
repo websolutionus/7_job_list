@@ -125,19 +125,66 @@
     </section>
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal fade" id="experienceModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
             <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            ...
+            <form action="">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Company</label>
+                            <input type="text" class="from-control" name="" id="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Depertment</label>
+                            <input type="text" class="from-control" name="" id="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Designation</label>
+                            <input type="text" class="from-control" name="" id="">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Start Date</label>
+                            <input type="text" class="from-control datepicker" name="" id="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">End Date</label>
+                            <input type="text" class="from-control datepicker" name="" id="">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-check form-group form-check-inline">
+                            <input class="form-check-input" style="margin-right: 10px" type="checkbox" name="remember">
+                            <label class="form-check-label" for="typeCandidate"> I am currently working</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Responsibilities</label>
+                            <textarea name="" id="" class="from-control" ></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
+            <button type="button" class="btn btn-primary">Add Experience</button>
             </div>
         </div>
         </div>
