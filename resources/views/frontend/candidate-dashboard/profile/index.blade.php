@@ -133,50 +133,51 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <form action="">
+            <form action="" id="ExperienceForm">
+                @csrf
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Company</label>
-                            <input type="text" class="from-control" name="" id="">
+                            <input type="text" class="from-control" name="company" id="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Depertment</label>
-                            <input type="text" class="from-control" name="" id="">
+                            <input type="text" class="from-control" name="department" id="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Designation</label>
-                            <input type="text" class="from-control" name="" id="">
+                            <input type="text" class="from-control" name="designation" id="">
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Start Date</label>
-                            <input type="text" class="from-control datepicker" name="" id="">
+                            <input type="text" class="from-control datepicker" name="start" id="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">End Date</label>
-                            <input type="text" class="from-control datepicker" name="" id="">
+                            <input type="text" class="from-control datepicker" name="end" id="">
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="form-check form-group form-check-inline">
-                            <input class="form-check-input" style="margin-right: 10px" type="checkbox" name="remember">
+                            <input class="form-check-input" style="margin-right: 10px" type="checkbox" name="currently_working">
                             <label class="form-check-label" for="typeCandidate"> I am currently working</label>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Responsibilities</label>
-                            <textarea name="" id="" class="from-control" ></textarea>
+                            <textarea name="responsibilities" id="" class="from-control" ></textarea>
                         </div>
                     </div>
                 </div>
@@ -184,7 +185,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Add Experience</button>
+            <button type="button" class="btn btn-primary" onclick="$('#ExperienceForm').submit()">Add Experience</button>
             </div>
         </div>
         </div>
@@ -197,48 +198,23 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
-        $('.country').on('change', function() {
-            let country_id = $(this).val();
-            // remove all previous cities
-            $('.city').html("");
+        $('#ExperienceForm').on('submit', function(event) {
+            event.preventDefault();
+            const formData = $(this).serialize();
 
             $.ajax({
-                mehtod: 'GET',
-                url: '{{ route("get-states", ":id") }}'.replace(":id", country_id),
-                data: {},
+                method: 'POST',
+                url: "{{ route('candidate.experience.store') }}",
+                data: formData,
                 success: function(response) {
-                    let html = '';
 
-                    $.each(response, function(index, value) {
-                        html += `<option value="${value.id}" >${value.name}</option>`
-                    });
-
-                    $('.state').html(html);
                 },
-                error: function(xhr, status, error) {}
+                error: function(xhr, status, error) {
+
+                }
             })
-        })
 
-        // get cities
-        $('.state').on('change', function() {
-            let state_id = $(this).val();
-
-            $.ajax({
-                mehtod: 'GET',
-                url: '{{ route("get-cities", ":id") }}'.replace(":id", state_id),
-                data: {},
-                success: function(response) {
-                    let html = '';
-
-                    $.each(response, function(index, value) {
-                        html += `<option value="${value.id}" >${value.name}</option>`
-                    });
-
-                    $('.city').html(html);
-                },
-                error: function(xhr, status, error) {}
-            })
-        })
+        });
     })
 </script>
 @endpush
