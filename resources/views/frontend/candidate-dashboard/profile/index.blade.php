@@ -192,13 +192,12 @@
         </div>
     </div>
 
-
-
 @endsection
 
 @push('scripts')
 <script>
     $(document).ready(function() {
+        // Save experience data
         $('#ExperienceForm').on('submit', function(event) {
             event.preventDefault();
             const formData = $(this).serialize();
@@ -216,8 +215,33 @@
 
                 }
             })
-
         });
+
+        $('.edit-experience').on('click', function(){
+            $('#ExperienceForm').trigger("reset");
+
+            let url = $(this).attr('href');
+
+            $.ajax({
+                method: 'GET',
+                url: url,
+                data: {},
+                success: function(response) {
+                    $.each(response, function(index, value) {
+                        $(`input[name="${index}"]:text`).val(value);
+                        if(index === 'currently_working' && value == 1) {
+                            $(`input[name="${index}"]:checkbox`).prop('checked', true);
+                        }
+                        if(index === 'responsibilities') {
+                            $(`textarea[name="${index}"]`).val(value);
+                        }
+                    })
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            })
+        })
     })
 </script>
 @endpush

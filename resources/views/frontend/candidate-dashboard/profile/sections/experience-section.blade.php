@@ -22,7 +22,7 @@
                     <td>{{ $experience->designation }}</td>
                     <td>{{ $experience->start }} - {{ $experience->currently_working === 1 ? 'Current' : $experience->end }}</td>
                     <td>
-                        <a href="{{ route("candidate.experience.edit", $experience->id) }}" class="btn-sm btn btn-primary" data-bs-toggle="modal"
+                        <a href="{{ route("candidate.experience.edit", $experience->id) }}" class="btn-sm btn btn-primary edit-experience" data-bs-toggle="modal"
                             data-bs-target="#experienceModal"><i class="fas fa-edit"></i></a>
                         <a href="{{ route("candidate.experience.destroy", $experience->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
                     </td>
@@ -35,3 +35,6 @@
     </table>
 
 </div>
+
+
+

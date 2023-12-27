@@ -57,9 +57,11 @@ class CandidateExperienceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : Response
     {
-        //
+        $experience = CandidateExperience::findOrFail($id);
+
+        return response($experience);
     }
 
     /**
