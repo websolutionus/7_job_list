@@ -67,9 +67,25 @@ class CandidateExperienceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CandidateExperienceStoreRequest $request, string $id)
     {
-        //
+
+        $experience = CandidateExperience::findOrFail($id);
+
+        if(auth()->user()->candidateProfile->id !== $experience->candidate_id) {
+            abort(404);
+        }
+
+        $experience->company = $request->company;
+        $experience->department = $request->department;
+        $experience->designation = $request->designation;
+        $experience->start = $request->start;
+        $experience->end = $request->end;
+        $experience->currently_working = $request->filled('currently_working') ? 1 : 0;
+        $experience->responsibilities = $request->responsibilities;
+        $experience->save();
+
+        return response(['message' => 'Updated Successfully'], 200);
     }
 
     /**
@@ -77,6 +93,13 @@ class CandidateExperienceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            CandidateExperience::findOrFail($id)->delete();
+            return response(['message' => 'Deleted Successfully!'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
     }
 }
