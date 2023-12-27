@@ -208,7 +208,7 @@
                 url: "{{ route('candidate.experience.store') }}",
                 data: formData,
                 success: function(response) {
-
+                    notyf.success(response.message);
                 },
                 error: function(xhr, status, error) {
 

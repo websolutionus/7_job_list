@@ -14,10 +14,10 @@
     <meta name="author" content="">
     <link rel="shortcut icon" type="image/x-icon" href="">
 
-    @notifyCss
     <link href="{{ asset('frontend/assets/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
     <title>joblist - Job Portal HTML Template </title>
 </head>
@@ -81,17 +81,16 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
-
-    <!-- laravel notify start-->
-    <x-notify::notify />
-    <!-- laravel notify end-->
-    @notifyJs
     <script src="{{ asset('frontend/assets/js/main.js?v=4.1') }}"></script>
 
     @stack('scripts')
 
     <script>
+        // Create an instance of Notyf
+        var notyf = new Notyf();
+
         $('.datepicker').datepicker({
             format: 'yyyy-m-d',
         });
