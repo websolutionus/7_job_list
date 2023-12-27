@@ -14,11 +14,11 @@
                 <th style="width: 15%">Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="experience-tbody">
             @foreach ($candidateExperiences as $experience)
                 <tr>
                     <td>{{ $experience->company }}</td>
-                    <td>{{ $experience->depertment }}</td>
+                    <td>{{ $experience->department }}</td>
                     <td>{{ $experience->designation }}</td>
                     <td>{{ $experience->start }} - {{ $experience->currently_working === 1 ? 'Current' : $experience->end }}</td>
                     <td>

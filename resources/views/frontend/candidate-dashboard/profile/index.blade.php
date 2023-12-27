@@ -200,6 +200,21 @@
         var editId = "";
         var editMode = false;
 
+        // fetch experience
+        function fetchExperience() {
+            $.ajax({
+                method: 'GET',
+                url: "{{ route('candidate.experience.index') }}",
+                data: {},
+                success: function(response) {
+                    $('.experience-tbody').html(response);
+                },
+                error: function(xhr, status, error) {
+
+                }
+            })
+        }
+
         // Save experience data
         $('#ExperienceForm').on('submit', function(event) {
             event.preventDefault();
@@ -211,6 +226,8 @@
                     url: "{{ route('candidate.experience.update', ':id') }}".replace(':id', editId),
                     data: formData,
                     success: function(response) {
+                        fetchExperience()
+
                         $('#ExperienceForm').trigger("reset");
                         $('#experienceModal').modal('hide');
                         editId = "";
@@ -227,6 +244,7 @@
                     url: "{{ route('candidate.experience.store') }}",
                     data: formData,
                     success: function(response) {
+                        fetchExperience();
                         $('#ExperienceForm').trigger("reset");
                         $('#experienceModal').modal('hide');
                         notyf.success(response.message);
@@ -239,7 +257,7 @@
 
         });
 
-        $('.edit-experience').on('click', function(){
+        $('body').on('click', '.edit-experience', function(){
             $('#ExperienceForm').trigger("reset");
 
             let url = $(this).attr('href');
@@ -270,7 +288,7 @@
 
         // Delete item
 
-        $(".delete-experience").on('click', function(e) {
+        $("body").on('click', '.delete-experience', function(e) {
             e.preventDefault();
 
                 let url = $(this).attr('href');
@@ -291,7 +309,7 @@
                             url: url,
                             data: {_token: "{{ csrf_token() }}"},
                             success: function(response) {
-                                // window.location.reload();
+                                fetchExperience();
                                 notyf.success(response.message);
                             },
                             error: function(xhr, status, error) {
