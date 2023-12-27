@@ -208,6 +208,8 @@
                 url: "{{ route('candidate.experience.store') }}",
                 data: formData,
                 success: function(response) {
+                    $('#ExperienceForm').trigger("reset");
+                    $('#experienceModal').modal('hide');
                     notyf.success(response.message);
                 },
                 error: function(xhr, status, error) {
