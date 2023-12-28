@@ -53,7 +53,6 @@
                 <th>Lavel</th>
                 <th>Degree</th>
                 <th>Year</th>
-                <th>Note</th>
                 <th style="width: 15%">Action</th>
             </tr>
         </thead>
@@ -63,7 +62,6 @@
                     <td>{{ $education->level }}</td>
                     <td>{{ $education->degree }}</td>
                     <td>{{ $education->year }}</td>
-                    <td>{{ $education->note }}</td>
                     <td>
                         <a href="{{ route("candidate.education.edit", $education->id) }}" class="btn-sm btn btn-primary edit-education" data-bs-toggle="modal"
                             data-bs-target="#educationModal"><i class="fas fa-edit"></i></a>

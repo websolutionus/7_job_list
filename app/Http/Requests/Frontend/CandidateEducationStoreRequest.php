@@ -17,7 +17,7 @@ class CandidateEducationStoreRequest extends FormRequest
         return [
             'level' => ['required', 'max:255'],
             'degree' => ['required', 'max:255'],
-            'year' => ['required', 'max:255'],
+            'year' => ['required', 'integer'],
             'note' => ['nullable', 'max:500'],
         ];
     }

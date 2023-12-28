@@ -244,7 +244,6 @@
 
 @push('scripts')
 <script>
-    $(document).ready(function() {
         var editId = "";
         var editMode = false;
 
@@ -395,20 +394,20 @@
         });
 
 
-                // fetch experience
-        // function fetchExperience() {
-        //     $.ajax({
-        //         method: 'GET',
-        //         url: "{{ route('candidate.experience.index') }}",
-        //         data: {},
-        //         success: function(response) {
-        //             $('.experience-tbody').html(response);
-        //         },
-        //         error: function(xhr, status, error) {
+        // fetch education
+        function fetchEducation() {
+            $.ajax({
+                method: 'GET',
+                url: "{{ route('candidate.education.index') }}",
+                data: {},
+                success: function(response) {
+                    $('.education-tbody').html(response);
+                },
+                error: function(xhr, status, error) {
 
-        //         }
-        //     })
-        // }
+                }
+            })
+        }
 
         // Save education data
         $('#EducationForm').on('submit', function(event) {
@@ -418,16 +417,16 @@
             if(editMode){
                 $.ajax({
                     method: 'PUT',
-                    url: "{{ route('candidate.experience.update', ':id') }}".replace(':id', editId),
+                    url: "{{ route('candidate.education.update', ':id') }}".replace(':id', editId),
                     data: formData,
                     beforeSend: function() {
                         showLoader();
                     },
                     success: function(response) {
-                        fetchExperience()
+                        fetchEducation()
 
                         $('#EductionForm').trigger("reset");
-                        $('#experienceModal').modal('hide');
+                        $('#educationModal').modal('hide');
                         editId = "";
                         editMode = false;
 
@@ -449,7 +448,7 @@
                         showLoader();
                     },
                     success: function(response) {
-                        // fetchExperience();
+                        fetchEducation();
                         $('#EducationForm').trigger("reset");
                         $('#educationModal').modal('hide');
 
@@ -465,82 +464,80 @@
 
         });
 
-        // $('body').on('click', '.edit-experience', function(){
-        //     $('#ExperienceForm').trigger("reset");
+        $('body').on('click', '.edit-education', function(){
+            $('#EducationForm').trigger("reset");
 
-        //     let url = $(this).attr('href');
+            let url = $(this).attr('href');
 
-        //     $.ajax({
-        //         method: 'GET',
-        //         url: url,
-        //         data: {},
-        //         beforeSend: function() {
-        //             showLoader();
-        //         },
-        //         success: function(response) {
-        //             editId = response.id
-        //             editMode = true;
+            $.ajax({
+                method: 'GET',
+                url: url,
+                data: {},
+                beforeSend: function() {
+                    showLoader();
+                },
+                success: function(response) {
+                    editId = response.id
+                    editMode = true;
 
-        //             $.each(response, function(index, value) {
-        //                 $(`input[name="${index}"]:text`).val(value);
-        //                 if(index === 'currently_working' && value == 1) {
-        //                     $(`input[name="${index}"]:checkbox`).prop('checked', true);
-        //                 }
-        //                 if(index === 'responsibilities') {
-        //                     $(`textarea[name="${index}"]`).val(value);
-        //                 }
-        //             })
-        //             hideLoader();
-        //         },
-        //         error: function(xhr, status, error) {
-        //             console.log(error);
-        //             hideLoader();
-        //         }
-        //     })
-        // })
+                    $.each(response, function(index, value) {
+                        $(`input[name="${index}"]:text`).val(value);
 
-        // Delete experience item
-        // $("body").on('click', '.delete-experience', function(e) {
-        //     e.preventDefault();
+                        if(index === 'note') {
+                            $(`textarea[name="${index}"]`).val(value);
+                        }
+                    })
+                    hideLoader();
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                    hideLoader();
+                }
+            })
+        })
 
-        //         let url = $(this).attr('href');
+        // Delete education item
+        $("body").on('click', '.delete-education', function(e) {
+            e.preventDefault();
 
-        //         Swal.fire({
-        //             title: "Are you sure?",
-        //             text: "You won't be able to revert this!",
-        //             icon: "warning",
-        //             showCancelButton: true,
-        //             confirmButtonColor: "#3085d6",
-        //             cancelButtonColor: "#d33",
-        //             confirmButtonText: "Yes, delete it!"
-        //         }).then((result) => {
-        //             if (result.isConfirmed) {
+                let url = $(this).attr('href');
 
-        //                 $.ajax({
-        //                     method: 'DELETE',
-        //                     url: url,
-        //                     data: {_token: "{{ csrf_token() }}"},
-        //                     beforeSend: function() {
-        //                         showLoader();
-        //                     },
-        //                     success: function(response) {
-        //                         fetchExperience();
-        //                         hideLoader();
-        //                         notyf.success(response.message);
-        //                     },
-        //                     error: function(xhr, status, error) {
-        //                         console.log(xhr);
-        //                         swal(xhr.responseJSON.message, {
-        //                             icon: 'error',
-        //                         });
-        //                         hideLoader();
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
 
-        //                     }
-        //                 })
-        //             }
-        //         });
-        // });
+                        $.ajax({
+                            method: 'DELETE',
+                            url: url,
+                            data: {_token: "{{ csrf_token() }}"},
+                            beforeSend: function() {
+                                showLoader();
+                            },
+                            success: function(response) {
+                                fetchEducation();
+                                hideLoader();
+                                notyf.success(response.message);
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(xhr);
+                                swal(xhr.responseJSON.message, {
+                                    icon: 'error',
+                                });
+                                hideLoader();
 
-    })
+                            }
+                        })
+                    }
+                });
+        });
+
+
 </script>
 @endpush

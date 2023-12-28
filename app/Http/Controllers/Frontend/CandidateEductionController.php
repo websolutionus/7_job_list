@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CandidateEducationStoreRequest;
 use App\Models\CandidateEducation;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CandidateEductionController extends Controller
 {
@@ -14,7 +15,8 @@ class CandidateEductionController extends Controller
      */
     public function index()
     {
-        //
+        $candidateEducations = CandidateEducation::where('candidate_id', auth()->user()->candidateProfile->id)->orderBy('id', 'DESC')->get();
+        return view('frontend.candidate-dashboard.profile.ajax-education-table', compact('candidateEducations'))->render();
     }
 
     /**
@@ -37,7 +39,7 @@ class CandidateEductionController extends Controller
         $education->year = $request->year;
         $education->note = $request->note;
         $education->save();
-        
+
         return response(['message' => 'Created Successfully'], 200);
     }
 
@@ -52,17 +54,29 @@ class CandidateEductionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : Response
     {
-        //
+        $education = CandidateEducation::findOrFail($id);
+
+        return response($education);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CandidateEducationStoreRequest $request, string $id)
     {
-        //
+        $education = CandidateEducation::findOrFail($id);
+        if(auth()->user()->candidateProfile->id !== $education->candidate_id) {
+            abort(404);
+        }
+        $education->level = $request->level;
+        $education->degree = $request->degree;
+        $education->year = $request->year;
+        $education->note = $request->note;
+        $education->save();
+
+        return response(['message' => 'Updated Successfully'], 200);
     }
 
     /**
@@ -70,6 +84,17 @@ class CandidateEductionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $education = CandidateEducation::findOrFail($id);
+            if(auth()->user()->candidateProfile->id !== $education->candidate_id) {
+                abort(404);
+            }
+            $education->delete();
+            return response(['message' => 'Deleted Successfully!'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
     }
 }
