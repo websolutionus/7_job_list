@@ -124,7 +124,7 @@
         </div>
     </section>
 
-    <!-- Modal -->
+    <!-- Experience Modal -->
     <div class="modal fade" id="experienceModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -191,6 +191,74 @@
         </div>
         </div>
     </div>
+
+        <!-- Education Modal -->
+        <div class="modal fade" id="educationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Education</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form action="" id="ExperienceForm">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Company *</label>
+                                <input type="text" class="from-control" required="" name="company" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Depertment *</label>
+                                <input type="text" class="from-control" required="" name="department" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Designation *</label>
+                                <input type="text" class="from-control" required="" name="designation" id="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Start Date *</label>
+                                <input type="text" class="from-control datepicker" required="" name="start" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">End Date *</label>
+                                <input type="text" class="from-control datepicker" required="" name="end" id="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-check form-group form-check-inline">
+                                <input class="form-check-input" style="margin-right: 10px" value="1" type="checkbox" name="currently_working">
+                                <label class="form-check-label" for="typeCandidate"> I am currently working</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Responsibilities</label>
+                                <textarea name="responsibilities" maxlength="500" id="" class="from-control" ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Experience</button>
+                    </div>
+                </form>
+                </div>
+
+            </div>
+            </div>
+        </div>
 
 @endsection
 
