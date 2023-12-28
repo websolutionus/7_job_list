@@ -107,6 +107,7 @@
         <form action="{{ route('candidate.profile.account-email.update') }}" method="POST">
             @csrf
             <h4>Change Account Email Address</h4>
+            <br>
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="font-sm color-text-mutted mb-10">Account Email</label>
@@ -126,6 +127,7 @@
         <form action="{{ route('candidate.profile.account-password.update') }}" method="POST">
             @csrf
             <h4>Change Password</h4>
+            <br>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">

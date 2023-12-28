@@ -67,6 +67,8 @@ class CandidateProfileController extends Controller
             $data
         );
 
+        $this->updateProfileStatus();
+
         Notify::updatedNotification();
 
         return redirect()->back();
@@ -105,6 +107,8 @@ class CandidateProfileController extends Controller
             $candidateSkill->save();
         }
 
+        $this->updateProfileStatus();
+
         Notify::updatedNotification();
 
         return redirect()->back();
@@ -124,6 +128,8 @@ class CandidateProfileController extends Controller
                 'email' => $request->email,
             ]
         );
+
+        $this->updateProfileStatus();
 
         Notify::updatedNotification();
 
@@ -152,5 +158,15 @@ class CandidateProfileController extends Controller
         Notify::updatedNotification();
 
         return redirect()->back();
+    }
+
+    // update profile complete status
+    function updateProfileStatus() : void {
+        if(isCandidateProfileComplete()) {
+            $candidate = Candidate::where('user_id', auth()->user()->id)->first();
+            $candidate->profile_complete = 1;
+            $candidate->visibility = 1;
+            $candidate->save();
+        }
     }
 }
