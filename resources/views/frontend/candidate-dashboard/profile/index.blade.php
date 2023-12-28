@@ -201,57 +201,37 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <form action="" id="ExperienceForm">
+                <form action="" id="EductionForm">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Company *</label>
-                                <input type="text" class="from-control" required="" name="company" id="">
+                                <label for="">Level *</label>
+                                <input type="text" class="from-control" required="" name="level" id="">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Depertment *</label>
-                                <input type="text" class="from-control" required="" name="department" id="">
+                                <label for="">Degree *</label>
+                                <input type="text" class="from-control" required="" name="degree" id="">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Designation *</label>
-                                <input type="text" class="from-control" required="" name="designation" id="">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Start Date *</label>
-                                <input type="text" class="from-control datepicker" required="" name="start" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">End Date *</label>
-                                <input type="text" class="from-control datepicker" required="" name="end" id="">
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-check form-group form-check-inline">
-                                <input class="form-check-input" style="margin-right: 10px" value="1" type="checkbox" name="currently_working">
-                                <label class="form-check-label" for="typeCandidate"> I am currently working</label>
+                                <label for="">Year *</label>
+                                <input type="text" class="from-control yearpicker" required="" name="year" id="">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Responsibilities</label>
-                                <textarea name="responsibilities" maxlength="500" id="" class="from-control" ></textarea>
+                                <label for="">Note</label>
+                                <textarea name="note" maxlength="500" id="" class="from-control" ></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="text-right">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save Experience</button>
+                        <button type="submit" class="btn btn-primary">Save Eduction</button>
                     </div>
                 </form>
                 </div>
@@ -372,8 +352,7 @@
             })
         })
 
-        // Delete item
-
+        // Delete experience item
         $("body").on('click', '.delete-experience', function(e) {
             e.preventDefault();
 
@@ -414,6 +393,154 @@
                     }
                 });
         });
+
+
+                // fetch experience
+        // function fetchExperience() {
+        //     $.ajax({
+        //         method: 'GET',
+        //         url: "{{ route('candidate.experience.index') }}",
+        //         data: {},
+        //         success: function(response) {
+        //             $('.experience-tbody').html(response);
+        //         },
+        //         error: function(xhr, status, error) {
+
+        //         }
+        //     })
+        // }
+
+        // Save experience data
+        $('#EductionForm').on('submit', function(event) {
+            event.preventDefault();
+            const formData = $(this).serialize();
+
+            if(editMode){
+                $.ajax({
+                    method: 'PUT',
+                    url: "{{ route('candidate.experience.update', ':id') }}".replace(':id', editId),
+                    data: formData,
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function(response) {
+                        fetchExperience()
+
+                        $('#EductionForm').trigger("reset");
+                        $('#experienceModal').modal('hide');
+                        editId = "";
+                        editMode = false;
+
+                        hideLoader();
+                        notyf.success(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        hideLoader();
+                        console.log(error)
+                    }
+
+                })
+            }else {
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('candidate.education.store') }}",
+                    data: formData,
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function(response) {
+                        // fetchExperience();
+                        $('#ExperienceForm').trigger("reset");
+                        $('#educationModal').modal('hide');
+
+                        hideLoader();
+                        notyf.success(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                        hideLoader();
+                    }
+                })
+            }
+
+        });
+
+        // $('body').on('click', '.edit-experience', function(){
+        //     $('#ExperienceForm').trigger("reset");
+
+        //     let url = $(this).attr('href');
+
+        //     $.ajax({
+        //         method: 'GET',
+        //         url: url,
+        //         data: {},
+        //         beforeSend: function() {
+        //             showLoader();
+        //         },
+        //         success: function(response) {
+        //             editId = response.id
+        //             editMode = true;
+
+        //             $.each(response, function(index, value) {
+        //                 $(`input[name="${index}"]:text`).val(value);
+        //                 if(index === 'currently_working' && value == 1) {
+        //                     $(`input[name="${index}"]:checkbox`).prop('checked', true);
+        //                 }
+        //                 if(index === 'responsibilities') {
+        //                     $(`textarea[name="${index}"]`).val(value);
+        //                 }
+        //             })
+        //             hideLoader();
+        //         },
+        //         error: function(xhr, status, error) {
+        //             console.log(error);
+        //             hideLoader();
+        //         }
+        //     })
+        // })
+
+        // Delete experience item
+        // $("body").on('click', '.delete-experience', function(e) {
+        //     e.preventDefault();
+
+        //         let url = $(this).attr('href');
+
+        //         Swal.fire({
+        //             title: "Are you sure?",
+        //             text: "You won't be able to revert this!",
+        //             icon: "warning",
+        //             showCancelButton: true,
+        //             confirmButtonColor: "#3085d6",
+        //             cancelButtonColor: "#d33",
+        //             confirmButtonText: "Yes, delete it!"
+        //         }).then((result) => {
+        //             if (result.isConfirmed) {
+
+        //                 $.ajax({
+        //                     method: 'DELETE',
+        //                     url: url,
+        //                     data: {_token: "{{ csrf_token() }}"},
+        //                     beforeSend: function() {
+        //                         showLoader();
+        //                     },
+        //                     success: function(response) {
+        //                         fetchExperience();
+        //                         hideLoader();
+        //                         notyf.success(response.message);
+        //                     },
+        //                     error: function(xhr, status, error) {
+        //                         console.log(xhr);
+        //                         swal(xhr.responseJSON.message, {
+        //                             icon: 'error',
+        //                         });
+        //                         hideLoader();
+
+        //                     }
+        //                 })
+        //             }
+        //         });
+        // });
+
     })
 </script>
 @endpush
