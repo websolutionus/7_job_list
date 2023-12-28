@@ -95,7 +95,11 @@ class CandidateExperienceController extends Controller
     public function destroy(string $id)
     {
         try {
-            CandidateExperience::findOrFail($id)->delete();
+            $experience = CandidateExperience::findOrFail($id);
+            if(auth()->user()->candidateProfile->id !== $experience->candidate_id) {
+                abort(404);
+            }
+            $experience->delete();
             return response(['message' => 'Deleted Successfully!'], 200);
 
         }catch(\Exception $e) {
