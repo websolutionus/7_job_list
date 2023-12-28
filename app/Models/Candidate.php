@@ -12,7 +12,9 @@ class Candidate extends Model
 
     protected $fillable = ['user_id', 'cv', 'full_name', 'image',
     'title', 'experience_id', 'website', 'birth_date', 'gender',
-    'marital_status', 'profession_id', 'status', 'bio'];
+    'marital_status', 'profession_id', 'status', 'bio', 'country', 'state', 'city', 'address', 'phone_one',
+    'phone_two', 'email'
+    ];
 
     function skills() : HasMany {
         return $this->hasMany(CandidateSkill::class, 'candidate_id', 'id');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\CandidateAccountInfoUpdateRequest;
 use App\Http\Requests\Frontend\CandidateBasicProfileUpdateRequest;
 use App\Http\Requests\Frontend\CandidateProfileInfoUpdateRequest;
 use App\Models\Candidate;
@@ -96,6 +97,26 @@ class CandidateProfileController extends Controller
             $candidateSkill->skill_id = $skill;
             $candidateSkill->save();
         }
+
+        Notify::updatedNotification();
+
+        return redirect()->back();
+    }
+
+    // Account Info Update
+    function AccountInfoUpdate(CandidateAccountInfoUpdateRequest $request) : RedirectResponse {
+        Candidate::updateOrCreate(
+            ['user_id' => auth()->user()->id],
+            [
+                'country' => $request->country,
+                'state' => $request->state,
+                'city' => $request->city,
+                'address' => $request->address,
+                'phone_one' => $request->phone,
+                'phone_two' => $request->secondary_phone,
+                'email' => $request->email,
+            ]
+        );
 
         Notify::updatedNotification();
 

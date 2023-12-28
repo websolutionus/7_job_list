@@ -1,5 +1,5 @@
 <div class="tab-pane fade show" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab">
-    <form action="{{ route('candidate.profile.basic-info.update') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('candidate.profile.account-info.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
 
@@ -49,7 +49,7 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="font-sm color-text-mutted mb-10">Address *</label>
+                            <label class="font-sm color-text-mutted mb-10">Address</label>
                             <input class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" type="text"
                                 value="" name="address">
                             <x-input-error :messages="$errors->get('address')" class="mt-2" />
