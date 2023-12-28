@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\CandidateEducationStoreRequest;
+use App\Models\CandidateEducation;
 use Illuminate\Http\Request;
 
 class CandidateEductionController extends Controller
@@ -26,9 +28,17 @@ class CandidateEductionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CandidateEducationStoreRequest $request)
     {
-        dd($request->all());
+        $education = new CandidateEducation();
+        $education->candidate_id = auth()->user()->candidateProfile->id;
+        $education->level = $request->level;
+        $education->degree = $request->degree;
+        $education->year = $request->year;
+        $education->note = $request->note;
+        $education->save();
+        
+        return response(['message' => 'Created Successfully'], 200);
     }
 
     /**

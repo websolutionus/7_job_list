@@ -201,7 +201,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <form action="" id="EductionForm">
+                <form action="" id="EducationForm">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
@@ -410,8 +410,8 @@
         //     })
         // }
 
-        // Save experience data
-        $('#EductionForm').on('submit', function(event) {
+        // Save education data
+        $('#EducationForm').on('submit', function(event) {
             event.preventDefault();
             const formData = $(this).serialize();
 
@@ -450,7 +450,7 @@
                     },
                     success: function(response) {
                         // fetchExperience();
-                        $('#ExperienceForm').trigger("reset");
+                        $('#EducationForm').trigger("reset");
                         $('#educationModal').modal('hide');
 
                         hideLoader();
