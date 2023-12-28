@@ -20,9 +20,11 @@ use App\Models\Skill;
 use App\Models\State;
 use App\Services\Notify;
 use App\Traits\FileUploadTrait;
+use Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Validation\Rules;
 
 class CandidateProfileController extends Controller
 {
@@ -40,7 +42,7 @@ class CandidateProfileController extends Controller
         $countries = Country::all();
         $states = State::where('country_id', $candidate->country)->get();
         $cities = City::where('state_id', $candidate->state)->get();
-        
+
         return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'experiences', 'professions', 'skills', 'languages', 'candidateExperiences', 'candidateEducation', 'countries', 'states', 'cities'));
     }
 
@@ -123,6 +125,30 @@ class CandidateProfileController extends Controller
             ]
         );
 
+        Notify::updatedNotification();
+
+        return redirect()->back();
+    }
+
+    // Account Email Update
+    function AccountEmailUpdate(Request $request) : RedirectResponse {
+        $request->validate([
+            'account_email' => ['required', 'email']
+        ]);
+
+        Auth::user()->update(['email' => $request->account_email]);
+        Notify::updatedNotification();
+
+        return redirect()->back();
+    }
+
+    // Account Password Update
+    function AccountPasswordUpdate(Request $request) : RedirectResponse {
+        $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+        ]);
+
+        Auth::user()->update(['password' => bcrypt($request->password)]);
         Notify::updatedNotification();
 
         return redirect()->back();

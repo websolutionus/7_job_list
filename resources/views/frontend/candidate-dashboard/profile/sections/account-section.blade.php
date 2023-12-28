@@ -102,6 +102,54 @@
             <button class="btn btn-primary">Save All Changes</button>
         </div>
     </form>
+    <hr class="">
+    <div class="mt-4">
+        <form action="{{ route('candidate.profile.account-email.update') }}" method="POST">
+            @csrf
+            <h4>Change Account Email Address</h4>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="font-sm color-text-mutted mb-10">Account Email</label>
+                    <input class="form-control {{ $errors->has('account_email') ? 'is-invalid' : '' }}" type="text"
+                        value="{{ auth()->user()->email }}" name="account_email">
+                    <x-input-error :messages="$errors->get('account_email')" class="mt-2" />
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save All</button>
+            </div>
+        </form>
+    </div>
+
+    <hr class="">
+    <div class="mt-4">
+        <form action="{{ route('candidate.profile.account-password.update') }}" method="POST">
+            @csrf
+            <h4>Change Password</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-sm color-text-mutted mb-10">Password</label>
+                        <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" type="password"
+                            value="" name="password">
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-sm color-text-mutted mb-10">Confirm Password</label>
+                        <input class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" type="password"
+                            value="" name="password_confirmation">
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save All</button>
+            </div>
+        </form>
+    </div>
+
 </div>
 
 
