@@ -11,11 +11,13 @@ use App\Models\CandidateEducation;
 use App\Models\CandidateExperience;
 use App\Models\CandidateLanguage;
 use App\Models\CandidateSkill;
+use App\Models\City;
 use App\Models\Country;
 use App\Models\Experience;
 use App\Models\Language;
 use App\Models\Profession;
 use App\Models\Skill;
+use App\Models\State;
 use App\Services\Notify;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\RedirectResponse;
@@ -36,7 +38,10 @@ class CandidateProfileController extends Controller
         $skills = Skill::all();
         $languages = Language::all();
         $countries = Country::all();
-        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'experiences', 'professions', 'skills', 'languages', 'candidateExperiences', 'candidateEducation', 'countries'));
+        $states = State::where('country_id', $candidate->country)->get();
+        $cities = City::where('state_id', $candidate->state)->get();
+        
+        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'experiences', 'professions', 'skills', 'languages', 'candidateExperiences', 'candidateEducation', 'countries', 'states', 'cities'));
     }
 
     /** update basic info of candidate profile */

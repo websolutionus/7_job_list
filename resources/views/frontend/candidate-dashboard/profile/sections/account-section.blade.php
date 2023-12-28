@@ -14,7 +14,7 @@
                             <select name="country" id="" class=" form-icons select-active {{ hasError($errors, 'country') }} country">
                                 <option value="">Select one</option>
                                 @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    <option @selected($country->id === $candidate->country) value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
 
@@ -28,7 +28,9 @@
 
                             <select name="state" id="" class=" form-icons select-active {{ hasError($errors, 'state') }} state">
                                 <option value="">Select one</option>
-
+                                @foreach ($states as $state)
+                                    <option @selected($state->id === $candidate->state) value="{{ $state->id }}">{{ $state->name }}</option>
+                                @endforeach
                             </select>
 
                             <x-input-error :messages="$errors->get('country')" class="mt-2" />
@@ -41,6 +43,9 @@
 
                             <select name="city" id="" class=" form-icons select-active {{ hasError($errors, 'city') }} city">
                                 <option value="">Select one</option>
+                                @foreach ($cities as $city)
+                                    <option @selected($city->id === $candidate->city) value="{{ $city->id }}">{{ $city->name }}</option>
+                                @endforeach
                             </select>
 
                             <x-input-error :messages="$errors->get('city')" class="mt-2" />
@@ -51,7 +56,7 @@
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Address</label>
                             <input class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" type="text"
-                                value="" name="address">
+                                value="{{ $candidate->address }}" name="address">
                             <x-input-error :messages="$errors->get('address')" class="mt-2" />
                         </div>
                     </div>
@@ -67,7 +72,7 @@
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Phone</label>
                             <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" type="text"
-                                value="" name="phone">
+                                value="{{ $candidate->phone_one }}" name="phone">
                             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                         </div>
                     </div>
@@ -75,7 +80,7 @@
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Secondary Phone</label>
                             <input class="form-control {{ $errors->has('secondary_phone') ? 'is-invalid' : '' }}" type="text"
-                                value="" name="secondary_phone">
+                                value="{{ $candidate->phone_two }}" name="secondary_phone">
                             <x-input-error :messages="$errors->get('secondary_phone')" class="mt-2" />
                         </div>
                     </div>
@@ -83,7 +88,7 @@
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Email</label>
                             <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="text"
-                                value="" name="email">
+                                value="{{ $candidate->email }}" name="email">
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
                     </div>
