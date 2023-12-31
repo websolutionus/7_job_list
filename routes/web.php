@@ -39,7 +39,7 @@ Route::get('get-state/{country_id}', [LocationController::class, 'getStates'])->
 Route::get('get-cities/{state_id}', [LocationController::class, 'getCities'])->name('get-cities');
 
 Route::get('companies', [FrontendCompanyPageController::class, 'index'])->name('companies.index');
-Route::get('company/{slug}', [FrontendCompanyPageController::class, 'show'])->name('company.show');
+Route::get('companies/{slug}', [FrontendCompanyPageController::class, 'show'])->name('companies.show');
 
 
 

@@ -43,6 +43,18 @@ class Company extends Model
         ];
     }
 
+    function industryType() : BelongsTo {
+        return $this->belongsTo(IndustryType::class, 'industry_type_id', 'id');
+    }
+
+    function organizationType() : BelongsTo {
+        return $this->belongsTo(OrganizationType::class, 'organization_type_id', 'id');
+    }
+
+    function teamSize() : BelongsTo {
+        return $this->belongsTo(TeamSize::class, 'team_size_id', 'id');
+    }
+
     function companyCountry() : BelongsTo {
         return $this->belongsTo(Country::class, 'country', 'id');
     }
