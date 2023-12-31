@@ -204,22 +204,20 @@
                 <li>
                   <div class="sidebar-icon-item"><i class="fi-rr-clock"></i></div>
                   <div class="sidebar-text-info"><span class="text-description">Establis Date</span><strong
-                      class="small-heading">{{ $company->establishment_date }}</strong></div>
+                      class="small-heading">{{ formatDate($company->establishment_date) }}</strong></div>
                 </li>
-                <li>
-                  <div class="sidebar-icon-item"><i class="fi-rr-time-fast"></i></div>
-                  <div class="sidebar-text-info"><span class="text-description">Last Jobs Posted</span><strong
-                      class="small-heading">4 days</strong></div>
-                </li>
+
               </ul>
             </div>
             <div class="sidebar-list-job">
               <ul class="ul-disc">
-                <li>205 North Michigan Avenue, Suite 810 Chicago, 60601, USA</li>
-                <li>Phone: (123) 456-7890</li>
-                <li>Email: contact@Evara.com</li>
+                <li>{{ $company->address }} {{ $company->companyCity?->name ? ', '.$company->companyCity?->name : '' }} {{ $company->companyState?->name ? ', '.$company->companyState?->name : ''}} {{ $company->companyCountry?->name ? ', '.$company->companyCountry?->name : ''}}</li>
+                <li>Phone: {{ $company->phone }}</li>
+                <li>Email: {{ $company->email }}</li>
+                <li>Website: <a href="{{ $company->website }}">{{ $company->website }}</a></li>
+
               </ul>
-              <div class="mt-30"><a class="btn btn-send-message" href="page-contact.html">Send Message</a></div>
+              <div class="mt-30"><a class="btn btn-send-message"  href="mailto:{{ $company->email }}">Send Message</a></div>
             </div>
           </div>
         </div>
