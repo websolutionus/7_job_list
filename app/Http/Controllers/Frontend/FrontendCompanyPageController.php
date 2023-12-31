@@ -13,4 +13,9 @@ class FrontendCompanyPageController extends Controller
         $companies = Company::where(['profile_completion' => 1, 'visibility' => 1])->get();
         return view('frontend.pages.company-index', compact('companies'));
     }
+
+    function show(string $slug) : View {
+        $company = Company::where(['profile_completion' => 1, 'visibility' => 1, 'slug' => $slug])->firstOrFail();
+        return view('frontend.pages.company-details', compact('company'));
+    }
 }

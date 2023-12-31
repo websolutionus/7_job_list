@@ -37,7 +37,10 @@ require __DIR__.'/auth.php';
 
 Route::get('get-state/{country_id}', [LocationController::class, 'getStates'])->name('get-states');
 Route::get('get-cities/{state_id}', [LocationController::class, 'getCities'])->name('get-cities');
+
 Route::get('companies', [FrontendCompanyPageController::class, 'index'])->name('companies.index');
+Route::get('company/{slug}', [FrontendCompanyPageController::class, 'show'])->name('company.show');
+
 
 
 

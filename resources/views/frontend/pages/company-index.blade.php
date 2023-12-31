@@ -61,10 +61,10 @@
                 @forelse ($companies as $company)
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="card-grid-1 hover-up wow animate__animated animate__fadeIn">
-                      <div class="image-box"><a href="company-details.html"><img src="{{ asset($company->logo) }}"
+                      <div class="image-box"><a href="{{ route('company.show', $company->slug) }}"><img src="{{ asset($company->logo) }}"
                             alt="joblist"></a></div>
                       <div class="info-text mt-10">
-                        <h5 class="font-bold"><a href="company-details.html">{{ $company->name }}</a></h5>
+                        <h5 class="font-bold"><a href="{{ route('company.show', $company->slug) }}">{{ $company->name }}</a></h5>
                         <div class="mt-5"><img alt="joblist" src="assets/imgs/template/icons/star.svg"><img alt="joblist"
                             src="assets/imgs/template/icons/star.svg"><img alt="joblist"
                             src="assets/imgs/template/icons/star.svg"><img alt="joblist"
@@ -72,8 +72,7 @@
                             src="assets/imgs/template/icons/star.svg"><span
                             class="font-xs color-text-mutted ml-10"><span>(</span><span>66</span><span>)</span></span>
                         </div><span class="card-location">{{ $company->companyCountry->name }}</span>
-                        <div class="mt-30"><a class="btn btn-grey-big" href="jobs-grid.html"><span>12</span><span> Jobs
-                              Open</span></a></div>
+                        <div class="mt-30"><a class="btn btn-grey-big" href="jobs-grid.html"><span>12</span><span> Jobs Open</span></a></div>
                       </div>
                     </div>
                   </div>
