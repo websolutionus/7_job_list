@@ -29,8 +29,8 @@
             <h5 class="f-18">{{ $company->name }} <span class="card-location font-regular ml-20">{{ $company->companyCountry->name }}</span></h5>
 
           </div>
-          <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn btn-call-icon btn-apply btn-apply-big"
-              href="page-contact.html">Contact us</a></div>
+          <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn btn-apply btn-apply-big"
+              href="javascript:;" onclick="document.getElementById('open-positions').scrollIntoView()">Open Positions</a></div>
         </div>
       </div>
 
@@ -53,7 +53,7 @@
               </div>
             </div>
           </div>
-          <div class="box-related-job content-page">
+          <div class="box-related-job content-page" id="open-positions">
             <h5 class="mb-30">Latest Jobs</h5>
             <div class="box-list-jobs display-list">
               <div class="col-xl-12 col-12">
@@ -197,7 +197,7 @@
                       class="small-heading">{{ $company->organizationType->name }}</strong></div>
                 </li>
                 <li>
-                  <div class="sidebar-icon-item"><i class="fi-rr-dollar"></i></div>
+                  <div class="sidebar-icon-item"><i class="fi fi-rr-user"></i></div>
                   <div class="sidebar-text-info"><span class="text-description">Team Size</span><strong
                       class="small-heading">{{ $company->teamSize->name }}</strong></div>
                 </li>
