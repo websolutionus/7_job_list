@@ -32,16 +32,16 @@ class CandidateProfileController extends Controller
 
     function index() : View {
         $candidate = Candidate::with(['skills'])->where('user_id', auth()->user()->id)->first();
-        $candidateExperiences = CandidateExperience::where('candidate_id', $candidate->id)->orderBy('id', 'DESC')->get();
-        $candidateEducation = CandidateEducation::where('candidate_id', $candidate->id)->orderBy('id', 'DESC')->get();
+        $candidateExperiences = CandidateExperience::where('candidate_id', $candidate?->id)->orderBy('id', 'DESC')->get();
+        $candidateEducation = CandidateEducation::where('candidate_id', $candidate?->id)->orderBy('id', 'DESC')->get();
 
         $experiences = Experience::all();
         $professions = Profession::all();
         $skills = Skill::all();
         $languages = Language::all();
         $countries = Country::all();
-        $states = State::where('country_id', $candidate->country)->get();
-        $cities = City::where('state_id', $candidate->state)->get();
+        $states = State::where('country_id', $candidate?->country)->get();
+        $cities = City::where('state_id', $candidate?->state)->get();
 
         return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'experiences', 'professions', 'skills', 'languages', 'candidateExperiences', 'candidateEducation', 'countries', 'states', 'cities'));
     }
