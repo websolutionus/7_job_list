@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\SkillController;
 use Illuminate\Support\Facades\Route;
@@ -72,5 +73,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Skills Route */
     Route::resource('skills', SkillController::class);
+
+    /** Plan Route */
+    Route::resource('plans', PlanController::class);
 
 });
