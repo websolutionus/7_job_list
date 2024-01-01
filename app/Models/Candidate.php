@@ -39,6 +39,10 @@ class Candidate extends Model
         return $this->belongsTo(Experience::class, 'experience_id', 'id');
     }
 
+    function profession() : BelongsTo {
+        return $this->belongsTo(Profession::class, 'profession_id', 'id');
+    }
+
     function candidateCountry() : BelongsTo {
         return $this->belongsTo(Country::class, 'country', 'id');
     }

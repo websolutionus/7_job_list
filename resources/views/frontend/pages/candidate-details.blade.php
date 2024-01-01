@@ -74,8 +74,8 @@
                     <div class="sidebar-text-info"><span class="text-description">Skills</span>
                     <strong>
                         @foreach ($candidate->skills as $candidateSkill)
-                        <p class="badge bg-info text-light">{{ $candidateSkill->skill->name }}</p>
-                    @endforeach
+                            <p class="badge bg-info text-light">{{ $candidateSkill->skill->name }}</p>
+                        @endforeach
                     </strong>
                     </div>
                   </li>
@@ -90,24 +90,37 @@
                 </li>
 
                 <li>
+                    <div class="sidebar-icon-item"><i class="fi-rr-marker"></i></div>
+                    <div class="sidebar-text-info"><span class="text-description">Profession</span><strong
+                        class="small-heading">{{ $candidate->profession->name }}</strong></div>
+                </li>
+
+                <li>
                   <div class="sidebar-icon-item"><i class="fi-rr-marker"></i></div>
-                  <div class="sidebar-text-info"><span class="text-description">Language</span><strong
-                      class="small-heading">English, German</strong></div>
+                  <div class="sidebar-text-info"><span class="text-description">Date of Birth</span><strong
+                      class="small-heading">{{ formatDate($candidate->birth_date) }}</strong></div>
                 </li>
                 <li>
                   <div class="sidebar-icon-item"><i class="fi-rr-time-fast"></i></div>
-                  <div class="sidebar-text-info"><span class="text-description">Education Level</span><strong
-                      class="small-heading">Master Degree</strong></div>
+                  <div class="sidebar-text-info"><span class="text-description">Gender</span><strong
+                      class="small-heading">{{ $candidate->gender }}</strong></div>
                 </li>
+                <li>
+                    <div class="sidebar-icon-item"><i class="fi-rr-time-fast"></i></div>
+                    <div class="sidebar-text-info"><span class="text-description">Marital Status </span><strong
+                        class="small-heading">{{ $candidate->marital_status }}</strong></div>
+                  </li>
               </ul>
             </div>
             <div class="sidebar-list-job">
               <ul class="ul-disc">
-                <li>205 North Michigan Avenue, Suite 810 Chicago, 60601, USA</li>
-                <li>Phone: (123) 456-7890</li>
-                <li>Email: contact@Evara.com</li>
+                <li>{{ $candidate->address }} {{ $candidate->candidateCity?->name ? ', '.$candidate->candidateCity?->name : '' }} {{ $candidate->candidateState?->name ? ', '.$candidate->candidateState?->name : ''}} {{ $candidate->candidateCountry?->name ? ', '.$candidate->candidateCountry?->name : ''}}</li>
+                <li>Phone: {{ $candidate->phone_one }}</li>
+                <li>Phone: {{ $candidate->phone_two }}</li>
+
+                <li>Email: {{ $candidate->email }}</li>
               </ul>
-              <div class="mt-30"><a class="btn btn-send-message" href="page-contact.html">Send Message</a></div>
+              <div class="mt-30"><a class="btn btn-send-message" href="tomail:{{ $candidate->email }}">Send Message</a></div>
             </div>
           </div>
         </div>
