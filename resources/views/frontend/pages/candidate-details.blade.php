@@ -6,10 +6,10 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-12">
-            <h2 class="mb-20">Blog</h2>
+            <h2 class="mb-20">Candidate Profile</h2>
             <ul class="breadcrumbs">
               <li><a class="home-icon" href="index.html">Home</a></li>
-              <li>Blog</li>
+              <li>Candidate Profile</li>
             </ul>
           </div>
         </div>
@@ -48,7 +48,6 @@
                 aria-labelledby="tab-short-bio">
                 <h4>Biography</h4>
                 {!! $candidate->bio !!}
-                <h4>Professional Skills</h4>
                 <p></p>
               </div>
 
@@ -73,6 +72,23 @@
                         </ul>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12 mt-4">
+                        <h4>Education</h4>
+                        <ul class="timeline">
+                            @foreach ($candidate->educations as $education)
+                            <li>
+                                <a href="#" class="float-right">{{ formatDate($education->year) }}</a>
+                                <a href="javascript:;">{{ $education->level }}</a>
+
+                                <p>{{ $education->degree }}</p>
+                                <p>{{ $education->note }}</p>
+                            </li>
+                            @endforeach
+
+                        </ul>
+                    </div>
+                </div>
             </div>
 
           </div>
@@ -88,7 +104,7 @@
                       class="small-heading">{{ $candidate->experience->name }}</strong></div>
                 </li>
                 <li>
-                    <div class="sidebar-icon-item"><i class="fi-rr-briefcase"></i></div>
+                    <div class="sidebar-icon-item"><i class="fi fi-rr-settings-sliders"></i></div>
                     <div class="sidebar-text-info"><span class="text-description">Skills</span>
                     <strong>
                         @foreach ($candidate->skills as $candidateSkill)
@@ -98,7 +114,7 @@
                     </div>
                   </li>
                 <li>
-                  <div class="sidebar-icon-item"><i class="fi-rr-dollar"></i></div>
+                  <div class="sidebar-icon-item"><i class="fi fi-rr-settings-sliders"></i></div>
                   <div class="sidebar-text-info"><span class="text-description">Languages</span><strong
                       class="small-heading">
                         @foreach ($candidate->languages as $candidateLanguage)
@@ -127,6 +143,11 @@
                     <div class="sidebar-icon-item"><i class="fi-rr-time-fast"></i></div>
                     <div class="sidebar-text-info"><span class="text-description">Marital Status </span><strong
                         class="small-heading">{{ $candidate->marital_status }}</strong></div>
+                  </li>
+                  <li>
+                    <div class="sidebar-icon-item"><i class="fi-rr-time-fast"></i></div>
+                    <div class="sidebar-text-info"><span class="text-description">Website </span><strong
+                        class="small-heading"><a href="{{ $candidate->website }}">{{ $candidate->website }}</a></strong></div>
                   </li>
               </ul>
             </div>
