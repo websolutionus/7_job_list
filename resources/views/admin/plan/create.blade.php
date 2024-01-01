@@ -19,9 +19,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="">Lable</label>
-                                        <input type="text" class="form-control {{ hasError($errors, 'lable') }}" name="lable" value="{{ old('lable') }}">
-                                        <x-input-error :messages="$errors->get('lable')" class="mt-2" />
+                                        <label for="">Label</label>
+                                        <input type="text" class="form-control {{ hasError($errors, 'label') }}" name="label" value="{{ old('label') }}">
+                                        <x-input-error :messages="$errors->get('label')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">

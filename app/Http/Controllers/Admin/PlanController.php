@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PlanCreateRequest;
+use App\Models\Plan;
+use App\Services\Notify;
+use Flasher\Notyf\Laravel\Facade\Notyf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -28,10 +32,20 @@ class PlanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) : RedirectResponse
+    public function store(PlanCreateRequest $request) : RedirectResponse
     {
-        // store data
-        dd($request->all());
+        $plan = new Plan();
+        $plan->label = $request->label;
+        $plan->price = $request->price;
+        $plan->job_limit = $request->job_limit;
+        $plan->featured_job_limit = $request->featured_job_limit;
+        $plan->highlight_job_limit = $request->highlight_job_limit;
+        $plan->profile_verified = $request->profile_verified;
+        $plan->recommended = $request->recommended;
+        $plan->frontend_show = $request->frontend_show;
+        $plan->save();
+        Notify::createdNotification();
+
         return to_route('admin.plans.index');
     }
 
