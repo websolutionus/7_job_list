@@ -39,6 +39,10 @@ class Candidate extends Model
         return $this->belongsTo(Experience::class, 'experience_id', 'id');
     }
 
+    function experiences() : HasMany {
+        return $this->hasMany(CandidateExperience::class, 'candidate_id', 'id')->orderBy('id', 'Desc');
+    }
+
     function profession() : BelongsTo {
         return $this->belongsTo(Profession::class, 'profession_id', 'id');
     }

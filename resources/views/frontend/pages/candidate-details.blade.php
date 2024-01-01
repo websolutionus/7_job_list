@@ -55,7 +55,25 @@
             </div>
           </div>
           <div class="box-related-job content-page   cadidate_details_list">
-            <h3 class="mb-30">Work History</h3>
+            <div class="mt-5 mb-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Experience</h4>
+                        <ul class="timeline">
+                            @foreach ($candidate->experiences as $experience)
+                            <li>
+                                <a href="#" class="float-right">{{ formatDate($experience->start) }} - {{ $experience->currently_working ? 'Current' :  formatDate($experience->end)}}</a>
+                                <a href="javascript:;">{{ $experience->designation }}</a> | <span>{{ $experience->department }}</span>
+
+                                <p>{{ $experience->company }}</p>
+                                <p>{{ $experience->responsibilities }}</p>
+                            </li>
+                            @endforeach
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
           </div>
         </div>
