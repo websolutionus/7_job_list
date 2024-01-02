@@ -1,6 +1,7 @@
 <div class="tab-pane fade show active" id="home4" role="tabpanel" aria-labelledby="home-tab4">
     <div class="card">
-        <form action="">
+        <form action="{{ route('admin.paypal-settings.update') }}" method="POST">
+            @csrf
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -27,8 +28,11 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Paypal Country Name</label>
-                        <select name="paypal_country_name" class="form-control {{ hasError($errors, 'paypal_country_name') }}">
-                            <option value="sandbox"></option>
+                        <select name="paypal_country_name" class="form-control select2 {{ hasError($errors, 'paypal_country_name') }}">
+                            <option value="">Select</option>
+                            @foreach (config('countries') as $key => $country)
+                            <option value="{{ $key }}">{{ $country }}</option>
+                            @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('paypal_country_name')" class="mt-2" />
                     </div>
@@ -36,8 +40,11 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Paypal Currency Name</label>
-                        <select name="paypal_currency_name" class="form-control {{ hasError($errors, 'paypal_currency_name') }}">
-                            <option value="sandbox"></option>
+                        <select name="paypal_currency_name" class="form-control select2 {{ hasError($errors, 'paypal_currency_name') }}">
+                            <option value="sandbox">Select</option>
+                            @foreach (config('currencies.currency_list') as $key => $currency)
+                            <option value="{{ $currency }}">{{ $currency }}</option>
+                            @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('paypal_currency_name')" class="mt-2" />
                     </div>
