@@ -59,8 +59,8 @@
                             <div class="pricing-cta" style="display: flex;
                             justify-content: space-between;
                             width: 100%;">
-                                <a href="#" class="w-100 bg-primary text-light">Edit <i class="fas fa-arrow-right"></i></a>
-                                <a href="#" class="w-100 bg-danger text-light">Delete <i class="fas fa-times"></i></a>
+                                <a href="{{ route('admin.plans.edit', $plan->id) }}" class="w-100 bg-primary text-light">Edit <i class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('admin.plans.destroy', $plan->id) }}" class="w-100 bg-danger text-light delete-item">Delete <i class="fas fa-times"></i></a>
                             </div>
                         </div>
                     </div>
