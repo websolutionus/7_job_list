@@ -32,7 +32,7 @@
 <!-- Top Recruiters Section End -->
 
 <!-- Price Plan Section Start -->
-{{-- @include('frontend.home.sections.price-plan-section') --}}
+@include('frontend.home.sections.price-plan-section')
 <!-- Price Plan Section End -->
 
 <!-- Job By Location Section Start -->
