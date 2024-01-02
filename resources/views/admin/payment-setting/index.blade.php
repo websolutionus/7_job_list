@@ -29,14 +29,9 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-10">
                       <div class="tab-content no-padding" id="myTab2Content">
-                        <div class="tab-pane fade show active" id="home4" role="tabpanel" aria-labelledby="home-tab4">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </div>
+
+                        @include('admin.payment-setting.sections.paypal-section')
+
                         <div class="tab-pane fade" id="profile4" role="tabpanel" aria-labelledby="profile-tab4">
                           Sed sed metus vel lacus hendrerit tempus. Sed efficitur velit tortor, ac efficitur est lobortis quis. Nullam lacinia metus erat, sed fermentum justo rutrum ultrices. Proin quis iaculis tellus. Etiam ac vehicula eros, pharetra consectetur dui. Aliquam convallis neque eget tellus efficitur, eget maximus massa imperdiet. Morbi a mattis velit. Donec hendrerit venenatis justo, eget scelerisque tellus pharetra a.
                         </div>
