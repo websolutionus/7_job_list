@@ -19,7 +19,16 @@
                                     Recommended
                                 </div>
                             @endif
+
                             <div class="pricing-padding">
+                                <div>
+                                    @if ($plan->frontend_show)
+                                    <span class="badge bg-primary text-light">Showing at frontned</span>
+                                    @endif
+                                    @if ($plan->show_at_home)
+                                    <span class="badge bg-success text-dark">Showing at home</span>
+                                    @endif
+                                </div>
                                 <div>
                                     <h4>{{ $plan->label }}</h4>
                                 </div>

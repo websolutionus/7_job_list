@@ -85,6 +85,17 @@
                                     </div>
                                 </div>
 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Show this package in Home</label>
+                                        <select name="show_at_home" id="" class="form-control {{ hasError($errors, 'show_at_home') }}">
+                                            <option @selected($plan->show_at_home === 0) value="0">No</option>
+                                            <option @selected($plan->show_at_home === 1) value="1">Yes</option>
+                                        </select>
+                                        <x-input-error :messages="$errors->get('show_at_home')" class="mt-2" />
+                                    </div>
+                                </div>
+
                             </div>
 
 

@@ -44,6 +44,8 @@ class PlanController extends Controller
         $plan->profile_verified = $request->profile_verified;
         $plan->recommended = $request->recommended;
         $plan->frontend_show = $request->frontend_show;
+        $plan->show_at_home = $request->show_at_home;
+
         $plan->save();
         Notify::createdNotification();
 
@@ -74,6 +76,7 @@ class PlanController extends Controller
         $plan->profile_verified = $request->profile_verified;
         $plan->recommended = $request->recommended;
         $plan->frontend_show = $request->frontend_show;
+        $plan->show_at_home = $request->show_at_home;
         $plan->save();
         Notify::updatedNotification();
 
