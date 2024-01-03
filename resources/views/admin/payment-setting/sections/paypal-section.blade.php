@@ -52,7 +52,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Paypal Currency Rate</label>
-                        <input type="text" class="form-control {{ hasError($errors, 'paypal_currency_rate') }}" name="paypal_currency_rate" >
+                        <input type="text" class="form-control {{ hasError($errors, 'paypal_currency_rate') }}" name="paypal_currency_rate"  value="{{ config('gatewaySettings.paypal_currency_rate') }}">
                         <x-input-error :messages="$errors->get('paypal_currency_rate')" class="mt-2" />
                     </div>
                 </div>
