@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PaypalSettingUpdateReqeust;
 use App\Models\Country;
+use App\Models\PaymentSetting;
+use App\Services\Notify;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -15,8 +18,18 @@ class PaymentSettingController extends Controller
         return view('admin.payment-setting.index');
     }
 
-    function updatePaypalSetting(Request $request) : RedirectResponse {
-        dd($request->all());
+    function updatePaypalSetting(PaypalSettingUpdateReqeust $request) : RedirectResponse {
+
+        $validatedData = $request->validated();
+
+        foreach($validatedData as $key => $value) {
+            PaymentSetting::updateOrCreate(
+                ['key' => $key],
+                ['value' => $value]
+            );
+        }
+        Notify::updatedNotification();
+
         return redirect()->back();
     }
 }
