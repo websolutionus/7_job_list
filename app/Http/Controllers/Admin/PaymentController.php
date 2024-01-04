@@ -6,10 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
 {
+
+    function paymentSuccess() : View {
+        return view('frontend.pages.payment-success');
+    }
+
+    function paymentError() : View {
+        return view('frontend.pages.payment-error');
+    }
 
 
     function setPaypalConfig(): array
@@ -90,19 +99,21 @@ class PaymentController extends Controller
                 OrderService::storeOrder($capture['id'], 'payPal', $capture['amount']['value'], $capture['amount']['currency_code'], 'paid');
 
                 OrderService::setUserPlan();
+
+                Session::forget('selected_plan');
+                return redirect()->route('company.payment.success');
             }catch(\Exception $e) {
-                throw $e;
+                logger( 'Payment ERROR >> '. $e);
             }
-
-            Session::forget('selected_plan');
-
-            return redirect()->route('home');
         }
+
+        return redirect()->route('company.payment.error')->withErrors(['error' => $response['error']['message']]);
 
     }
 
     function paypalCancel()
     {
-        // handle payment
+        return redirect()->route('company.payment.error')->withErrors(['error' => 'Something went wrong please try again']);
+
     }
 }
