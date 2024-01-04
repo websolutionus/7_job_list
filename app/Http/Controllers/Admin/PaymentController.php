@@ -86,7 +86,10 @@ class PaymentController extends Controller
             $capture = $response['purchase_units'][0]['payments']['captures'][0];
 
             try {
+
                 OrderService::storeOrder($capture['id'], 'payPal', $capture['amount']['value'], $capture['amount']['currency_code'], 'paid');
+
+                OrderService::setUserPlan();
             }catch(\Exception $e) {
                 throw $e;
             }
