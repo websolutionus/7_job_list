@@ -83,7 +83,7 @@ class PaymentController extends Controller
         $response = $provider->capturePaymentOrder($request->token);
 
         if(isset($response['status']) && $response['status'] === 'COMPLETED') {
-            $capture = $request['purchase_units'][0]['payments']['captures'][0];
+            $capture = $response['purchase_units'][0]['payments']['captures'][0];
 
             try {
                 OrderService::storeOrder($capture['id'], 'payPal', $capture['amount']['value'], $capture['amount']['currency_code'], 'paid');
