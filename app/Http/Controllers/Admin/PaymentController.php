@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
 {
@@ -36,8 +38,16 @@ class PaymentController extends Controller
 
     function payWithPaypal()
     {
-        dd($this->setPaypalConfig());
-        // handle payment redirect
+        $config = $this->setPaypalConfig();
+
+        $provider = new PayPalClient($config);
+        $provider->getAccessToken();
+
+        // calculate payable amount
+        $payableAmount = round(Session::get('selected_plan')['price'] * config('gatewaySettings.paypal_currency_rate'));
+
+        dd($payableAmount);
+
     }
 
     function paypalSuccess()
