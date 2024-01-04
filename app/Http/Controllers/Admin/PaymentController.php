@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
@@ -81,7 +82,19 @@ class PaymentController extends Controller
 
         $response = $provider->capturePaymentOrder($request->token);
 
-        
+        if(isset($response['status']) && $response['status'] === 'COMPLETED') {
+            $capture = $request['purchase_units'][0]['payments']['captures'][0];
+
+            try {
+                OrderService::storeOrder($capture['id'], 'payPal', $capture['amount']['value'], $capture['amount']['currency_code'], 'paid');
+            }catch(\Exception $e) {
+                throw $e;
+            }
+
+            Session::forget('selected_plan');
+
+            return redirect()->route('home');
+        }
 
     }
 
