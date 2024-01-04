@@ -81,7 +81,7 @@ class PaymentController extends Controller
 
         $response = $provider->capturePaymentOrder($request->token);
 
-        dd($response);
+        
 
     }
 
