@@ -72,9 +72,17 @@ class PaymentController extends Controller
 
     }
 
-    function paypalSuccess()
+    function paypalSuccess(Request $request)
     {
-        // handle payment
+        $config = $this->setPaypalConfig();
+
+        $provider = new PayPalClient($config);
+        $provider->getAccessToken();
+
+        $response = $provider->capturePaymentOrder($request->token);
+
+        dd($response);
+
     }
 
     function paypalCancel()
