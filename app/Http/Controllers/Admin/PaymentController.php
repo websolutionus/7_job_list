@@ -178,7 +178,7 @@ class PaymentController extends Controller
         return view('frontend.pages.razorpay-redirect');
     }
 
-    function payWithRazorpay() {
-
+    function payWithRazorpay(Request $request) {
+        dd($request->all());
     }
 }
