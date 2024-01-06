@@ -149,12 +149,28 @@ class PaymentController extends Controller
 
     }
 
-    function stripeSuccess() {
+    function stripeSuccess(Request $request) {
+        Stripe::setApiKey(config('gatewaySettings.stripe_secret_key'));
+        $sessionId = $request->session_id;
 
+        $response = StripeSession::retrieve($sessionId);
+        if($response->payment_status === 'paid') {
+            try {
+                OrderService::storeOrder($response->payment_intent, 'stripe', ($response->amount_total / 100), $response->currency, 'paid');
 
+                OrderService::setUserPlan();
+
+                Session::forget('selected_plan');
+                return redirect()->route('company.payment.success');
+            }catch(\Exception $e) {
+                logger( 'Payment ERROR >> '. $e);
+            }
+        }else {
+            redirect()->route('company.payment.error')->withErrors(['error' => 'Payment failed']);
+        }
     }
 
     function stripeCancel() {
-
+        redirect()->route('company.payment.error')->withErrors(['error' => 'Payment failed']);
     }
 }
