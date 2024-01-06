@@ -37,6 +37,12 @@
                                             src="{{ asset('default-uploads/stripe.png') }}" alt=""></a>
                                 </div>
 
+                                <div class="col-md-3">
+                                    <a href="{{ route('company.razorpay-redirect') }}"><img class=""
+                                            style="width: 200px;border-radius: 5px;border: 3px solid #1ca774;height: 110px;object-fit: contain;"
+                                            src="{{ asset('default-uploads/razorpay.png') }}" alt=""></a>
+                                </div>
+
                             </div>
                         </div>
 

@@ -173,4 +173,12 @@ class PaymentController extends Controller
     function stripeCancel() {
         redirect()->route('company.payment.error')->withErrors(['error' => 'Payment failed']);
     }
+
+    function razorpayRedirect() : View {
+        return view('frontend.pages.razorpay-redirect');
+    }
+
+    function payWithRazorpay() {
+
+    }
 }
