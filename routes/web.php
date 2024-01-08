@@ -7,7 +7,9 @@ use App\Http\Controllers\Frontend\CandidateExperienceController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CheckoutPageController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
+use App\Http\Controllers\Frontend\CompanyOrderController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
+use App\Http\Controllers\Frontend\CompnayOrderController;
 use App\Http\Controllers\Frontend\FrontendCandidatePageController;
 use App\Http\Controllers\Frontend\FrontendCompanyPageController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -96,6 +98,10 @@ Route::group(
     Route::post('/profile/account-info', [CompanyProfileController::class, 'updateAccountInfo'])->name('profile.account-info');
     Route::post('/profile/password-update', [CompanyProfileController::class, 'updatePassword'])->name('profile.password-update');
 
+    /** Order Routes */
+    Route::get('orders', [CompanyOrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{id}', [CompanyOrderController::class, 'show'])->name('orders.show');
+    Route::get('orders/invoice/{id}', [CompanyOrderController::class, 'invoice'])->name('orders.invoice');
 
     /**Payment Routes */
     Route::get('payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
@@ -111,11 +117,6 @@ Route::group(
 
     Route::get('razorpay-redirect', [PaymentController::class, 'razorpayRedirect'])->name('razorpay-redirect');
     Route::post('razorpay/payment', [PaymentController::class, 'payWithRazorpay'])->name('razorpay.payment');
-
-
-
-
-
 });
 
 
