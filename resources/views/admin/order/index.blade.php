@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <h4>All Orders</h4>
                         <div class="card-header-form">
-                            <form action="{{ route('admin.industry-types.index') }}" method="GET">
+                            <form action="{{ route('admin.orders.index') }}" method="GET">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search" name="search"
                                         value="{{ request('search') }}">
@@ -93,9 +93,9 @@
                     </div>
                     <div class="card-footer text-right">
                         <nav class="d-inline-block">
-                            {{-- @if ($industryTypes->hasPages())
-                                {{ $industryTypes->withQueryString()->links() }}
-                            @endif --}}
+                            @if ($orders->hasPages())
+                                {{ $orders->withQueryString()->links() }}
+                            @endif
                         </nav>
                     </div>
                 </div>
