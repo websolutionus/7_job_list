@@ -15,7 +15,7 @@ use LaravelDaily\Invoices\Classes\Party;
 class OrderController extends Controller
 {
     use Searchable;
-    
+
     function index() : View {
         $query = Order::query();
         $query->with(['company', 'plan']);
@@ -34,9 +34,9 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
 
         $customer = new Buyer([
-            'name'          => 'John Doe',
+            'name'          => $order->company->name,
             'custom_fields' => [
-                'email' => 'test@example.com',
+                'email' => $order->company->email,
                 'transaction' => $order->transaction_id,
                 'payment method' => $order->payment_provider,
             ],

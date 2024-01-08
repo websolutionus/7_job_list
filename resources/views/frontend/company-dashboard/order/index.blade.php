@@ -25,20 +25,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>All Orders</h4>
-                        {{-- <div class="card-header-form">
-                            <form action="{{ route('admin.orders.index') }}" method="GET">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search" name="search"
-                                        value="{{ request('search') }}">
-                                    <div class="input-group-btn">
-                                        <button type="submit" style="height: 40px;" class="btn btn-primary"><i
-                                                class="fas fa-search"></i></button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div> --}}
+
                     </div>
-                    <div class="card-body p-0">
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tr>
@@ -74,7 +63,7 @@
                                             </td>
 
                                             <td>
-                                                <a href="{{ route('admin.orders.show', $order->id) }}"
+                                                <a href="{{ route('company.orders.show', $order->id) }}"
                                                     class="btn-sm btn btn-primary"><i class="fas fa-eye"></i></a>
 
                                             </td>
