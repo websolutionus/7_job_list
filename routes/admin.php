@@ -83,6 +83,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Order routes */
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');

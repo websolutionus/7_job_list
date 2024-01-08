@@ -13,4 +13,9 @@ class OrderController extends Controller
         $orders = Order::paginate(20);
         return view('admin.order.index', compact('orders'));
     }
+
+    function show(string $id) : View {
+        $order = Order::findOrFail($id);
+        return view('admin.order.show', compact('order'));
+    }
 }
