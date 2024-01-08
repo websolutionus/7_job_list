@@ -30,7 +30,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Action</th>
-                                        <td><b><a href="">Download Invoice</a></b></td>
+                                        <td><b><a href="{{ route('admin.orders.invoice', $order->id) }}">Download Invoice</a></b></td>
                                     </tr>
 
                                 </tbody>
