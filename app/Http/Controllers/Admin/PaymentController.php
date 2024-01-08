@@ -7,6 +7,7 @@ use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
+use phpDocumentor\Reflection\Types\Boolean;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
@@ -51,6 +52,8 @@ class PaymentController extends Controller
 
     function payWithPaypal()
     {
+        abort_if(!$this->checkSession(), 404);
+
         $config = $this->setPaypalConfig();
 
         $provider = new PayPalClient($config);
@@ -87,6 +90,8 @@ class PaymentController extends Controller
 
     function paypalSuccess(Request $request)
     {
+        abort_if(!$this->checkSession(), 404);
+
         $config = $this->setPaypalConfig();
 
         $provider = new PayPalClient($config);
@@ -121,6 +126,8 @@ class PaymentController extends Controller
 
     // Pay with Stripe
     function payWithStripe() {
+        abort_if(!$this->checkSession(), 404);
+
         Stripe::setApiKey(config('gatewaySettings.stripe_secret_key'));
 
         /** calculate payable amount */
@@ -151,6 +158,8 @@ class PaymentController extends Controller
     }
 
     function stripeSuccess(Request $request) {
+        abort_if(!$this->checkSession(), 404);
+
         Stripe::setApiKey(config('gatewaySettings.stripe_secret_key'));
         $sessionId = $request->session_id;
 
@@ -176,10 +185,14 @@ class PaymentController extends Controller
     }
 
     function razorpayRedirect() : View {
+        abort_if(!$this->checkSession(), 404);
+
         return view('frontend.pages.razorpay-redirect');
     }
 
     function payWithRazorpay(Request $request) {
+        abort_if(!$this->checkSession(), 404);
+
         $api = new RazorpayApi(
             config('gatewaySettings.razorpay_key'),
             config('gatewaySettings.razorpay_secret_key')
@@ -208,5 +221,14 @@ class PaymentController extends Controller
                 redirect()->route('company.payment.error')->withErrors(['error' => $e->getMessage()]);
             }
         }
+    }
+
+
+    /** check session for selected plan */
+    function checkSession() : bool {
+        if(session()->has('selected_plan')) {
+            return true;
+        }
+        return false;
     }
 }
