@@ -58,15 +58,28 @@ class JobCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = JobCategory::findOrFail($id);
+        return view('admin.job.job-category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id) : RedirectResponse
     {
-        //
+        $request->validate([
+            'icon' => ['nullable', 'max:255'],
+            'name' => ['required', 'max:255']
+        ]);
+
+        $category = JobCategory::findOrFail($id);
+        if($request->filled('icon')) $category->icon = $request->icon;
+        $category->name = $request->name;
+        $category->save();
+
+        Notify::updatedNotification();
+
+        return to_route('admin.job-categories.index');
     }
 
     /**
@@ -74,6 +87,14 @@ class JobCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            JobCategory::findOrFail($id)->delete();
+            Notify::deletedNotification();
+            return response(['message' => 'success'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
     }
 }
