@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\SalaryTypeController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\TagController;
 use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Route;
 
@@ -98,7 +99,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('job-types', JobTypeController::class);
     /** Job salary type Routes */
     Route::resource('salary-types', SalaryTypeController::class);
-
+    /** Job tag Routes */
+    Route::resource('tags', TagController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
