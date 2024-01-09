@@ -27,21 +27,23 @@
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tr>
+                                    <th>Icon</th>
                                     <th>Name</th>
-                                    <th>slug</th>
                                     <th style="width: 10%">Action</th>
                                 </tr>
                             <tbody>
-                                {{-- @foreach ($industryTypes as $type)
+                                @foreach ($categories as $category)
                                 <tr>
-                                    <td>{{ $type->name }}</td>
-                                    <td>{{ $type->slug }}</td>
+                                    <td><i style="font-size:40px" class="{{ $category->icon }}"></i></td>
+
+                                    <td>{{ $category->name }}</td>
+
                                     <td>
-                                        <a href="{{ route('admin.industry-types.edit', $type->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ route('admin.industry-types.destroy', $type->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="{{ route('admin.job-categories.edit', $category->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('admin.job-categories.destroy', $category->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
-                                @endforeach --}}
+                                @endforeach
 
                             </tbody>
 
@@ -50,9 +52,9 @@
                     </div>
                     <div class="card-footer text-right">
                         <nav class="d-inline-block">
-                            {{-- @if ($industryTypes->hasPages())
-                                {{ $industryTypes->withQueryString()->links() }}
-                            @endif --}}
+                            @if ($categories->hasPages())
+                                {{ $categories->withQueryString()->links() }}
+                            @endif
                         </nav>
                     </div>
                 </div>

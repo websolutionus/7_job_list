@@ -18,8 +18,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="">Icon</label>
-                                <input type="text" class="form-control {{ hasError($errors, 'name') }}" name="name" value="{{ old('name') }}">
-                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                <div role="iconpicker" data-align="left" name="icon" class="{{ hasError($errors, 'icon') }}"></div>
+                                <x-input-error :messages="$errors->get('icon')" class="mt-2" />
                             </div>
 
                             <div class="form-group">
