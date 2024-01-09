@@ -3,18 +3,18 @@
 @section('contents')
     <section class="section">
         <div class="section-header">
-            <h1>Skills</h1>
+            <h1>Education</h1>
         </div>
 
         <div class="section-body">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Create Skill</h4>
+                        <h4>Create Education</h4>
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.skills.store') }}" method="POST">
+                        <form action="{{ route('admin.educations.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="">Name</label>
