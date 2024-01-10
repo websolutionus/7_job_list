@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\JobExperienceController;
 use App\Http\Controllers\Admin\JobRoleController;
 use App\Http\Controllers\Admin\JobTypeController;
@@ -108,6 +109,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('job-roles', JobRoleController::class);
     /** Job type */
     Route::resource('job-experiences', JobExperienceController::class);
+    /** Jobs  */
+    Route::resource('jobs', JobController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
