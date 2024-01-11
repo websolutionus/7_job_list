@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
+use App\Models\Country;
+use App\Models\JobCategory;
+use App\Models\SalaryType;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -21,7 +25,16 @@ class JobController extends Controller
      */
     public function create() : View
     {
-        return view('admin.job.create');
+        $companies = Company::where(['profile_completion' => 1, 'visibility' => 1])->get();
+        $categories = JobCategory::all();
+        $countries = Country::all();
+        $salaryTypes = SalaryType::all();
+        return view('admin.job.create', compact(
+            'companies',
+            'categories',
+            'countries',
+            'salaryTypes'
+        ));
     }
 
     /**

@@ -32,6 +32,9 @@
                                             <label for="">Select Company <span class="text-danger ">*</span></label>
                                             <select name="compnay" id="" class="form-control select2 {{ hasError($errors, 'compnay') }}" >
                                                 <option value="">Choose</option>
+                                                @foreach ($companies as $company)
+                                                <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                                @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                         </div>
@@ -41,6 +44,10 @@
                                             <label for="">Category <span class="text-danger">*</span></label>
                                             <select name="category" id="" class="form-control select2 {{ hasError($errors, 'category') }}" >
                                                 <option value="">Choose</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+
+                                                @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('category')" class="mt-2" />
                                         </div>
@@ -74,8 +81,12 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">Country </label>
-                                            <select name="country" id="" class="form-control select2 {{ hasError($errors, 'country') }}" >
+                                            <select name="country" id="" class="form-control select2 country {{ hasError($errors, 'country') }}" >
                                                 <option value="">Choose</option>
+                                                @foreach ($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+
+                                                @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('country')" class="mt-2" />
                                         </div>
@@ -83,7 +94,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">State </label>
-                                            <select name="state" id="" class="form-control select2 {{ hasError($errors, 'state') }}" >
+                                            <select name="state" id="" class="form-control select2 state {{ hasError($errors, 'state') }}" >
                                                 <option value="">Choose</option>
                                             </select>
                                             <x-input-error :messages="$errors->get('state')" class="mt-2" />
@@ -92,7 +103,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">City </label>
-                                            <select name="city" id="" class="form-control select2 {{ hasError($errors, 'city') }}" >
+                                            <select name="city" id="" class="form-control select2 city {{ hasError($errors, 'city') }}" >
                                                 <option value="">Choose</option>
                                             </select>
                                             <x-input-error :messages="$errors->get('city')" class="mt-2" />
@@ -175,6 +186,10 @@
                                             <label for="">Salary Type <span class="text-danger">*</span> </label>
                                             <select name="salary_type" id="" class="form-control select2 {{ hasError($errors, 'salary_type') }}" >
                                                 <option value="">Choose</option>
+                                                @foreach ($salaryTypes as $salaryType)
+                                                <option value="{{ $salaryType->id }}">{{ $salaryType->name }}</option>
+
+                                                @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('salary_type')" class="mt-2" />
                                         </div>
@@ -356,5 +371,48 @@
             $('.custom_salary_part').removeClass('d-none')
         }
     }
+
+    $('.country').on('change', function() {
+            let country_id = $(this).val();
+            // remove all previous cities
+            $('.city').html("");
+
+            $.ajax({
+                mehtod: 'GET',
+                url: '{{ route("get-states", ":id") }}'.replace(":id", country_id),
+                data: {},
+                success: function(response) {
+                    let html = '';
+
+                    $.each(response, function(index, value) {
+                        html += `<option value="${value.id}" >${value.name}</option>`
+                    });
+
+                    $('.state').html(html);
+                },
+                error: function(xhr, status, error) {}
+            })
+        })
+
+        // get cities
+        $('.state').on('change', function() {
+            let state_id = $(this).val();
+
+            $.ajax({
+                mehtod: 'GET',
+                url: '{{ route("get-cities", ":id") }}'.replace(":id", state_id),
+                data: {},
+                success: function(response) {
+                    let html = '';
+
+                    $.each(response, function(index, value) {
+                        html += `<option value="${value.id}" >${value.name}</option>`
+                    });
+
+                    $('.city').html(html);
+                },
+                error: function(xhr, status, error) {}
+            })
+        })
 </script>
 @endpush
