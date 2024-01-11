@@ -185,6 +185,85 @@
                             </div>
                         </div>
 
+                        <div class="card">
+                            <div class="card-header">
+                                Attributes
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Experience <span class="text-danger ">*</span></label>
+                                            <select name="experience" id="" class="form-control select2 {{ hasError($errors, 'experience') }}" >
+                                                <option value="">Choose</option>
+                                            </select>
+                                            <x-input-error :messages="$errors->get('experience')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Job Role <span class="text-danger ">*</span></label>
+                                            <select name="job_role" id="" class="form-control select2 {{ hasError($errors, 'job_role') }}" >
+                                                <option value="">Choose</option>
+                                            </select>
+                                            <x-input-error :messages="$errors->get('job_role')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Education </label>
+                                            <select name="education" id="" class="form-control select2 {{ hasError($errors, 'education') }}" >
+                                                <option value="">Choose</option>
+                                            </select>
+                                            <x-input-error :messages="$errors->get('education')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Job Type </label>
+                                            <select name="job_type" id="" class="form-control select2 {{ hasError($errors, 'job_type') }}" >
+                                                <option value="">Choose</option>
+                                            </select>
+                                            <x-input-error :messages="$errors->get('job_type')" class="mt-2" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Tags </label>
+                                            <select name="tags" id="" multiple class="form-control select2 {{ hasError($errors, 'tags') }}" >
+                                                <option value="">Choose</option>
+                                                <option value="">Choose 1</option>
+                                                <option value="">Choose 2</option>
+
+                                            </select>
+                                            <x-input-error :messages="$errors->get('tags')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Benefits </label>
+                                            <input type="text" class="form-control inputtags {{ hasError($errors, 'title') }}"
+                                                name="title" value="{{ old('title') }}">
+                                            <x-input-error :messages="$errors->get('benefits')" class="mt-2" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Skills </label>
+                                            <select name="skills" id="" multiple class="form-control select2 {{ hasError($errors, 'skills') }}" >
+                                                <option value="">Choose</option>
+                                            </select>
+                                            <x-input-error :messages="$errors->get('skills')" class="mt-2" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Create</button>
@@ -198,6 +277,8 @@
 
 @push('scripts')
 <script>
+    $(".inputtags").tagsinput('items');
+
     function salaryModeChnage(mode) {
         if(mode == 'salary_range') {
             $('.salary_range_part').removeClass('d-none')
