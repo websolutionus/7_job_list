@@ -264,6 +264,74 @@
                             </div>
                         </div>
 
+                        <div class="card">
+                            <div class="card-header">
+                                Application Options
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Receive Applications <span class="text-danger">*</span> </label>
+                                            <select name="recive_applications" id="" class="form-control select2 {{ hasError($errors, 'recive_applications') }}" >
+                                                <option value="">On Our Platform</option>
+                                                <option value="">On your email address</option>
+                                                <option value="">On a custom link</option>
+                                            </select>
+                                            <x-input-error :messages="$errors->get('recive_applications')" class="mt-2" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                Promote
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <div class="form-group">
+                                                    <input  type="radio" id="featured" class="from-control {{ hasError($errors, 'featured') }}" name="featured" checked>
+                                                    <label for="featured">Featured </label>
+                                                    <x-input-error :messages="$errors->get('featured')" class="mt-2" />
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="form-group">
+                                                    <input type="radio" id="highlight" class="from-control {{ hasError($errors, 'highlight') }}" name="highlight" >
+                                                    <label for="highlight">Highlight </label>
+                                                    <x-input-error :messages="$errors->get('highlight')" class="mt-2" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                Description
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Description <span class="text-danger">*</span> </label>
+                                            <textarea id="editor" name="description" ></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Create</button>
