@@ -12,7 +12,6 @@
                     <form action="{{ route('admin.jobs.store') }}" method="POST">
                         @csrf
 
-
                         <div class="card">
                             <div class="card-header">
                                 Job Details
@@ -30,13 +29,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Select Company <span class="text-danger ">*</span></label>
-                                            <select name="compnay" id="" class="form-control select2 {{ hasError($errors, 'compnay') }}" >
+                                            <select name="company" id="" class="form-control select2 {{ hasError($errors, 'company') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($companies as $company)
                                                 <option value="{{ $company->id }}">{{ $company->name }}</option>
                                                 @endforeach
                                             </select>
-                                            <x-input-error :messages="$errors->get('title')" class="mt-2" />
+                                            <x-input-error :messages="$errors->get('company')" class="mt-2" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -113,8 +112,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Address <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control {{ hasError($errors, 'address') }}"
-                                                name="address" value="{{ old('address') }}">
+                                            <input type="text" class="form-control {{ hasError($errors, 'address') }}" name="address" value="{{ old('address') }}">
                                             <x-input-error :messages="$errors->get('address')" class="mt-2" />
                                         </div>
                                     </div>
@@ -134,14 +132,14 @@
                                         <div class="row">
                                             <div class="col-2">
                                                 <div class="form-group">
-                                                    <input onclick="salaryModeChnage('salary_range')" type="radio" id="salary_range" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" checked>
+                                                    <input onclick="salaryModeChnage('salary_range')" type="radio" id="salary_range" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" checked value="range">
                                                     <label for="salary_range">Salary Range </label>
                                                     <x-input-error :messages="$errors->get('salary_mode')" class="mt-2" />
                                                 </div>
                                             </div>
                                             <div class="col-2">
                                                 <div class="form-group">
-                                                    <input onclick="salaryModeChnage('custom_salary')" type="radio" id="custom_salary" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" >
+                                                    <input onclick="salaryModeChnage('custom_salary')" type="radio" id="custom_salary" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" value="custom">
                                                     <label for="custom_salary">Custom Salary </label>
                                                     <x-input-error :messages="$errors->get('salary_mode')" class="mt-2" />
                                                 </div>
@@ -262,7 +260,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Tags </label>
-                                            <select name="tags" id="" multiple class="form-control select2 {{ hasError($errors, 'tags') }}" >
+                                            <select name="tags[]" id="" multiple class="form-control select2 {{ hasError($errors, 'tags') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($tags as $tag)
                                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
@@ -275,8 +273,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Benefits </label>
-                                            <input type="text" class="form-control inputtags {{ hasError($errors, 'title') }}"
-                                                name="title" value="{{ old('title') }}">
+                                            <input type="text" class="form-control inputtags {{ hasError($errors, 'benefits') }}"
+                                                name="benefits" value="{{ old('benefits') }}">
                                             <x-input-error :messages="$errors->get('benefits')" class="mt-2" />
                                         </div>
                                     </div>
@@ -284,7 +282,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Skills </label>
-                                            <select name="skills" id="" multiple class="form-control select2 {{ hasError($errors, 'skills') }}" >
+                                            <select name="skills[]" id="" multiple class="form-control select2 {{ hasError($errors, 'skills') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($skills as $skill)
                                                     <option value="{{ $skill->id }}">{{ $skill->name }}</option>
@@ -307,12 +305,12 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Receive Applications <span class="text-danger">*</span> </label>
-                                            <select name="recive_applications" id="" class="form-control select2 {{ hasError($errors, 'recive_applications') }}" >
+                                            <select name="receive_applications" id="" class="form-control select2 {{ hasError($errors, 'receive_applications') }}" >
                                                 <option value="app">On Our Platform</option>
                                                 <option value="email">On your email address</option>
                                                 <option value="custom_url">On a custom link</option>
                                             </select>
-                                            <x-input-error :messages="$errors->get('recive_applications')" class="mt-2" />
+                                            <x-input-error :messages="$errors->get('receive_applications')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -330,14 +328,14 @@
                                         <div class="row">
                                             <div class="col-2">
                                                 <div class="form-group">
-                                                    <input  type="checkbox" id="featured" class="from-control {{ hasError($errors, 'featured') }}" name="featured" checked>
+                                                    <input  type="checkbox" id="featured" class="from-control {{ hasError($errors, 'featured') }}" name="featured" checked value="1">
                                                     <label for="featured">Featured </label>
                                                     <x-input-error :messages="$errors->get('featured')" class="mt-2" />
                                                 </div>
                                             </div>
                                             <div class="col-2">
                                                 <div class="form-group">
-                                                    <input type="checkbox" id="highlight" class="from-control {{ hasError($errors, 'highlight') }}" name="highlight" >
+                                                    <input type="checkbox" id="highlight" class="from-control {{ hasError($errors, 'highlight') }}" name="highlight" value="1">
                                                     <label for="highlight">Highlight </label>
                                                     <x-input-error :messages="$errors->get('highlight')" class="mt-2" />
                                                 </div>
@@ -365,7 +363,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Create</button>
