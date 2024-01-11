@@ -5,8 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Country;
+use App\Models\Education;
+use App\Models\Experience;
 use App\Models\JobCategory;
+use App\Models\JobRole;
+use App\Models\JobType;
 use App\Models\SalaryType;
+use App\Models\Skill;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -29,11 +35,23 @@ class JobController extends Controller
         $categories = JobCategory::all();
         $countries = Country::all();
         $salaryTypes = SalaryType::all();
+        $experiences = Experience::all();
+        $jobRoles = JobRole::all();
+        $educations = Education::all();
+        $jobTypes = JobType::all();
+        $tags = Tag::all();
+        $skills = Skill::all();
         return view('admin.job.create', compact(
             'companies',
             'categories',
             'countries',
-            'salaryTypes'
+            'salaryTypes',
+            'experiences',
+            'jobRoles',
+            'educations',
+            'jobTypes',
+            'tags',
+            'skills'
         ));
     }
 
