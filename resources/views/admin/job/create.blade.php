@@ -232,7 +232,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Education </label>
+                                            <label for="">Education <span class="text-danger ">*</span></label>
                                             <select name="education" id="" class="form-control select2 {{ hasError($errors, 'education') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($educations as $education)
@@ -245,7 +245,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Job Type </label>
+                                            <label for="">Job Type <span class="text-danger ">*</span></label>
                                             <select name="job_type" id="" class="form-control select2 {{ hasError($errors, 'job_type') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($jobTypes as $jobType)
@@ -259,7 +259,7 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">Tags </label>
+                                            <label for="">Tags <span class="text-danger ">*</span></label>
                                             <select name="tags[]" id="" multiple class="form-control select2 {{ hasError($errors, 'tags') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($tags as $tag)
@@ -272,7 +272,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">Benefits </label>
+                                            <label for="">Benefits <span class="text-danger ">*</span></label>
                                             <input type="text" class="form-control inputtags {{ hasError($errors, 'benefits') }}"
                                                 name="benefits" value="{{ old('benefits') }}">
                                             <x-input-error :messages="$errors->get('benefits')" class="mt-2" />
@@ -281,7 +281,7 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">Skills </label>
+                                            <label for="">Skills <span class="text-danger ">*</span></label>
                                             <select name="skills[]" id="" multiple class="form-control select2 {{ hasError($errors, 'skills') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($skills as $skill)

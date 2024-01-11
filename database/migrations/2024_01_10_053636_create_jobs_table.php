@@ -23,8 +23,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('vacancies');
-            $table->double('min_salary');
-            $table->double('max_salary');
+            $table->double('min_salary')->default(0);
+            $table->double('max_salary')->default(0);
+            $table->string('custom_salary')->default('comitative');
             $table->date('deadline');
             $table->text('description');
             $table->enum('status', ['pending', 'active', 'expired'])->default('pending');
