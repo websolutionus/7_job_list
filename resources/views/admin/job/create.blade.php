@@ -119,37 +119,64 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-2">
-                                        <div class="form-group">
-                                            <input type="radio" id="salary_range" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" checked>
-                                            <label for="salary_range">Salary Range </label>
-                                            <x-input-error :messages="$errors->get('salary_mode')" class="mt-2" />
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <div class="form-group">
+                                                    <input onclick="salaryModeChnage('salary_range')" type="radio" id="salary_range" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" checked>
+                                                    <label for="salary_range">Salary Range </label>
+                                                    <x-input-error :messages="$errors->get('salary_mode')" class="mt-2" />
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="form-group">
+                                                    <input onclick="salaryModeChnage('custom_salary')" type="radio" id="custom_salary" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" >
+                                                    <label for="custom_salary">Custom Salary </label>
+                                                    <x-input-error :messages="$errors->get('salary_mode')" class="mt-2" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-2">
+
+
+
+                                    <div class="col-md-12 salary_range_part">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Minimum Salary <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control {{ hasError($errors, 'min_salary') }}"
+                                                        name="min_salary" value="{{ old('min_salary') }}">
+                                                    <x-input-error :messages="$errors->get('min_salary')" class="mt-2" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Maximum Salary <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control {{ hasError($errors, 'max_salary') }}"
+                                                        name="max_salary" value="{{ old('max_salary') }}">
+                                                    <x-input-error :messages="$errors->get('max_salary')" class="mt-2" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 custom_salary_part d-none">
                                         <div class="form-group">
-                                            <input type="radio" id="custom_salary" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" >
-                                            <label for="custom_salary">Custom Range </label>
-                                            <x-input-error :messages="$errors->get('salary_mode')" class="mt-2" />
+                                            <label for="">Custom Salary <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control {{ hasError($errors, 'custom_salary') }}"
+                                                name="custom_salary" value="{{ old('custom_salary') }}">
+                                            <x-input-error :messages="$errors->get('custom_salary')" class="mt-2" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">Country </label>
-                                            <select name="country" id="" class="form-control select2 {{ hasError($errors, 'country') }}" >
+                                            <label for="">Salary Type <span class="text-danger">*</span> </label>
+                                            <select name="salary_type" id="" class="form-control select2 {{ hasError($errors, 'salary_type') }}" >
                                                 <option value="">Choose</option>
                                             </select>
-                                            <x-input-error :messages="$errors->get('country')" class="mt-2" />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="">Address <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control {{ hasError($errors, 'address') }}"
-                                                name="address" value="{{ old('address') }}">
-                                            <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                                            <x-input-error :messages="$errors->get('salary_type')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -168,3 +195,17 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+<script>
+    function salaryModeChnage(mode) {
+        if(mode == 'salary_range') {
+            $('.salary_range_part').removeClass('d-none')
+            $('.custom_salary_part').addClass('d-none')
+        }else if (mode == 'custom_salary') {
+            $('.salary_range_part').addClass('d-none')
+            $('.custom_salary_part').removeClass('d-none')
+        }
+    }
+</script>
+@endpush
