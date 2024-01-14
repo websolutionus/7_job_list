@@ -111,7 +111,7 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">Address <span class="text-danger">*</span></label>
+                                            <label for="">Address</label>
                                             <input type="text" class="form-control {{ hasError($errors, 'address') }}" name="address" value="{{ old('address') }}">
                                             <x-input-error :messages="$errors->get('address')" class="mt-2" />
                                         </div>
