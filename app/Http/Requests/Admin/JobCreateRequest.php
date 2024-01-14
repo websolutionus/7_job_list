@@ -23,7 +23,7 @@ class JobCreateRequest extends FormRequest
             'state' => ['nullable', 'integer'],
             'city' => ['nullable', 'integer'],
             'address' => ['nullable', 'max:255'],
-            'salary_range' => ['required', 'in:range,custom'],
+            'salary_mode' => ['required', 'in:range,custom'],
             'min_salary' => ['nullable', 'numeric'],
             'max_salary' => ['nullable', 'numeric'],
             'custom_salary' => ['nullable', 'string', 'max:255'],

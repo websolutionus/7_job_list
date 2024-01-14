@@ -7,6 +7,9 @@
         </div>
 
         <div class="section-body">
+            @foreach ($errors->all() as $error)
+                <div class="text-danger">{{ $error }}</div>
+            @endforeach
             <div class="col-12">
                 <div class="card-body">
                     <form action="{{ route('admin.jobs.store') }}" method="POST">

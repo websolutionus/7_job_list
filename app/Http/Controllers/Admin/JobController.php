@@ -63,12 +63,12 @@ class JobController extends Controller
      */
     public function store(JobCreateRequest $request)
     {
-        dd($request->all());
-        
+        // dd($request->all());
+
         $job = new Job();
         $job->title = $request->title;
         $job->company_id = $request->company;
-        $job->category_id = $request->category;
+        $job->job_category_id = $request->category;
         $job->vacancies = $request->vacancies;
         $job->deadline = $request->deadline;
 
