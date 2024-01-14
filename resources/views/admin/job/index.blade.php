@@ -27,25 +27,44 @@
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>slug</th>
+                                    <th>Job</th>
+                                    <th>Category/Role</th>
+                                    <th>Salary</th>
+                                    <th>Deadline</th>
+                                    <th>Status</th>
                                     <th style="width: 10%">Action</th>
                                 </tr>
                             <tbody>
-                                {{-- @forelse ($tags as $tag)
+                                @forelse ($jobs as $job)
                                     <tr>
-                                        <td>{{ $tag->name }}</td>
-                                        <td>{{ $tag->slug }}</td>
+                                        <td>{{ $job->title }}</td>
+                                        <td>{{ $job->category?->name }}</td>
                                         <td>
-                                            <a href="{{ route('admin.tags.edit', $tag->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('admin.tags.destroy', $tag->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
+                                            @if ($job->salary_mode === 'range')
+                                                {{ $job->min_salary }} - {{ $job->max_salary }} {{ config('settings.site_default_currency') }}
+                                            @else
+                                            {{ $job->custom_salary }}
+                                            @endif
+                                        </td>
+                                        <td>{{ formatDate($job->deadline) }}</td>
+                                        <td>
+                                            @if ($job->deadline > date('Y-m-d'))
+                                                <span class="badge bg-primary text-dark">Active</span>
+                                            @else
+                                                <span class="badge bg-danger text-dark">Expired</span>
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            <a href="{{ route('admin.jobs.edit', $job->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.jobs.destroy', $job->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
                                         <td colspan="3" class="text-center">No result found!</td>
                                     </tr>
-                                @endforelse --}}
+                                @endforelse
 
                             </tbody>
 
