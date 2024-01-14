@@ -37,13 +37,35 @@
                             <tbody>
                                 @forelse ($jobs as $job)
                                     <tr>
-                                        <td>{{ $job->title }}</td>
-                                        <td>{{ $job->category?->name }}</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="mr-2">
+                                                    <img style="width:50px;height:50px;object-fit:cover" src="{{ asset($job->company->logo) }}" alt="">
+                                                </div>
+                                                <div>
+                                                    <b>{{ $job->title }}</b>
+                                                    <br>
+                                                    <span>{{ $job->company->name }} - {{ $job->jobType->name }}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <b>{{ $job->category?->name }}</b>
+                                                <br>
+                                                <span>{{ $job->jobRole->name }}</span>
+                                            </div>
+                                        </td>
                                         <td>
                                             @if ($job->salary_mode === 'range')
-                                                {{ $job->min_salary }} - {{ $job->max_salary }} {{ config('settings.site_default_currency') }}
+                                                <b>{{ $job->min_salary }} - {{ $job->max_salary }} {{ config('settings.site_default_currency') }}</b>
+                                                <br>
+                                                <span>{{ $job->salaryType->name }}</span>
                                             @else
-                                            {{ $job->custom_salary }}
+                                            <b>{{ $job->custom_salary }}</b>
+                                            <br>
+                                            <span>{{ $job->salaryType->name }}</span>
+
                                             @endif
                                         </td>
                                         <td>{{ formatDate($job->deadline) }}</td>
