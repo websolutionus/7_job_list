@@ -11,6 +11,7 @@ use App\Models\Experience;
 use App\Models\Job;
 use App\Models\JobCategory;
 use App\Models\JobRole;
+use App\Models\JobTag;
 use App\Models\JobType;
 use App\Models\SalaryType;
 use App\Models\Skill;
@@ -87,12 +88,18 @@ class JobController extends Controller
         $job->education_id = $request->education;
         $job->job_type_id = $request->job_type;
         $job->job_type_id = $request->job_type;
-        // tags, benefits, skills will go here
-
         $job->featured = $request->featured;
         $job->highlight = $request->highlight;
         $job->description = $request->description;
         $job->save();
+
+        // insert tags
+        foreach($request->tags as $tag) {
+            $createTag = new JobTag();
+            $createTag->job_id = $job->id;
+            $createTag->tag_id = $tag;
+            $createTag->save();
+        }
 
         Notify::createdNotification();
 
