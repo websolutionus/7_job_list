@@ -265,11 +265,15 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
+
                                             <label for="">Tags <span class="text-danger ">*</span></label>
                                             <select name="tags[]" id="" multiple class="form-control select2 {{ hasError($errors, 'tags') }}" >
+                                                @php
+                                                    $selectedTags =  $job->tags()->pluck('tag_id')->toArray();
+                                                @endphp
                                                 <option value="">Choose</option>
                                                 @foreach ($tags as $tag)
-                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                                <option @selected(in_array($tag->id, $selectedTags))  value="{{ $tag->id }}">{{ $tag->name }}</option>
                                                 @endforeach
 
                                             </select>
