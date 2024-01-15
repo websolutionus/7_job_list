@@ -280,22 +280,35 @@
                                             <x-input-error :messages="$errors->get('tags')" class="mt-2" />
                                         </div>
                                     </div>
+
+                                    @php
+                                        $benefits = $job->benefits()->with('benefit')->get();
+                                        $benefitNames = [];
+                                        foreach ($benefits as  $benefit) {
+                                            $benefitNames[] = $benefit->benefit->name;
+                                        }
+                                        $benefitNameString = implode(',', $benefitNames);
+
+                                    @endphp
+
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Benefits <span class="text-danger ">*</span></label>
                                             <input type="text" class="form-control inputtags {{ hasError($errors, 'benefits') }}"
-                                                name="benefits" value="{{ old('benefits') }}">
+                                                name="benefits" value="{{ old('benefits', $benefitNameString) }}">
                                             <x-input-error :messages="$errors->get('benefits')" class="mt-2" />
                                         </div>
                                     </div>
-
+                                    @php
+                                        $selectedSkills =  $job->skills()->pluck('skill_id')->toArray();
+                                    @endphp
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Skills <span class="text-danger ">*</span></label>
                                             <select name="skills[]" id="" multiple class="form-control select2 {{ hasError($errors, 'skills') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($skills as $skill)
-                                                    <option value="{{ $skill->id }}">{{ $skill->name }}</option>
+                                                    <option @selected(in_array($skill->id, $selectedSkills)) value="{{ $skill->id }}">{{ $skill->name }}</option>
                                                 @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('skills')" class="mt-2" />
