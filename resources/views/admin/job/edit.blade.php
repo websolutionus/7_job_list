@@ -329,9 +329,9 @@
                                         <div class="form-group">
                                             <label for="">Receive Applications <span class="text-danger">*</span> </label>
                                             <select name="receive_applications" id="" class="form-control select2 {{ hasError($errors, 'receive_applications') }}" >
-                                                <option value="app">On Our Platform</option>
-                                                <option value="email">On your email address</option>
-                                                <option value="custom_url">On a custom link</option>
+                                                <option @selected($job->apply_on == 'app') value="app">On Our Platform</option>
+                                                <option @selected($job->apply_on == 'email') value="email">On your email address</option>
+                                                <option @selected($job->apply_on == 'custom_url') value="custom_url">On a custom link</option>
                                             </select>
                                             <x-input-error :messages="$errors->get('receive_applications')" class="mt-2" />
                                         </div>
@@ -351,14 +351,14 @@
                                         <div class="row">
                                             <div class="col-2">
                                                 <div class="form-group">
-                                                    <input  type="checkbox" id="featured" class="from-control {{ hasError($errors, 'featured') }}" name="featured" checked value="1">
+                                                    <input @checked($job->featured) type="checkbox" id="featured" class="from-control {{ hasError($errors, 'featured') }}" name="featured" value="1">
                                                     <label for="featured">Featured </label>
                                                     <x-input-error :messages="$errors->get('featured')" class="mt-2" />
                                                 </div>
                                             </div>
                                             <div class="col-2">
                                                 <div class="form-group">
-                                                    <input type="checkbox" id="highlight" class="from-control {{ hasError($errors, 'highlight') }}" name="highlight" value="1">
+                                                    <input @checked($job->highlight) type="checkbox" id="highlight" class="from-control {{ hasError($errors, 'highlight') }}" name="highlight" value="1">
                                                     <label for="highlight">Highlight </label>
                                                     <x-input-error :messages="$errors->get('highlight')" class="mt-2" />
                                                 </div>
@@ -379,7 +379,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Description <span class="text-danger">*</span> </label>
-                                            <textarea id="editor" name="description" ></textarea>
+                                            <textarea id="editor" name="description" >{!! $job->description !!}</textarea>
                                         </div>
                                     </div>
 
