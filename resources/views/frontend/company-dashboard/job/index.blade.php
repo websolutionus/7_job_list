@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 text-center">
-                                <a href="{{ route('admin.jobs.create') }}" class="btn btn-primary"> <i class="fas fa-plus-circle"></i> Create new</a>
+                                <a href="{{ route('company.jobs.create') }}" class="btn btn-primary"> <i class="fas fa-plus-circle"></i> Create new</a>
                             </div>
                         </div>
                     </div>
