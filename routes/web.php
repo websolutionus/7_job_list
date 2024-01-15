@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Fronted\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CandidateEductionController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Frontend\CompnayOrderController;
 use App\Http\Controllers\Frontend\FrontendCandidatePageController;
 use App\Http\Controllers\Frontend\FrontendCompanyPageController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\jobController;
 use App\Http\Controllers\Frontend\LocationController;
 use App\Http\Controllers\Frontend\PricingPageController;
 use App\Http\Controllers\ProfileController;
@@ -102,6 +104,9 @@ Route::group(
     Route::get('orders', [CompanyOrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{id}', [CompanyOrderController::class, 'show'])->name('orders.show');
     Route::get('orders/invoice/{id}', [CompanyOrderController::class, 'invoice'])->name('orders.invoice');
+
+    /** Job Routes */
+    Route::resource('jobs', JobController::class);
 
     /**Payment Routes */
     Route::get('payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');

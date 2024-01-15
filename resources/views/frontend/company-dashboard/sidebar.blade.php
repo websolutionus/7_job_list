@@ -3,6 +3,8 @@
         <ul class="nav" role="tablist">
             <li><a class="btn btn-border mb-20 active" href="{{ route('company.dashboard') }}">Dashboard</a>
             </li>
+            <li><a class="btn btn-border mb-20 active" href="{{ route('company.jobs.index') }}">Jobs</a>
+            </li>
             <li><a class="btn btn-border mb-20" href="{{ route('company.orders.index') }}">Orders</a></li>
 
             <li><a class="btn btn-border mb-20" href="{{ route('company.profile') }}">My Profile</a></li>
