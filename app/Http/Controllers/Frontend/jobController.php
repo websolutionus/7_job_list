@@ -35,6 +35,8 @@ class jobController extends Controller
      */
     public function index()
     {
+        storePlanInformation();
+        
         $query = Job::query();
         $this->search($query, ['title', 'slug']);
         $jobs = $query->orderBy('id', 'DESC')->paginate(20);
