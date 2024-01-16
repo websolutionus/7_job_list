@@ -24,6 +24,7 @@ use App\Models\Tag;
 use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class JobController extends Controller
@@ -102,6 +103,7 @@ class JobController extends Controller
         $job->featured = $request->featured;
         $job->highlight = $request->highlight;
         $job->description = $request->description;
+        $job->status = 'active';
         $job->save();
 
         // insert tags
@@ -272,5 +274,11 @@ class JobController extends Controller
             logger($e);
             return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
         }
+    }
+
+    function changeStatus(string $id) : Response {
+        dd('working');
+        Notify::updatedNotification();
+        return response(['message' => 'success'], 200);
     }
 }
