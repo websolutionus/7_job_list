@@ -96,8 +96,8 @@
                                         </td>
 
                                         <td>
-                                            <a href="{{ route('admin.jobs.edit', $job->id) }}" class="mb-2 btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('admin.jobs.destroy', $job->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="{{ route('company.jobs.edit', $job->id) }}" class="mb-2 btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('company.jobs.destroy', $job->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @empty

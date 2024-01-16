@@ -1,21 +1,32 @@
-@extends('admin.layouts.master')
+@extends('frontend.layouts.master')
 
 @section('contents')
-    <section class="section">
-        <div class="section-header">
-            <h1>Update Job Post</h1>
+<section class="section-box mt-75">
+    <div class="breacrumb-cover">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <h2 class="mb-20">Orders</h2>
+                    <ul class="breadcrumbs">
+                        <li><a class="home-icon" href="index.html">Home</a></li>
+                        <li>Orders</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <div class="section-body">
-            @foreach ($errors->all() as $error)
-                <div class="text-danger">{{ $error }}</div>
-            @endforeach
-            <div class="col-12">
+<section class="section-box mt-120">
+    <div class="container">
+        <div class="row">
+            @include('frontend.company-dashboard.sidebar')
+            <div class="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">
                 <div class="card-body">
-                    <form action="{{ route('admin.jobs.update', $job->id) }}" method="POST">
+                    <form action="{{ route('company.jobs.store') }}" method="POST">
                         @csrf
-                        @method('PUT')
-                        <div class="card">
+
+                        <div class="card mb-3">
                             <div class="card-header">
                                 Job Details
                             </div>
@@ -29,26 +40,14 @@
                                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">Select Company <span class="text-danger ">*</span></label>
-                                            <select name="company" id="" class="form-control select2 {{ hasError($errors, 'company') }}" >
-                                                <option value="">Choose</option>
-                                                @foreach ($companies as $company)
-                                                <option @selected($company->id === $job->company_id) value="{{ $company->id }}">{{ $company->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <x-input-error :messages="$errors->get('company')" class="mt-2" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
+
+                                    <div class="col-md-12">
+                                        <div class="form-group select-style">
                                             <label for="">Category <span class="text-danger">*</span></label>
-                                            <select name="category" id="" class="form-control select2 {{ hasError($errors, 'category') }}" >
+                                            <select name="category" id="" class="form-control form-icons select-active {{ hasError($errors, 'category') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($categories as $category)
-                                                    <option @selected($category->id === $job->job_category_id) value="{{ $category->id }}">{{ $category->name }}</option>
-
+                                                <option @selected($category->id === $job->job_category_id) value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('category')" class="mt-2" />
@@ -59,7 +58,7 @@
                                             <label for="">Total Vacancies <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control {{ hasError($errors, 'vacancies') }}"
                                                 name="vacancies" value="{{ old('vacancies', $job->vacancies) }}">
-                                            <x-input-error :messages="$errors->get('vacancies')" class="mt-2" />
+                                            <x-input-error :messages="$errors->get('vacancies', $job->vacancies)" class="mt-2" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -74,40 +73,40 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card mb-3">
                             <div class="card-header">
                                 Location
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label for="">Country </label>
-                                            <select name="country" id="" class="form-control select2 country {{ hasError($errors, 'country') }}" >
+                                            <select name="country" id="" class="form-control form-icons select-active country {{ hasError($errors, 'country') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($countries as $country)
-                                                    <option @selected($country->id === $job->country_id) value="{{ $country->id }}">{{ $country->name }}</option>
+                                                <option @selected($country->id === $job->country_id) value="{{ $country->id }}">{{ $country->name }}</option>
                                                 @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('country')" class="mt-2" />
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label for="">State </label>
-                                            <select name="state" id="" class="form-control select2 state {{ hasError($errors, 'state') }}" >
+                                            <select name="state" id="" class="form-control form-icons select-active state {{ hasError($errors, 'state') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($states as $state)
-                                                    <option @selected($state->id === $job->state_id) value="{{ $state->id }}">{{ $state->name }}</option>
+                                                <option @selected($state->id === $job->state_id) value="{{ $state->id }}">{{ $state->name }}</option>
                                                 @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('state')" class="mt-2" />
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label for="">City </label>
-                                            <select name="city" id="" class="form-control select2 city {{ hasError($errors, 'city') }}" >
+                                            <select name="city" id="" class="form-control form-icons select-active city {{ hasError($errors, 'city') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($cities as $city)
                                                 <option @selected($city->id === $job->city_id) value="{{ $city->id }}">{{ $city->name }}</option>
@@ -130,7 +129,7 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card mb-3">
                             <div class="card-header">
                                 Salary Details
                             </div>
@@ -138,24 +137,24 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-2">
-                                                <div class="form-group">
-                                                    <input @checked($job->salary_mode === 'range') onclick="salaryModeChnage('salary_range')" type="radio" id="salary_range" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" value="range">
-                                                    <label for="salary_range">Salary Range </label>
+                                            <div class="col-3">
+                                                <div class="form-group d-flex">
+                                                    <input @checked($job->salary_mode === 'range') style="height: 18px;width: 18px;" onclick="salaryModeChnage('salary_range')" type="radio" id="salary_range" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" checked value="range">
+                                                    <label style="margin-left: 5px;
+                                                    margin-top: -4px;" for="salary_range">Salary Range </label>
                                                     <x-input-error :messages="$errors->get('salary_mode')" class="mt-2" />
                                                 </div>
                                             </div>
-                                            <div class="col-2">
-                                                <div class="form-group">
-                                                    <input @checked($job->salary_mode === 'custom') onclick="salaryModeChnage('custom_salary')" type="radio" id="custom_salary" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" value="custom">
-                                                    <label for="custom_salary">Custom Salary </label>
+                                            <div class="col-3">
+                                                <div class="form-group d-flex">
+                                                    <input @checked($job->salary_mode === 'custom') style="height: 18px;width: 18px;" onclick="salaryModeChnage('custom_salary')" type="radio" id="custom_salary" class="from-control {{ hasError($errors, 'salary_mode') }}" name="salary_mode" value="custom">
+                                                    <label style="margin-left: 5px;
+                                                    margin-top: -4px;" for="custom_salary">Custom Salary </label>
                                                     <x-input-error :messages="$errors->get('salary_mode')" class="mt-2" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
 
                                     <div class="col-md-12 salary_range_part">
                                         <div class="row">
@@ -188,9 +187,9 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label for="">Salary Type <span class="text-danger">*</span> </label>
-                                            <select name="salary_type" id="" class="form-control select2 {{ hasError($errors, 'salary_type') }}" >
+                                            <select name="salary_type" id="" class="form-control form-icons select-active {{ hasError($errors, 'salary_type') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($salaryTypes as $salaryType)
                                                 <option @selected($job->salary_type_id === $salaryType->id) value="{{ $salaryType->id }}">{{ $salaryType->name }}</option>
@@ -205,7 +204,7 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card mb-3">
                             <div class="card-header">
                                 Attributes
                             </div>
@@ -213,9 +212,9 @@
                                 <div class="row">
 
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label for="">Experience <span class="text-danger ">*</span></label>
-                                            <select name="experience" id="" class="form-control select2 {{ hasError($errors, 'experience') }}" >
+                                            <select name="experience" id="" class="form-control form-icons select-active {{ hasError($errors, 'experience') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($experiences as $experience)
                                                 <option @selected($experience->id === $job->job_experience_id) value="{{ $experience->id }}">{{ $experience->name }}</option>
@@ -225,9 +224,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label for="">Job Role <span class="text-danger ">*</span></label>
-                                            <select name="job_role" id="" class="form-control select2 {{ hasError($errors, 'job_role') }}" >
+                                            <select name="job_role" id="" class="form-control form-icons select-active {{ hasError($errors, 'job_role') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($jobRoles as $role)
                                                 <option @selected($role->id === $job->job_role_id) value="{{ $role->id }}">{{ $role->name }}</option>
@@ -237,9 +236,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label for="">Education <span class="text-danger ">*</span></label>
-                                            <select name="education" id="" class="form-control select2 {{ hasError($errors, 'education') }}" >
+                                            <select name="education" id="" class="form-control form-icons select-active {{ hasError($errors, 'education') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($educations as $education)
                                                 <option @selected($education->id === $job->education_id) value="{{ $education->id }}">{{ $education->name }}</option>
@@ -249,27 +248,25 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label for="">Job Type <span class="text-danger ">*</span></label>
-                                            <select name="job_type" id="" class="form-control select2 {{ hasError($errors, 'job_type') }}" >
+                                            <select name="job_type" id="" class="form-control form-icons select-active {{ hasError($errors, 'job_type') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($jobTypes as $jobType)
                                                 <option @selected($jobType->id === $job->job_type_id) value="{{ $jobType->id }}">{{ $jobType->name }}</option>
-
                                                 @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('job_type')" class="mt-2" />
                                         </div>
                                     </div>
 
+                                    @php
+                                        $selectedTags =  $job->tags()->pluck('tag_id')->toArray();
+                                    @endphp
                                     <div class="col-md-12">
-                                        <div class="form-group">
-
+                                        <div class="form-group select-style">
                                             <label for="">Tags <span class="text-danger ">*</span></label>
-                                            <select name="tags[]" id="" multiple class="form-control select2 {{ hasError($errors, 'tags') }}" >
-                                                @php
-                                                    $selectedTags =  $job->tags()->pluck('tag_id')->toArray();
-                                                @endphp
+                                            <select name="tags[]" id="" multiple class="form-control form-icons select-active {{ hasError($errors, 'tags') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($tags as $tag)
                                                 <option @selected(in_array($tag->id, $selectedTags))  value="{{ $tag->id }}">{{ $tag->name }}</option>
@@ -287,24 +284,23 @@
                                             $benefitNames[] = $benefit->benefit->name;
                                         }
                                         $benefitNameString = implode(',', $benefitNames);
-
                                     @endphp
-
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="form-group ">
                                             <label for="">Benefits <span class="text-danger ">*</span></label>
                                             <input type="text" class="form-control inputtags {{ hasError($errors, 'benefits') }}"
                                                 name="benefits" value="{{ old('benefits', $benefitNameString) }}">
                                             <x-input-error :messages="$errors->get('benefits')" class="mt-2" />
                                         </div>
                                     </div>
+
                                     @php
                                         $selectedSkills =  $job->skills()->pluck('skill_id')->toArray();
                                     @endphp
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label for="">Skills <span class="text-danger ">*</span></label>
-                                            <select name="skills[]" id="" multiple class="form-control select2 {{ hasError($errors, 'skills') }}" >
+                                            <select name="skills[]" id="" multiple class="form-control form-icons select-active {{ hasError($errors, 'skills') }}" >
                                                 <option value="">Choose</option>
                                                 @foreach ($skills as $skill)
                                                     <option @selected(in_array($skill->id, $selectedSkills)) value="{{ $skill->id }}">{{ $skill->name }}</option>
@@ -318,16 +314,16 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card mb-3">
                             <div class="card-header">
                                 Application Options
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="form-group select-style">
                                             <label for="">Receive Applications <span class="text-danger">*</span> </label>
-                                            <select name="receive_applications" id="" class="form-control select2 {{ hasError($errors, 'receive_applications') }}" >
+                                            <select name="receive_applications" id="" class="form-control form-icons select-active {{ hasError($errors, 'receive_applications') }}" >
                                                 <option @selected($job->apply_on == 'app') value="app">On Our Platform</option>
                                                 <option @selected($job->apply_on == 'email') value="email">On your email address</option>
                                                 <option @selected($job->apply_on == 'custom_url') value="custom_url">On a custom link</option>
@@ -340,7 +336,7 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card mb-3">
                             <div class="card-header">
                                 Promote
                             </div>
@@ -349,16 +345,18 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-2">
-                                                <div class="form-group">
-                                                    <input @checked($job->featured) type="checkbox" id="featured" class="from-control {{ hasError($errors, 'featured') }}" name="featured" value="1">
-                                                    <label for="featured">Featured </label>
+                                                <div class="form-group d-flex">
+                                                    <input style="height: 18px;width: 18px;" type="checkbox" id="featured" class="from-control {{ hasError($errors, 'featured') }}" name="featured" checked value="1">
+                                                    <label @checked($job->featured) style="margin-left: 5px;
+                                                    margin-top: -4px;" for="featured">Featured </label>
                                                     <x-input-error :messages="$errors->get('featured')" class="mt-2" />
                                                 </div>
                                             </div>
                                             <div class="col-2">
-                                                <div class="form-group">
-                                                    <input @checked($job->highlight) type="checkbox" id="highlight" class="from-control {{ hasError($errors, 'highlight') }}" name="highlight" value="1">
-                                                    <label for="highlight">Highlight </label>
+                                                <div class="form-group d-flex">
+                                                    <input @checked($job->highlight) style="height: 18px;width: 18px;" type="checkbox" id="highlight" class="from-control {{ hasError($errors, 'highlight') }}" name="highlight" value="1">
+                                                    <label style="margin-left: 5px;
+                                                    margin-top: -4px;" for="highlight">Highlight </label>
                                                     <x-input-error :messages="$errors->get('highlight')" class="mt-2" />
                                                 </div>
                                             </div>
@@ -369,7 +367,7 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card mb-3">
                             <div class="card-header">
                                 Description
                             </div>
@@ -387,13 +385,14 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 @endsection
 
 @push('scripts')
