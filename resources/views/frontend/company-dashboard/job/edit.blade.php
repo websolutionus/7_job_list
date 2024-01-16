@@ -23,9 +23,9 @@
             @include('frontend.company-dashboard.sidebar')
             <div class="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">
                 <div class="card-body">
-                    <form action="{{ route('company.jobs.store') }}" method="POST">
+                    <form action="{{ route('company.jobs.update', $job->id) }}" method="POST">
                         @csrf
-
+                        @method('PUT')
                         <div class="card mb-3">
                             <div class="card-header">
                                 Job Details
@@ -385,7 +385,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>
                 </div>
