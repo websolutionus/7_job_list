@@ -37,7 +37,7 @@ class jobController extends Controller
     {
         $query = Job::query();
         $this->search($query, ['title', 'slug']);
-        $jobs = $query->orderBy('id', 'DESC')->paginate(20);
+        $jobs = $query->where('company_id', auth()->user()->company->id)->orderBy('id', 'DESC')->paginate(20);
 
         return view('frontend.company-dashboard.job.index', compact('jobs'));
     }
@@ -181,6 +181,7 @@ class jobController extends Controller
     public function edit(string $id)
     {
         $job = Job::findOrFail($id);
+        abort_if($job->company_id !== auth()->user()->company->id, 404);
         $companies = Company::where(['profile_completion' => 1, 'visibility' => 1])->get();
         $categories = JobCategory::all();
         $countries = Country::all();
@@ -216,6 +217,8 @@ class jobController extends Controller
     public function update(JobCreateRequest $request, string $id)
     {
         $job = Job::findOrFail($id);
+        abort_if($job->company_id !== auth()->user()->company->id, 404);
+
         $job->title = $request->title;
         $job->job_category_id = $request->category;
         $job->vacancies = $request->vacancies;
