@@ -331,7 +331,7 @@
                                         <div class="row">
                                             <div class="col-2">
                                                 <div class="form-group d-flex">
-                                                    <input style="height: 18px;width: 18px;" type="checkbox" id="featured" class="from-control {{ hasError($errors, 'featured') }}" name="featured" checked value="1">
+                                                    <input style="height: 18px;width: 18px;" type="checkbox" id="featured" class="from-control {{ hasError($errors, 'featured') }}" name="featured" value="1">
                                                     <label style="margin-left: 5px;
                                                     margin-top: -4px;" for="featured">Featured </label>
                                                     <x-input-error :messages="$errors->get('featured')" class="mt-2" />
