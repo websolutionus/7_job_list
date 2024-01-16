@@ -83,7 +83,7 @@
                                         <td>
                                             <div class="form-group">
                                                 <label class="custom-switch mt-2">
-                                                  <input type="checkbox" data-id="{{ $job->id }}" name="custom-switch-checkbox" class="custom-switch-input post_status">
+                                                  <input @checked($job->status === 'active') type="checkbox" data-id="{{ $job->id }}" name="custom-switch-checkbox" class="custom-switch-input post_status">
                                                   <span class="custom-switch-indicator"></span>
                                                 </label>
                                               </div>
@@ -129,7 +129,9 @@
                     url: '{{ route("admin.job-status.update", ":id") }}'.replace(":id", id),
                     data: {_token:"{{ csrf_token() }}"},
                     success: function(response) {
-
+                        if(response.message == 'success') {
+                            window.location.reload();
+                        }
                     },
                     error: function(xhr, status, error) {
 

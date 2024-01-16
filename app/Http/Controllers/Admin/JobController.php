@@ -37,7 +37,7 @@ class JobController extends Controller
     {
         $query = Job::query();
         $this->search($query, ['title', 'slug']);
-        $jobs = $query->paginate(20);
+        $jobs = $query->orderBy('id', 'DESC')->paginate(20);
 
         return view('admin.job.index', compact('jobs'));
     }
@@ -277,7 +277,9 @@ class JobController extends Controller
     }
 
     function changeStatus(string $id) : Response {
-        dd('working');
+        $job = Job::findOrFail($id);
+        $job->status = $job->status == 'active' ? 'pending' : 'active';
+        $job->save();
         Notify::updatedNotification();
         return response(['message' => 'success'], 200);
     }

@@ -28,7 +28,7 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="card-header-form">
-                                    <form action="{{ route('admin.jobs.index') }}" method="GET">
+                                    <form action="{{ route('company.jobs.index') }}" method="GET">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request('search') }}">
                                             <div class="input-group-btn">
@@ -88,7 +88,9 @@
                                         </td>
                                         <td>{{ formatDate($job->deadline) }}</td>
                                         <td>
-                                            @if ($job->deadline > date('Y-m-d'))
+                                            @if ($job->status === 'pending')
+                                                <span class="badge bg-warning">Peinding</span>
+                                            @elseif ($job->deadline > date('Y-m-d'))
                                                 <span class="badge bg-success ">Active</span>
                                             @else
                                                 <span class="badge bg-danger ">Expired</span>
