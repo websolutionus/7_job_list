@@ -43,6 +43,10 @@ class Job extends Model
         return $this->belongsTo(JobExperience::class, 'job_experience_id', 'id');
     }
 
+    function jobEduction() : BelongsTo {
+        return $this->belongsTo(Education::class, 'education_id', 'id');
+    }
+
     function tags() : HasMany {
         return $this->hasMany(JobTag::class, 'job_id', 'id');
     }
@@ -51,6 +55,16 @@ class Job extends Model
     }
     function skills() : HasMany {
         return $this->hasMany(JobSkills::class, 'job_id', 'id');
+    }
+
+    function country() : BelongsTo {
+        return $this->belongsTo(Country::class);
+    }
+    function state() : BelongsTo {
+        return $this->belongsTo(State::class);
+    }
+    function city() : BelongsTo {
+        return $this->belongsTo(City::class);
     }
 
 }

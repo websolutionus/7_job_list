@@ -80,79 +80,42 @@
             </div>
             <div class="row mt-25">
               <div class="col-md-6 d-flex mt-sm-15">
-                <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/job-type.svg" alt="joblist">
+                <div class="sidebar-icon-item"><img src="{{ asset('frontend/assets/imgs/page/job-single/job-type.svg') }}" alt="joblist">
                 </div>
                 <div class="sidebar-text-info ml-10"><span class="text-description jobtype-icon mb-10">Job
-                    type</span><strong class="small-heading">Permanent</strong></div>
+                    type</span><strong class="small-heading">{{ $job->jobType->name }}</strong></div>
               </div>
               <div class="col-md-6 d-flex mt-sm-15">
-                <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/deadline.svg" alt="joblist">
+                <div class="sidebar-icon-item"><img src="{{ asset('frontend/assets/imgs/page/job-single/deadline.svg') }}" alt="joblist">
                 </div>
                 <div class="sidebar-text-info ml-10"><span class="text-description mb-10">Deadline</span><strong
-                    class="small-heading">10/08/2022</strong></div>
+                    class="small-heading">{{ formatDate($job->deadline) }}</strong></div>
               </div>
             </div>
             <div class="row mt-25">
               <div class="col-md-6 d-flex mt-sm-15">
-                <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/updated.svg" alt="joblist"></div>
+                <div class="sidebar-icon-item"><img src="{{ asset('frontend/assets/imgs/page/job-single/updated.svg') }}" alt="joblist"></div>
                 <div class="sidebar-text-info ml-10"><span
-                    class="text-description jobtype-icon mb-10">Updated</span><strong
-                    class="small-heading">10/07/2022</strong></div>
+                    class="text-description jobtype-icon mb-10">Education</span><strong
+                    class="small-heading">{{ $job->jobEduction?->name }}</strong></div>
               </div>
               <div class="col-md-6 d-flex mt-sm-15">
-                <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/location.svg" alt="joblist">
+                <div class="sidebar-icon-item"><img src="{{ asset('frontend/assets/imgs/page/job-single/location.svg') }}" alt="joblist">
                 </div>
                 <div class="sidebar-text-info ml-10"><span class="text-description mb-10">Location</span><strong
-                    class="small-heading">Dallas, Texas Remote Friendly</strong></div>
+                    class="small-heading">{{ formatLocation(
+                        $job->country?->name,
+                        $job->state?->name,
+                        $job->city?->name,
+                        $job->address
+                    ) }}</strong></div>
               </div>
             </div>
           </div>
           <div class="content-single">
-            <h4>Welcome to AliStudio Team</h4>
-            <p>The AliStudio Design team has a vision to establish a trusted platform that enables productive and
-              healthy enterprises in a world of digital and remote everything, constantly changing work patterns and
-              norms, and the need for organizational resiliency.</p>
-            <p>
-              The ideal candidate will have strong creative skills and a portfolio of work which demonstrates their
-              passion for illustrative design and typography. This candidate will have experiences in working with
-              numerous different design platforms such as digital
-              and print forms.
-            </p>
-            <h4>Essential Knowledge, Skills, and Experience</h4>
-            <ul>
-              <li>A portfolio demonstrating well thought through and polished end to end customer journeys</li>
-              <li>5+ years of industry experience in interactive design and / or visual design</li>
-              <li>Excellent interpersonal skills</li>
-              <li>Aware of trends in&#x202F;mobile, communications, and collaboration</li>
-              <li>Ability to create highly polished design prototypes, mockups, and other communication artifacts</li>
-              <li>The ability to scope and estimate efforts accurately and prioritize tasks and goals independently
-              </li>
-              <li>History of impacting shipping products with your work</li>
-              <li>A Bachelor&rsquo;s Degree in Design (or related field) or equivalent professional experience</li>
-              <li>Proficiency in a variety of design tools such as Figma, Photoshop, Illustrator, and Sketch</li>
-            </ul>
-            <h4>Preferred Experience</h4>
-            <ul>
-              <li>Designing user experiences for enterprise software / services</li>
-              <li>Creating and applying established design principles and interaction patterns</li>
-              <li>Aligning or influencing design thinking with teams working in other geographies</li>
-            </ul>
-            <h4>Product Designer</h4>
-            <p><strong>Product knowledge:</strong> Deeply understand the technology and features of the product area
-              to which you are assigned.</p>
-            <p><strong>Research:</strong> Provide human and business impact and insights for products.</p>
-            <p><strong>Deliverables:</strong> Create deliverables for your product area (for example competitive
-              analyses, user flows, low fidelity wireframes, high fidelity mockups, prototypes, etc.) that solve real
-              user problems through
-              the user experience.
-            </p>
-            <p><strong>Communication:</strong> Communicate the results of UX activities within your product area to
-              the design team department, cross-functional partners within your product area, and other interested
-              Superformula team
-              members using clear language that simplifies complexity.
-            </p>
+          {!! $job->description !!}
           </div>
-          <div class="author-single"><span>AliThemes</span></div>
+          <div class="author-single"><span>{{ $job->company->name }}</span></div>
           <div class="single-apply-jobs">
             <div class="row align-items-center">
               <div class="col-md-5"><a class="btn btn-default mr-15" href="#">Apply now</a><a class="btn btn-border"
