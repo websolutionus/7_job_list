@@ -136,22 +136,29 @@
           <div class="sidebar-border">
             <div class="sidebar-heading">
               <div class="avatar-sidebar">
-                <figure><img alt="joblist" src="assets/imgs/page/job-single/avatar.png"></figure>
-                <div class="sidebar-info"><span class="sidebar-company">AliThemes</span><span
-                    class="card-location">New York, US</span><a class="link-underline mt-15" href="#">02 Open Jobs</a>
+                <figure><img alt="joblist" src="{{ asset($job->company->logo) }}"></figure>
+                <div class="sidebar-info"><span class="sidebar-company">{{ $job->company->name }}</span><span
+                    class="card-location">{{ formatLocation($job->company->companyCountry->name, $job->company->companyState->name) }}</span>
+                    @if ($openJobs > 0)
+                        <a class="link-underline mt-15" href="{{route('companies.show', $job->company->slug)}}">{{ $openJobs }} Open Jobs</a>
+                    @endif
                 </div>
               </div>
             </div>
             <div class="sidebar-list-job">
               <div class="box-map">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.3150609575905!2d-87.6235655!3d41.886080899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2ca8b34afe61%3A0x6caeb5f721ca846!2s205%20N%20Michigan%20Ave%20Suit%20810%2C%20Chicago%2C%20IL%2060601%2C%20Hoa%20K%E1%BB%B3!5e0!3m2!1svi!2s!4v1658551322537!5m2!1svi!2s"
-                  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                  {!! $job->company->map_link !!}
               </div>
               <ul class="ul-disc">
-                <li>205 North Michigan Avenue, Suite 810 Chicago, 60601, USA</li>
-                <li>Phone: (123) 456-7890</li>
-                <li>Email: contact@Evara.com</li>
+                <li>{{ formatLocation(
+                    $job->country?->name,
+                    $job->state?->name,
+                    $job->city?->name,
+                    $job->address
+                ) }}</li>
+                <li>Phone: {{ $job->company->phone }}</li>
+                <li>Email: {{ $job->company->email }}</li>
               </ul>
             </div>
           </div>
