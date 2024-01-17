@@ -14,4 +14,9 @@ class FrontendJobPageController extends Controller
             ->where('deadline', '>=', date('Y-m-d'))->paginate(10);
         return view('frontend.pages.jobs-index', compact('jobs'));
     }
+
+    function show(string $slug) : View {
+        $job = Job::where('slug', $slug)->firstOrFail();
+        return view('frontend.pages.job-show', compact('job'));
+    }
 }

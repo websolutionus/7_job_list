@@ -50,7 +50,7 @@
                                             </div>
                                         </div>
                                         <div class="card-block-info">
-                                            <h4><a href="job-details.html">{{ $job->title }}</a></h4>
+                                            <h4><a href="{{ route('jobs.show', $job->slug) }}">{{ $job->title }}</a></h4>
                                             <div class="mt-5">
                                                     <span
                                                     class="card-briefcase">{{ $job->jobType->name }}</span>
