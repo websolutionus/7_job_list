@@ -9775,6 +9775,10 @@ ul.timeline>li:before {
     color: white !important;
 }
 
+.job-skill:hover {
+    color: white !important;
+}
+
 .featured {
     background: #ae00ae !important;
   color: white !important;
