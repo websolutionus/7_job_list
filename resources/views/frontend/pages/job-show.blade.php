@@ -121,13 +121,11 @@
               <div class="col-md-5"><a class="btn btn-default mr-15" href="#">Apply now</a><a class="btn btn-border"
                   href="#">Save job</a></div>
               <div class="col-md-7 text-lg-end social-share">
-                <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6><a
-                  class="mr-5 d-inline-block d-middle" href="#"><img alt="joblist"
-                    src="assets/imgs/template/icons/share-fb.svg"></a><a class="mr-5 d-inline-block d-middle"
-                  href="#"><img alt="joblist" src="assets/imgs/template/icons/share-tw.svg"></a><a
-                  class="mr-5 d-inline-block d-middle" href="#"><img alt="joblist"
-                    src="assets/imgs/template/icons/share-red.svg"></a><a class="d-inline-block d-middle"
-                  href="#"><img alt="joblist" src="assets/imgs/template/icons/share-whatsapp.svg"></a>
+                <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6>
+                <a data-social="facebook" class="mr-5 d-inline-block d-middle" href="#"><img alt="joblist" src="{{ asset('frontend/assets/imgs/template/icons/share-fb.svg') }}"></a>
+                <a data-social="twitter" class="mr-5 d-inline-block d-middle" href="#"><img alt="joblist" src="{{ asset('frontend/assets/imgs/template/icons/share-tw.svg') }}"></a>
+                <a data-social="reddit" class="mr-5 d-inline-block d-middle" href="#"><img alt="joblist" src="{{asset('frontend/assets/imgs/template/icons/share-red.svg')}}"></a>
+                <a data-social="linkedin" class="d-inline-block d-middle" href="#"><img alt="joblist" src="{{ asset('frontend/assets/imgs/template/icons/share-in.svg') }}"></a>
               </div>
             </div>
           </div>
