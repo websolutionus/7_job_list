@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\Country;
 use App\Models\Job;
 use App\Models\JobCategory;
 use App\Models\JobType;
+use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -17,6 +19,9 @@ class FrontendJobPageController extends Controller
         $countries = Country::all();
         $jobCategories = JobCategory::all();
         $jobTypes = JobType::all();
+        $selectedStates = null;
+        $selectedCites = null;
+
 
         $query = Job::query();
         $query->where(['status' => 'active'])
@@ -26,15 +31,23 @@ class FrontendJobPageController extends Controller
             $query->where('title', 'like', '%'. $request->search . '%');
         }
         if($request->has('country') && $request->filled('country')) {
-            // dd($request->country);
             $query->where('country_id', $request->country);
+        }
+        if($request->has('state') && $request->filled('state')) {
+            $query->where('state_id', $request->state);
+            $selectedStates = State::where('country_id', $request->country)->get();
+            $selectedCites = City::where('state_id', $request->state)->get();
+
+        }
+        if($request->has('city') && $request->filled('city')) {
+            $query->where('city_id', $request->city);
         }
 
         $jobs = $query->paginate(20);
 
 
 
-        return view('frontend.pages.jobs-index', compact('jobs', 'countries', 'jobCategories', 'jobTypes'));
+        return view('frontend.pages.jobs-index', compact('jobs', 'countries', 'jobCategories', 'jobTypes', 'selectedStates', 'selectedCites'));
     }
 
     function show(string $slug) : View {

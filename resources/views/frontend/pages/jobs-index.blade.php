@@ -125,15 +125,16 @@
                             <form action="{{ route('jobs.index') }}" method="GET">
                             <div class="filter-block mb-20">
                                 <div class="form-group ">
-                                    <input type="text" class="form-control" name="search" placeholder="Search">
+                                    <input type="text" value="{{ request()?->search }}" class="form-control" name="search" placeholder="Search">
                                 </div>
                             </div>
                             <div class="filter-block mb-20">
                                 <div class="form-group select-style">
                                     <select name="country" class="form-control country form-icons select-active">
-                                        <option>Country</option>
+                                        <option value="">Country</option>
+                                        <option value="">All</option>
                                         @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                        <option @selected(request()?->country == $country->id) value="{{ $country->id }}">{{ $country->name }}</option>
                                         @endforeach
 
                                     </select>
@@ -142,14 +143,29 @@
                             <div class="filter-block mb-20">
                                 <div class="form-group select-style">
                                     <select name="state" class="form-control state form-icons select-active">
-                                        <option>State</option>
+                                        @if ($selectedStates)
+                                            <option value="">All</option>
+                                            @foreach ($selectedStates as $state)
+                                                <option @selected($state->id == request()->state) value="{{ $state->id }}" >{{ $state->name }}</option>
+                                            @endforeach
+                                        @else
+                                            <option value="" >State</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
                             <div class="filter-block mb-20">
                                 <div class="form-group select-style">
                                     <select name="city" class="form-control city form-icons select-active">
-                                        <option>City</option>
+                                        @if ($selectedCites)
+                                            <option value="">All</option>
+
+                                            @foreach ($selectedCites as $city)
+                                                <option @selected($city->id == request()->city) value="{{ $city->id }}" >{{ $city->name }}</option>
+                                            @endforeach
+                                        @else
+                                            <option value="">City</option>
+                                        @endif
                                     </select>
                                     <button class="submit btn btn-default mt-10 rounded-1 w-100"
                                         type="submit">Search</button>
@@ -261,6 +277,8 @@
                     $.each(response, function(index, value) {
                         html += `<option value="${value.id}" >${value.name}</option>`
                     });
+
+                    html = `<option value="" >Choose</option>` + html;
 
                     $('.city').html(html);
                 },
