@@ -17,7 +17,9 @@ class FrontendJobPageController extends Controller
     function index(Request $request) : View {
 
         $countries = Country::all();
-        $jobCategories = JobCategory::all();
+        $jobCategories = JobCategory::withCount(['jobs' => function($query) {
+            $query->where('status', 'active')->where('deadline', '>=', date('Y-m-d'));
+        }])->get();
         $jobTypes = JobType::all();
         $selectedStates = null;
         $selectedCites = null;

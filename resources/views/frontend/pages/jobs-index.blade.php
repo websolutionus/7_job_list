@@ -177,12 +177,15 @@
                             <div class="filter-block mb-20">
                                 <h5 class="medium-heading mb-15">Categoires</h5>
                                 <div class="form-group">
-                                    <ul class="job-category">
-                                        <li>
-                                            @foreach ($jobCategories as $category)
-                                                <a href="" class="text-small">{{ $category->name }}</a>
-                                            @endforeach
-                                        </li>
+                                    <ul class="list-checkbox">
+                                        @foreach ($jobCategories as $category)
+                                            <li>
+                                                <label class="cb-container">
+                                                    <input type="checkbox" name="category[]" value="{{ $category->slug }}"><span class="text-small">{{ $category->name }}</span><span
+                                                        class="checkmark"></span>
+                                                </label><span class="number-item">{{ $category->jobs_count }}</span>
+                                            </li>
+                                        @endforeach
 
                                     </ul>
                                 </div>
