@@ -122,15 +122,15 @@
                             <div class="filter-block head-border mb-30">
                                 <h5>Advance Filter <a class="link-reset" href="#">Reset</a></h5>
                             </div>
-                            <form action="">
+                            <form action="{{ route('jobs.index') }}" method="GET">
                             <div class="filter-block mb-20">
                                 <div class="form-group ">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                    <input type="text" class="form-control" name="search" placeholder="Search">
                                 </div>
                             </div>
                             <div class="filter-block mb-20">
                                 <div class="form-group select-style">
-                                    <select class="form-control country form-icons select-active">
+                                    <select name="country" class="form-control country form-icons select-active">
                                         <option>Country</option>
                                         @foreach ($countries as $country)
                                         <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -141,14 +141,14 @@
                             </div>
                             <div class="filter-block mb-20">
                                 <div class="form-group select-style">
-                                    <select class="form-control state form-icons select-active">
+                                    <select name="state" class="form-control state form-icons select-active">
                                         <option>State</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="filter-block mb-20">
                                 <div class="form-group select-style">
-                                    <select class="form-control city form-icons select-active">
+                                    <select name="city" class="form-control city form-icons select-active">
                                         <option>City</option>
                                     </select>
                                     <button class="submit btn btn-default mt-10 rounded-1 w-100"

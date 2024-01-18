@@ -12,12 +12,24 @@ use Illuminate\View\View;
 
 class FrontendJobPageController extends Controller
 {
-    function index() : View {
-        $jobs = Job::where(['status' => 'active'])
-            ->where('deadline', '>=', date('Y-m-d'))->paginate(10);
+    function index(Request $request) : View {
+
         $countries = Country::all();
         $jobCategories = JobCategory::all();
         $jobTypes = JobType::all();
+
+        $query = Job::query();
+        $query->where(['status' => 'active'])
+        ->where('deadline', '>=', date('Y-m-d'));
+
+        if($request->has('search') && $request->filled('search')) {
+            $query->where('title', 'like', '%'. $request->search . '%');
+        }
+
+        $jobs = $query->paginate(20);
+
+
+
         return view('frontend.pages.jobs-index', compact('jobs', 'countries', 'jobCategories', 'jobTypes'));
     }
 
