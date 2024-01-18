@@ -25,6 +25,10 @@ class FrontendJobPageController extends Controller
         if($request->has('search') && $request->filled('search')) {
             $query->where('title', 'like', '%'. $request->search . '%');
         }
+        if($request->has('country') && $request->filled('country')) {
+            // dd($request->country);
+            $query->where('country_id', $request->country);
+        }
 
         $jobs = $query->paginate(20);
 

@@ -239,6 +239,8 @@
                         html += `<option value="${value.id}" >${value.name}</option>`
                     });
 
+                    html = `<option value="" >Choose</option>` + html;
+
                     $('.state').html(html);
                 },
                 error: function(xhr, status, error) {}
