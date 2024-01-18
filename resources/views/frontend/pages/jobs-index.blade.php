@@ -200,7 +200,7 @@
                                         <div class="box-input-money">
                                             <input class="input-disabled form-control min-value-money" type="text"
                                                 name="min-value-money" disabled="disabled" value="">
-                                            <input class="form-control min-value" type="hidden" name="max-salary"
+                                            <input class="form-control min-value" type="hidden" name="min_salary"
                                                 value="">
                                         </div>
                                     </div>

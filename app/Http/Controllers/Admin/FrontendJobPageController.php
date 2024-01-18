@@ -49,9 +49,13 @@ class FrontendJobPageController extends Controller
             $categoryIds = JobCategory::whereIn('slug', $request->category)->pluck('id')->toArray();
             $query->whereIn('job_category_id', $categoryIds);
         }
-        // $query->
-
-
+        if($request->has('min_salary') && $request->filled('min_salary') && $request->min_salary > 0) {
+            $query->where('min_salary', '>=', $request->min_salary)->orWhere('max_salary', '>=', $request->min_salary);
+        }
+        if($request->has('jobtype') && $request->filled('jobtype')) {
+            $typeIds = JobType::whereIn('slug', $request->jobtype)->pluck('id')->toArray();
+            $query->whereIn('job_type_id', $typeIds);
+        }
 
         $jobs = $query->paginate(20);
 
