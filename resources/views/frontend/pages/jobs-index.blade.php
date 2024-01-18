@@ -159,45 +159,15 @@
 
 
                             <div class="filter-block mb-20">
-                                <h5 class="medium-heading mb-15">Industry</h5>
+                                <h5 class="medium-heading mb-15">Categoires</h5>
                                 <div class="form-group">
-                                    <ul class="list-checkbox">
+                                    <ul class="job-category">
                                         <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox" checked="checked"><span
-                                                    class="text-small">All</span><span class="checkmark"></span>
-                                            </label><span class="number-item">180</span>
+                                            @foreach ($jobCategories as $category)
+                                                <a href="" class="text-small">{{ $category->name }}</a>
+                                            @endforeach
                                         </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-small">Software</span><span
-                                                    class="checkmark"></span>
-                                            </label><span class="number-item">12</span>
-                                        </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-small">Finance</span><span
-                                                    class="checkmark"></span>
-                                            </label><span class="number-item">23</span>
-                                        </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-small">Recruting</span><span
-                                                    class="checkmark"></span>
-                                            </label><span class="number-item">43</span>
-                                        </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-small">Management</span><span
-                                                    class="checkmark"></span>
-                                            </label><span class="number-item">65</span>
-                                        </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-small">Advertising</span><span
-                                                    class="checkmark"></span>
-                                            </label><span class="number-item">76</span>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -217,10 +187,10 @@
                                     </div>
                                     <div class="box-number-money">
                                         <div class="row mt-30">
-                                            <div class="col-sm-6 col-6"><span class="font-sm color-brand-1">$0</span>
+                                            <div class="col-sm-6 col-6"><span class="font-sm color-brand-1">{{ config('settings.site_currency_icon') }}0</span>
                                             </div>
                                             <div class="col-sm-6 col-6 text-end"><span
-                                                    class="font-sm color-brand-1">$500</span></div>
+                                                    class="font-sm color-brand-1">{{ config('settings.site_currency_icon') }}100000</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -230,30 +200,15 @@
                                 <h5 class="medium-heading mb-15">Job type</h5>
                                 <div class="form-group">
                                     <ul class="list-checkbox">
+                                        @foreach ($jobTypes as $jobType)
                                         <li>
                                             <label class="cb-container">
-                                                <input type="checkbox"><span class="text-small">Full Time</span><span
+                                                <input type="checkbox"><span class="text-small">{{ $jobType->name }}</span><span
                                                     class="checkmark"></span>
                                             </label><span class="number-item">25</span>
                                         </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox" checked="checked"><span class="text-small">Part
-                                                    Time</span><span class="checkmark"></span>
-                                            </label><span class="number-item">64</span>
-                                        </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-small">Remote Jobs</span><span
-                                                    class="checkmark"></span>
-                                            </label><span class="number-item">78</span>
-                                        </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-small">Freelancer</span><span
-                                                    class="checkmark"></span>
-                                            </label><span class="number-item">97</span>
-                                        </li>
+                                        @endforeach
+
                                     </ul>
                                 </div>
                             </div>
