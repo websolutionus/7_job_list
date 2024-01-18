@@ -173,8 +173,8 @@
                             </div>
                             </form>
 
-
-                            <div class="filter-block mb-20">
+                            <form action="{{ route('jobs.index') }}" method="GET">
+                                <div class="filter-block mb-20">
                                 <h5 class="medium-heading mb-15">Categoires</h5>
                                 <div class="form-group">
                                     <ul class="list-checkbox">
@@ -200,7 +200,7 @@
                                         <div class="box-input-money">
                                             <input class="input-disabled form-control min-value-money" type="text"
                                                 name="min-value-money" disabled="disabled" value="">
-                                            <input class="form-control min-value" type="hidden" name="min-value"
+                                            <input class="form-control min-value" type="hidden" name="max-salary"
                                                 value="">
                                         </div>
                                     </div>
@@ -222,7 +222,7 @@
                                         @foreach ($jobTypes as $jobType)
                                         <li>
                                             <label class="cb-container">
-                                                <input type="checkbox"><span class="text-small">{{ $jobType->name }}</span><span
+                                                <input type="checkbox" name="jobtype[]" value="{{ $jobType->slug }}"><span class="text-small">{{ $jobType->name }}</span><span
                                                     class="checkmark"></span>
                                             </label><span class="number-item">25</span>
                                         </li>
@@ -231,6 +231,11 @@
                                     </ul>
                                 </div>
                             </div>
+                            <button class="submit btn btn-default mt-10 rounded-1 w-100"
+                                        type="submit">Search</button>
+                            </form>
+
+
                         </div>
                     </div>
                 </div>

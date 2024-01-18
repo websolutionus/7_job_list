@@ -45,6 +45,14 @@ class FrontendJobPageController extends Controller
             $query->where('city_id', $request->city);
         }
 
+        if($request->has('category') && $request->filled('category')) {
+            $categoryIds = JobCategory::whereIn('slug', $request->category)->pluck('id')->toArray();
+            $query->whereIn('job_category_id', $categoryIds);
+        }
+        // $query->
+
+
+
         $jobs = $query->paginate(20);
 
 
