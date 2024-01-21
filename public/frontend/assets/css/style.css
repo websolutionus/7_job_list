@@ -9810,3 +9810,8 @@ ul.timeline>li:before {
     color: var(--colorPrimary) !important;
 }
 
+.x-radio {
+    height: 18px !important;
+    width: 40px !important;
+  }
+

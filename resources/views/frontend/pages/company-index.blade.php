@@ -127,6 +127,22 @@
                 </div>
               </div>
 
+              <div class="filter-block mb-20">
+                <h5 class="medium-heading mb-15">Organization</h5>
+                <div class="form-group">
+                  <ul class="list-checkbox">
+                    @foreach ($organizations as $organization)
+                    <li>
+                        <label class="d-flex">
+                            <input type="radio" name="organization" class="x-radio" value="{{ $organization->slug }}"><span class="text-small">{{ $organization->name }}</span>
+                          </label>
+                    </li>
+                    @endforeach
+
+                  </ul>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
