@@ -9805,3 +9805,8 @@ ul.timeline>li:before {
     display: block;
     padding: 8px;
 }
+
+.x-active {
+    color: var(--colorPrimary) !important;
+}
+

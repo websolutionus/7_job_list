@@ -116,9 +116,9 @@
                 <div class="form-group">
                   <ul class="list-checkbox">
                     @foreach ($industryTypes as $type)
-                    <li>
+                    <li class="active">
                       <label class="">
-                        <a href="{{ route('companies.index', ['industry' => $type->slug]) }}" class="text-small">{{ $type->name }}</a>
+                        <a href="{{ route('companies.index', ['industry' => $type->slug]) }}" class="text-small {{ request()->industry == $type->slug ? 'x-active' : '' }}">{{ $type->name }}</a>
                       </label><span class="number-item">{{ $type->companies_count }}</span>
                     </li>
                     @endforeach

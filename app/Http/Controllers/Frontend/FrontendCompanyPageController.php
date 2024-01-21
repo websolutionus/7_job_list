@@ -44,6 +44,12 @@ class FrontendCompanyPageController extends Controller
             $query->where('city', $request->city);
         }
 
+        if($request->has('industry') && $request->filled('industry')) {
+            $query->whereHas('industryType', function($query) use ($request) {
+                $query->where('slug', $request->industry);
+            });
+        }
+
         $companies = $query->paginate(21);
 
         return view('frontend.pages.company-index', compact('companies', 'countries', 'selectedStates', 'selectedCites', 'industryTypes'));
