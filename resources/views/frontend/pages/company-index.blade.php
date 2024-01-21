@@ -46,14 +46,11 @@
             </div>
           </div>
           <div class="paginations">
-            <ul class="pager">
-              <li><a class="pager-prev" href="#"><i class="fas fa-arrow-left"></i></a></li>
-              <li><a class="pager-number" href="#">1</a></li>
-              <li><a class="pager-number" href="#">2</a></li>
-              <li><a class="pager-number active" href="#">3</a></li>
-              <li><a class="pager-number" href="#">4</a></li>
-              <li><a class="pager-next" href="#"><i class="fas fa-arrow-right"></i></a></li>
-            </ul>
+            <nav class="d-inline-block">
+                @if ($companies->hasPages())
+                    {{ $companies->withQueryString()->links() }}
+                @endif
+            </nav>
           </div>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-12">
@@ -62,27 +59,58 @@
               <div class="filter-block head-border mb-30">
                 <h5>Advance Filter <a class="link-reset" href="#">Reset</a></h5>
               </div>
-              <div class="filter-block mb-20">
-                <div class="form-group select-style">
-                  <select class="form-control form-icons select-active">
-                    <option>New York, US</option>
-                    <option>London</option>
-                    <option>Paris</option>
-                    <option>Berlin</option>
-                  </select>
+
+              <form action="{{ route('companies.index') }}" method="GET">
+                <div class="filter-block mb-20">
+                    <div class="form-group ">
+                        <input type="text" value="{{ request()?->search }}" class="form-control" name="search" placeholder="Search">
+                    </div>
                 </div>
-              </div>
-              <div class="filter-block mb-30">
-                <div class="form-group select-style">
-                  <select class="form-control form-icons select-active">
-                    <option>Industry</option>
-                    <option>London</option>
-                    <option>Paris</option>
-                    <option>Berlin</option>
-                  </select>
-                  <button class="submit btn btn-default mt-10 rounded-1 w-100" type="submit">Search</button>
+                <div class="filter-block mb-20">
+                    <div class="form-group select-style">
+                        <select name="country" class="form-control country form-icons select-active">
+                            <option value="">Country</option>
+                            <option value="">All</option>
+                            @foreach ($countries as $country)
+                            <option @selected(request()?->country == $country->id) value="{{ $country->id }}">{{ $country->name }}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
                 </div>
-              </div>
+                <div class="filter-block mb-20">
+                    <div class="form-group select-style">
+                        <select name="state" class="form-control state form-icons select-active">
+                            @if ($selectedStates)
+                                <option value="">All</option>
+                                @foreach ($selectedStates as $state)
+                                    <option @selected($state->id == request()->state) value="{{ $state->id }}" >{{ $state->name }}</option>
+                                @endforeach
+                            @else
+                                <option value="" >State</option>
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-block mb-20">
+                    <div class="form-group select-style">
+                        <select name="city" class="form-control city form-icons select-active">
+                            @if ($selectedCites)
+                                <option value="">All</option>
+
+                                @foreach ($selectedCites as $city)
+                                    <option @selected($city->id == request()->city) value="{{ $city->id }}" >{{ $city->name }}</option>
+                                @endforeach
+                            @else
+                                <option value="">City</option>
+                            @endif
+                        </select>
+                        <button class="submit btn btn-default mt-10 rounded-1 w-100"
+                            type="submit">Search</button>
+                    </div>
+                </div>
+                </form>
+
               <div class="filter-block mb-20">
                 <h5 class="medium-heading mb-15">Industry</h5>
                 <div class="form-group">
@@ -369,3 +397,56 @@
     </div>
   </section>
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('.country').on('change', function() {
+            let country_id = $(this).val();
+            // remove all previous cities
+            $('.city').html("");
+
+            $.ajax({
+                mehtod: 'GET',
+                url: '{{ route("get-states", ":id") }}'.replace(":id", country_id),
+                data: {},
+                success: function(response) {
+                    let html = '';
+
+                    $.each(response, function(index, value) {
+                        html += `<option value="${value.id}" >${value.name}</option>`
+                    });
+
+                    html = `<option value="" >Choose</option>` + html;
+
+                    $('.state').html(html);
+                },
+                error: function(xhr, status, error) {}
+            })
+        })
+
+        // get cities
+        $('.state').on('change', function() {
+            let state_id = $(this).val();
+
+            $.ajax({
+                mehtod: 'GET',
+                url: '{{ route("get-cities", ":id") }}'.replace(":id", state_id),
+                data: {},
+                success: function(response) {
+                    let html = '';
+
+                    $.each(response, function(index, value) {
+                        html += `<option value="${value.id}" >${value.name}</option>`
+                    });
+
+                    html = `<option value="" >Choose</option>` + html;
+
+                    $('.city').html(html);
+                },
+                error: function(xhr, status, error) {}
+            })
+        })
+    })
+</script>
+@endpush

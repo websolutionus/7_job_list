@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\Country;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -15,7 +16,11 @@ class FrontendCompanyPageController extends Controller
             $query->where('status', 'active')->where('deadline', '>=', date('Y-m-d'));
         }])->where(['profile_completion' => 1, 'visibility' => 1])->paginate(21);
         
-        return view('frontend.pages.company-index', compact('companies'));
+        $countries = Country::all();
+        $selectedStates = null;
+        $selectedCites = null;
+
+        return view('frontend.pages.company-index', compact('companies', 'countries', 'selectedStates', 'selectedCites'));
     }
 
     function show(string $slug) : View {
