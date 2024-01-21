@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\Country;
+use App\Models\IndustryType;
 use App\Models\Job;
 use App\Models\State;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class FrontendCompanyPageController extends Controller
 
 
         $countries = Country::all();
+        $industryTypes = IndustryType::withCount('companies')->get();
         $selectedStates = null;
         $selectedCites = null;
 
@@ -44,7 +46,7 @@ class FrontendCompanyPageController extends Controller
 
         $companies = $query->paginate(21);
 
-        return view('frontend.pages.company-index', compact('companies', 'countries', 'selectedStates', 'selectedCites'));
+        return view('frontend.pages.company-index', compact('companies', 'countries', 'selectedStates', 'selectedCites', 'industryTypes'));
     }
 
     function show(string $slug) : View {
