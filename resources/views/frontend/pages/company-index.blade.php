@@ -24,7 +24,7 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
           <div class="content-page company_page">
 
-            <div class="row">
+            <div class="row text-center">
                 @forelse ($companies as $company)
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="card-grid-1 hover-up wow animate__animated animate__fadeIn">
@@ -39,7 +39,7 @@
                     </div>
                   </div>
                 @empty
-
+                    <h5>Sorry No Data Found! 😥</h5>
                 @endforelse
 
 

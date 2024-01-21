@@ -3,22 +3,46 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\Company;
 use App\Models\Country;
 use App\Models\Job;
+use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class FrontendCompanyPageController extends Controller
 {
-    function index() : View {
-        $companies = Company::withCount(['jobs' => function($query) {
-            $query->where('status', 'active')->where('deadline', '>=', date('Y-m-d'));
-        }])->where(['profile_completion' => 1, 'visibility' => 1])->paginate(21);
-        
+    function index(Request $request) : View {
+
+
         $countries = Country::all();
         $selectedStates = null;
         $selectedCites = null;
+
+        $query = Company::query();
+
+        $query->withCount(['jobs' => function($query) {
+            $query->where('status', 'active')->where('deadline', '>=', date('Y-m-d'));
+        }])->where(['profile_completion' => 1, 'visibility' => 1]);
+
+        if($request->has('search') && $request->filled('search')) {
+            $query->where('name', 'like', '%'. $request->search . '%');
+        }
+        if($request->has('country') && $request->filled('country')) {
+            $query->where('country', $request->country);
+        }
+        if($request->has('state') && $request->filled('state')) {
+            $query->where('state', $request->state);
+            $selectedStates = State::where('country_id', $request->country)->get();
+            $selectedCites = City::where('state_id', $request->state)->get();
+
+        }
+        if($request->has('city') && $request->filled('city')) {
+            $query->where('city', $request->city);
+        }
+
+        $companies = $query->paginate(21);
 
         return view('frontend.pages.company-index', compact('companies', 'countries', 'selectedStates', 'selectedCites'));
     }
