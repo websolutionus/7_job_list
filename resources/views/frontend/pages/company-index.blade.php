@@ -2,15 +2,15 @@
 
 @section('contents')
 
-<section class="section-box">
+<section class="section-box mt-75">
     <div class="breacrumb-cover">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-12">
-            <h2 class="mb-20">Blog</h2>
+            <h2 class="mb-20">Companites</h2>
             <ul class="breadcrumbs">
               <li><a class="home-icon" href="index.html">Home</a></li>
-              <li>Blog</li>
+              <li>Companites</li>
             </ul>
           </div>
         </div>
@@ -23,40 +23,7 @@
       <div class="row flex-row-reverse">
         <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
           <div class="content-page company_page">
-            <div class="box-filters-job">
-              <div class="row">
-                <div class="col-xl-6 col-lg-5"><span class="text-small text-showing">Showing <strong>41-60 </strong>of
-                    <strong>944 </strong>jobs</span></div>
-                <div class="col-xl-6 col-lg-7 text-lg-end mt-sm-15">
-                  <div class="display-flex2">
-                    <div class="box-border mr-10"><span class="text-sortby">Show:</span>
-                      <div class="dropdown dropdown-sort">
-                        <button class="btn dropdown-toggle" id="dropdownSort" type="button" data-bs-toggle="dropdown"
-                          aria-expanded="false" data-bs-display="static"><span>12</span><i
-                            class="fi-rr-angle-small-down"></i></button>
-                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownSort">
-                          <li><a class="dropdown-item active" href="#">10</a></li>
-                          <li><a class="dropdown-item" href="#">12</a></li>
-                          <li><a class="dropdown-item" href="#">20</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="box-border"><span class="text-sortby">Sort by:</span>
-                      <div class="dropdown dropdown-sort">
-                        <button class="btn dropdown-toggle" id="dropdownSort2" type="button" data-bs-toggle="dropdown"
-                          aria-expanded="false" data-bs-display="static"><span>Newest Post</span><i
-                            class="fi-rr-angle-small-down"></i></button>
-                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownSort2">
-                          <li><a class="dropdown-item active" href="#">Newest Post</a></li>
-                          <li><a class="dropdown-item" href="#">Oldest Post</a></li>
-                          <li><a class="dropdown-item" href="#">Rating Post</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
             <div class="row">
                 @forelse ($companies as $company)
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
@@ -65,14 +32,9 @@
                             alt="joblist"></a></div>
                       <div class="info-text mt-10">
                         <h5 class="font-bold"><a href="{{ route('companies.show', $company->slug) }}">{{ $company->name }}</a></h5>
-                        <div class="mt-5"><img alt="joblist" src="assets/imgs/template/icons/star.svg"><img alt="joblist"
-                            src="assets/imgs/template/icons/star.svg"><img alt="joblist"
-                            src="assets/imgs/template/icons/star.svg"><img alt="joblist"
-                            src="assets/imgs/template/icons/star.svg"><img alt="joblist"
-                            src="assets/imgs/template/icons/star.svg"><span
-                            class="font-xs color-text-mutted ml-10"><span>(</span><span>66</span><span>)</span></span>
-                        </div><span class="card-location">{{ $company->companyCountry->name }}</span>
-                        <div class="mt-30"><a class="btn btn-grey-big" href="jobs-grid.html"><span>12</span><span> Jobs Open</span></a></div>
+
+                        <span class="card-location">{{ formatLocation($company->companyCountry->name, $company->companyState->name) }}</span>
+                        <div class="mt-30"><a class="btn btn-grey-big" href="{{ route('companies.show', $company->slug) }}"><span>{{ $company->jobs_count }}</span><span> Jobs Open</span></a></div>
                       </div>
                     </div>
                   </div>
