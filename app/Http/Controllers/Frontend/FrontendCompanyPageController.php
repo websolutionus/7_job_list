@@ -20,7 +20,7 @@ class FrontendCompanyPageController extends Controller
 
         $countries = Country::all();
         $industryTypes = IndustryType::withCount('companies')->get();
-        $organizations = OrganizationType::all();
+        $organizations = OrganizationType::withCount('companies')->get();
         $selectedStates = null;
         $selectedCites = null;
 
@@ -28,7 +28,8 @@ class FrontendCompanyPageController extends Controller
 
         $query->withCount(['jobs' => function($query) {
             $query->where('status', 'active')->where('deadline', '>=', date('Y-m-d'));
-        }])->where(['profile_completion' => 1, 'visibility' => 1]);
+        }])
+        ->where(['profile_completion' => 1, 'visibility' => 1]);
 
         if($request->has('search') && $request->filled('search')) {
             $query->where('name', 'like', '%'. $request->search . '%');
@@ -49,6 +50,11 @@ class FrontendCompanyPageController extends Controller
         if($request->has('industry') && $request->filled('industry')) {
             $query->whereHas('industryType', function($query) use ($request) {
                 $query->where('slug', $request->industry);
+            });
+        }
+        if($request->has('organization') && $request->filled('organization')) {
+            $query->whereHas('organizationType', function($query) use ($request) {
+                $query->where('slug', $request->organization);
             });
         }
 

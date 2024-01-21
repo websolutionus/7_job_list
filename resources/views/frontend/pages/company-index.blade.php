@@ -111,37 +111,51 @@
                     </div>
                 </form>
 
-              <div class="filter-block mb-20">
-                <h5 class="medium-heading mb-15">Industry</h5>
-                <div class="form-group">
-                  <ul class="list-checkbox">
-                    @foreach ($industryTypes as $type)
-                    <li class="active">
-                      <label class="">
-                        <a href="{{ route('companies.index', ['industry' => $type->slug]) }}" class="text-small {{ request()->industry == $type->slug ? 'x-active' : '' }}">{{ $type->name }}</a>
-                      </label><span class="number-item">{{ $type->companies_count }}</span>
-                    </li>
-                    @endforeach
+                <form action="">
+                    <div class="filter-block mb-20">
+                        <h5 class="medium-heading mb-15">Industry</h5>
+                        <div class="form-group">
+                          <ul class="list-checkbox">
+                            <li class="active">
+                                <label class="d-flex">
+                                  <input type="radio" name="industry" class="x-radio" value=""><span class="text-small">All</span>
+                                </label>
+                            </li>
+                            @foreach ($industryTypes as $type)
+                            <li class="active">
+                              <label class="d-flex">
+                                <input type="radio" @checked($type->slug == request()->industry) name="industry" class="x-radio" value="{{ $type->slug }}"><span class="text-small">{{ $type->name }}</span><span class="number-item">{{ $type->companies_count }}</span>
+                              </label>
+                            </li>
+                            @endforeach
 
-                  </ul>
-                </div>
-              </div>
+                          </ul>
+                        </div>
+                      </div>
 
-              <div class="filter-block mb-20">
-                <h5 class="medium-heading mb-15">Organization</h5>
-                <div class="form-group">
-                  <ul class="list-checkbox">
-                    @foreach ($organizations as $organization)
-                    <li>
-                        <label class="d-flex">
-                            <input type="radio" name="organization" class="x-radio" value="{{ $organization->slug }}"><span class="text-small">{{ $organization->name }}</span>
-                          </label>
-                    </li>
-                    @endforeach
+                      <div class="filter-block mb-20">
+                        <h5 class="medium-heading mb-15">Organization</h5>
+                        <div class="form-group">
+                          <ul class="list-checkbox">
+                            <li>
+                                <label class="d-flex">
+                                    <input type="radio" name="organization" class="x-radio" value=""><span class="text-small">All</span>
+                                  </label>
+                            </li>
+                            @foreach ($organizations as $organization)
+                            <li>
+                                <label class="d-flex">
+                                    <input type="radio" @checked($organization->slug == request()->organization) name="organization" class="x-radio" value="{{ $organization->slug }}"><span class="text-small">{{ $organization->name }}</span><span class="number-item">{{ $organization->companies_count }}</span>
+                                  </label>
+                            </li>
+                            @endforeach
 
-                  </ul>
-                </div>
-              </div>
+                          </ul>
+                        </div>
+                      </div>
+                      <button class="submit btn btn-default mt-10 rounded-1 w-100"
+                                type="submit">Search</button>
+                </form>
 
             </div>
           </div>
