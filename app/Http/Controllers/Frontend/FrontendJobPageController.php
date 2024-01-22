@@ -10,6 +10,7 @@ use App\Models\JobCategory;
 use App\Models\JobType;
 use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class FrontendJobPageController extends Controller
@@ -68,5 +69,9 @@ class FrontendJobPageController extends Controller
         $job = Job::where('slug', $slug)->firstOrFail();
         $openJobs = Job::where('company_id', $job->company->id)->where('status', 'active')->where('deadline', '>=', date('Y-m-d'))->count();
         return view('frontend.pages.job-show', compact('job', 'openJobs'));
+    }
+
+    function applyJob(string $id) : Response {
+        return response($id);
     }
 }
