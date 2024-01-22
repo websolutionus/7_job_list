@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -12,8 +13,9 @@ use function Ramsey\Uuid\v1;
 class FrontendCandidatePageController extends Controller
 {
     function index() : View {
-        $candidates = Candidate::where(['profile_complete' => 1, 'visibility' => 1])->get();
-        return view('frontend.pages.candidate-index', compact('candidates'));
+        $candidates = Candidate::where(['profile_complete' => 1, 'visibility' => 1])->paginate(24);
+        $skills = Skill::all();
+        return view('frontend.pages.candidate-index', compact('candidates', 'skills'));
     }
 
     function show(string $slug) : View {
