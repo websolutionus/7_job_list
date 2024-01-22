@@ -31,7 +31,11 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-12 text-lg-end">
-          <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up apply-now" >Apply now</div>
+            @if ($alreadyApplied)
+            <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up apply-now" style="background-color:#8d8c8c" >Applied</div>
+            @else
+            <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up apply-now" >Apply now</div>
+            @endif
         </div>
       </div>
       <div class="border-bottom pt-10 pb-10"></div>
@@ -117,7 +121,7 @@
           <div class="author-single"><span>{{ $job->company->name }}</span></div>
           <div class="single-apply-jobs">
             <div class="row align-items-center">
-              <div class="col-md-5"><a class="btn btn-default mr-15" href="#">Apply now</a><a class="btn btn-border"
+              <div class="col-md-5"><a class="btn btn-border"
                   href="#">Save job</a></div>
               <div class="col-md-7 text-lg-end social-share">
                 <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6>
@@ -210,8 +214,8 @@
                 beforeSend: function() {
 
                 },
-                successs: function(response) {
-
+                success: function(response) {
+                    notyf.success(response.message);
                 },
                 error: function(xhr, status, error) {
                     let erorrs = xhr.responseJSON.errors;
