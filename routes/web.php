@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Fronted\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CandidateEductionController;
 use App\Http\Controllers\Frontend\CandidateExperienceController;
+use App\Http\Controllers\Frontend\CandidateMyJobController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CheckoutPageController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
@@ -84,6 +85,9 @@ Route::group(
     Route::post('/profile/account-info-update', [CandidateProfileController::class, 'AccountInfoUpdate'])->name('profile.account-info.update');
     Route::post('/profile/account-email-update', [CandidateProfileController::class, 'AccountEmailUpdate'])->name('profile.account-email.update');
     Route::post('/profile/account-password-update', [CandidateProfileController::class, 'AccountPasswordUpdate'])->name('profile.account-password.update');
+
+    /** my job routes */
+    Route::get('applied-jobs', [CandidateMyJobController::class, 'index'])->name('applied-jobs.index');
 
 
 
