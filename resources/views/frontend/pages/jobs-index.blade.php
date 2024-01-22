@@ -24,7 +24,7 @@
                     <div class="content-page">
 
                         <div class="row display-list">
-                            @foreach ($jobs as $job)
+                            @forelse ($jobs as $job)
                                 <div class="col-xl-12 col-md-4">
                                     <div class="card-grid-2 hover-up"><span class="flash"></span>
                                         <div class="row">
@@ -101,19 +101,18 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <h5 class="text-center">Sorry No Data Found! 😥</h5>
+                            @endforelse
 
                         </div>
                     </div>
                     <div class="paginations">
-                        <ul class="pager">
-                            <li><a class="pager-prev" href="#"><i class="fas fa-arrow-left"></i></a></li>
-                            <li><a class="pager-number" href="#">1</a></li>
-                            <li><a class="pager-number" href="#">2</a></li>
-                            <li><a class="pager-number active" href="#">3</a></li>
-                            <li><a class="pager-number" href="#">4</a></li>
-                            <li><a class="pager-next" href="#"><i class="fas fa-arrow-right"></i></a></li>
-                        </ul>
+                        <nav class="d-inline-block">
+                            @if ($jobs->hasPages())
+                                {{ $jobs->withQueryString()->links() }}
+                            @endif
+                        </nav>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 col-12">
@@ -224,7 +223,7 @@
                                             <label class="cb-container">
                                                 <input type="checkbox" name="jobtype[]" value="{{ $jobType->slug }}"><span class="text-small">{{ $jobType->name }}</span><span
                                                     class="checkmark"></span>
-                                            </label><span class="number-item">25</span>
+                                            </label>
                                         </li>
                                         @endforeach
 

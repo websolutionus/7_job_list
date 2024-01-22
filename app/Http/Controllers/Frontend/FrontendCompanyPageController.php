@@ -65,7 +65,8 @@ class FrontendCompanyPageController extends Controller
 
     function show(string $slug) : View {
         $company = Company::where(['profile_completion' => 1, 'visibility' => 1, 'slug' => $slug])->firstOrFail();
+        $openJobs = Job::where('company_id', $company->id)->where('status', 'active')->where('deadline', '>=', date('Y-m-d'))->paginate(10);
 
-        return view('frontend.pages.company-details', compact('company'));
+        return view('frontend.pages.company-details', compact('company', 'openJobs'));
     }
 }
