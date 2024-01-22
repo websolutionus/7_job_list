@@ -90,6 +90,7 @@ Route::group(
     Route::get('applied-jobs', [CandidateMyJobController::class, 'index'])->name('applied-jobs.index');
 
 
+    
 
 });
 

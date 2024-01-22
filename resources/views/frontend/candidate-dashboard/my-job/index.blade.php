@@ -38,28 +38,49 @@
                         </thead>
                         <tbody class="experience-tbody">
                             @foreach ($appliedJobs as $appliedJob)
-                            <tr>
-                                <td>
-                                    <div class="d-flex ">
-                                        <img style="width: 50px; height: 50px; object-fit:cover;" src="{{ asset($appliedJob->job->company->logo) }}" alt="">
-                                        <div style="padding-left: 15px">
-                                            <h6 >{{ $appliedJob->job->company->name }}</h6>
-                                            <b>{{ $appliedJob->job?->company?->companyCountry->name }}</b>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex ">
+                                            <img style="width: 50px; height: 50px; object-fit:cover;"
+                                                src="{{ asset($appliedJob->job->company->logo) }}" alt="">
+                                            <div style="padding-left: 15px">
+                                                <h6>{{ $appliedJob->job->company->name }}</h6>
+                                                <b>{{ $appliedJob->job?->company?->companyCountry->name }}</b>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
+                                    </td>
+                                    <td>
+                                        @if ($appliedJob->job->salary_mode === 'range')
+                                            {{ $appliedJob->job->min_salary }} - {{ $appliedJob->job->max_salary }}
+                                            {{ config('settings.site_default_currency') }}
+                                        @else
+                                            {{ $appliedJob->job->custom_salary }}
+                                        @endif
+                                    </td>
+                                    <td>{{ formatDate($appliedJob->created_at) }}</td>
+                                    <td>
+                                        @if($appliedJob->job->deadline < date('Y-m-d'))
+                                            <span class="badge bg-danger">Expired</span>
+                                        @else
+                                        <span class="badge bg-success">Active</span>
 
-                                </td>
-                                <td>Senior Developer</td>
-                                <td>2020-07-23 - Current</td>
-                                <td>
-                                    <a href="http://laravel-job-portal.test/candidate/experience/3/edit"
-                                        class="btn-sm btn btn-primary edit-experience" data-bs-toggle="modal"
-                                        data-bs-target="#experienceModal"><i class="fas fa-edit" aria-hidden="true"></i></a>
-                                </td>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($appliedJob->job->deadline < date('Y-m-d'))
+                                        <a href="javascript:;"
+                                            class="btn-sm btn btn-secondary" ><i class="fas fa-eye"
+                                                aria-hidden="true"></i></a>
+                                    @else
+                                    <a href="{{ route('jobs.show', $appliedJob->job->slug) }}"
+                                        class="btn-sm btn btn-primary" ><i class="fas fa-eye"
+                                            aria-hidden="true"></i></a>
 
-                            </tr>
+                                    @endif
+
+                                    </td>
+
+                                </tr>
                             @endforeach
 
 
