@@ -26,6 +26,9 @@ class FrontendCandidatePageController extends Controller
                 $subquery->whereIn('skill_id', $ids);
             });
         }
+        if($request->has('experience') && $request->filled('experience')) {
+           $query->where('experience_id', $request->experience);
+        }
 
         $candidates = $query->paginate(24);
 

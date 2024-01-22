@@ -34,9 +34,11 @@
                                     <div class="filter-block mb-30">
                                         <div class="form-group select-style">
                                             <label for="">Skills</label>
+
                                             <select name="skills[]" multiple class="form-control form-icons select-active">
+                                                <option value="">All</option>
                                                 @foreach ($skills as $skill)
-                                                <option value="{{ $skill->slug }}">{{ $skill->name }}</option>
+                                                <option @selected(request()->has('skills') ? in_array($skill->slug, request()->skills) : false) value="{{ $skill->slug }}">{{ $skill->name }}</option>
                                                 @endforeach
 
                                             </select>
@@ -56,7 +58,7 @@
                                         @foreach ($experiences as $experience)
                                         <li class="active">
                                           <label class="d-flex">
-                                            <input type="radio" name="experience" class="x-radio" value="{{ $experience->name }}"><span class="text-small">{{ $experience->name }}</span>
+                                            <input type="radio" @checked($experience->id == request()->experience) name="experience" class="x-radio" value="{{ $experience->id }}"><span class="text-small">{{ $experience->name }}</span>
                                           </label>
                                         </li>
                                         @endforeach
