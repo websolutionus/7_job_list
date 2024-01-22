@@ -11,6 +11,7 @@ use App\Models\JobType;
 use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class FrontendJobPageController extends Controller
@@ -71,7 +72,10 @@ class FrontendJobPageController extends Controller
         return view('frontend.pages.job-show', compact('job', 'openJobs'));
     }
 
-    function applyJob(string $id) : Response {
+    function applyJob(string $id) {
+        if(!auth()->check()) {
+            throw ValidationException::withMessages(['Please login for apply to the job.']);
+        }
         return response($id);
     }
 }

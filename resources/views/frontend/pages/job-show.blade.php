@@ -214,7 +214,10 @@
 
                 },
                 error: function(xhr, status, error) {
-
+                    let erorrs = xhr.responseJSON.errors;
+                    $.each(erorrs, function(index, value) {
+                        notyf.error(value[index]);
+                    });
                 }
             })
         })
