@@ -6,10 +6,10 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
-                    <h2 class="mb-20">Orders</h2>
+                    <h2 class="mb-20">Applications</h2>
                     <ul class="breadcrumbs">
                         <li><a class="home-icon" href="index.html">Home</a></li>
-                        <li>Orders</li>
+                        <li>Applications</li>
                     </ul>
                 </div>
             </div>
@@ -31,10 +31,9 @@
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tr>
-                                    <th style="width: 270px">Details</th>
+                                    <th >Details</th>
                                     <th>Experience</th>
-                                    <th>Eduction</th>
-                                    <th style="width: 10%">Action</th>
+                                    <th style="width: 20%">Action</th>
                                 </tr>
                             <tbody>
                                 @forelse ($applications as $application)
@@ -51,6 +50,13 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        <td>
+                                            {{ $application->candidate->experience->name }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('candidates.show', $application->candidate->slug) }}" class="btn btn-primary">View Profile</a>
+                                        </td>
+
                                     </tr>
                                 @empty
                                     <tr>
@@ -65,9 +71,9 @@
                     </div>
                     <div class="card-footer text-right">
                         <nav class="d-inline-block">
-                            {{-- @if ($jobs->hasPages())
-                                {{ $jobs->withQueryString()->links() }}
-                            @endif --}}
+                            @if ($applications->hasPages())
+                                {{ $applications->withQueryString()->links() }}
+                            @endif
                         </nav>
                     </div>
                 </div>
