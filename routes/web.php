@@ -90,6 +90,8 @@ Route::group(
 
     /** my job routes */
     Route::get('applied-jobs', [CandidateMyJobController::class, 'index'])->name('applied-jobs.index');
+    Route::get('bookmarked-jobs', [CandidateJobBookmarkController::class, 'index'])->name('bookmarked-jobs.index');
+
 
 
 
