@@ -90,7 +90,7 @@ Route::group(
     Route::get('applied-jobs', [CandidateMyJobController::class, 'index'])->name('applied-jobs.index');
 
 
-    
+
 
 });
 
@@ -118,6 +118,7 @@ Route::group(
     Route::get('orders/invoice/{id}', [CompanyOrderController::class, 'invoice'])->name('orders.invoice');
 
     /** Job Routes */
+    Route::get('applications/{id}', [JobController::class, 'applications'])->name('job.applications');
     Route::resource('jobs', JobController::class);
 
     /**Payment Routes */
