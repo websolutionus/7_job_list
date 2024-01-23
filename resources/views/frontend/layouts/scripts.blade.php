@@ -78,20 +78,6 @@
                 });
         });
 
-    $('.job-bookmark').on('click', function(e) {
-        e.preventDefault();
-        let id = $(this).data('id');
-        $.ajax({
-            method: 'GET',
-            url: '{{ route("job.bookmark", ":id") }}'.replace(":id", id),
-            data: {},
-            success: function(response) {
 
-            },
-            error: function(xhr, status, error) {
-
-            }
-        })
-    })
 
 </script>

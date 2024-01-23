@@ -71,4 +71,5 @@ class Job extends Model
         return $this->hasMany(AppliedJob::class, 'job_id', 'id');
     }
 
+
 }

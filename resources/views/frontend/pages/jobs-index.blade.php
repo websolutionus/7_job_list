@@ -88,11 +88,19 @@
                                                         class="text-muted"></span>
                                                     </div>
                                                     @endif
+                                                    @php
+                                                        $bookmarkedIds = \App\Models\JobBookmark::where('candidate_id', auth()->user()->candidateProfile->id)->pluck('job_id')->toArray();
+
+                                                    @endphp
 
                                                     <div class="col-lg-5 col-5 text-end">
                                                         <div class="btn bookmark-btn job-bookmark" data-id="{{ $job->id }}">
+                                                            
+                                                            @if (in_array($job->id, $bookmarkedIds))
+                                                            <i class="fas fa-bookmark"></i>
+                                                            @else
                                                             <i class="far fa-bookmark"></i>
-                                                            {{-- <i class="fas fa-bookmark"></i> --}}
+                                                            @endif
                                                         </div>
                                                     </div>
 
@@ -292,6 +300,33 @@
                 error: function(xhr, status, error) {}
             })
         })
+
+        $('.job-bookmark').on('click', function(e) {
+        e.preventDefault();
+        let id = $(this).data('id');
+        $.ajax({
+            method: 'GET',
+            url: '{{ route("job.bookmark", ":id") }}'.replace(":id", id),
+            data: {},
+            success: function(response) {
+                //fas fa-bookmark
+                $('.job-bookmark').each(function() {
+                    let elementId = $(this).data('id');
+
+                    if(elementId == response.id) {
+                        $(this).find('i').addClass('fas fa-bookmark');
+                    }
+                })
+                notyf.success(response.message)
+            },
+            error: function(xhr, status, error) {
+                let erorrs = xhr.responseJSON.errors;
+                $.each(erorrs, function(index, value) {
+                    notyf.error(value[index]);
+                });
+            }
+        })
+    })
     })
 </script>
 @endpush
