@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Fronted\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CandidateEductionController;
 use App\Http\Controllers\Frontend\CandidateExperienceController;
+use App\Http\Controllers\Frontend\CandidateJobBookmarkController;
 use App\Http\Controllers\Frontend\CandidateMyJobController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CheckoutPageController;
@@ -60,6 +61,7 @@ Route::get('checkout/{plan_id}', CheckoutPageController::class)->name('checkout.
 Route::get('jobs', [FrontendJobPageController::class, 'index'])->name('jobs.index');
 Route::get('jobs/{slug}', [FrontendJobPageController::class, 'show'])->name('jobs.show');
 Route::post('apply-job/{id}', [FrontendJobPageController::class, 'applyJob'])->name('apply-job.store');
+Route::get('job-bookmark/{id}', [CandidateJobBookmarkController::class, 'save'])->name('job.bookmark');
 
 
 

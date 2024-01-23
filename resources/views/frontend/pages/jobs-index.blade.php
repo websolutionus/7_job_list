@@ -90,7 +90,7 @@
                                                     @endif
 
                                                     <div class="col-lg-5 col-5 text-end">
-                                                        <div class="btn bookmark-btn" >
+                                                        <div class="btn bookmark-btn job-bookmark" data-id="{{ $job->id }}">
                                                             <i class="far fa-bookmark"></i>
                                                             {{-- <i class="fas fa-bookmark"></i> --}}
                                                         </div>

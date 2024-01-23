@@ -9,7 +9,7 @@
     var notyf = new Notyf({
         duration: 5000
     });
-    
+
     // date picker
     $('.datepicker').datepicker({
         format: 'yyyy-m-d',
@@ -77,5 +77,21 @@
                     }
                 });
         });
+
+    $('.job-bookmark').on('click', function(e) {
+        e.preventDefault();
+        let id = $(this).data('id');
+        $.ajax({
+            method: 'GET',
+            url: '{{ route("job.bookmark", ":id") }}'.replace(":id", id),
+            data: {},
+            success: function(response) {
+
+            },
+            error: function(xhr, status, error) {
+
+            }
+        })
+    })
 
 </script>
