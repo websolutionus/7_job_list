@@ -29,7 +29,7 @@
                     <figure><img alt="joblist" src="{{ asset($blog->image) }}"></figure>
                   </a></div>
                 <div class="card-block-info">
-                  <h5><a href="blog-details.html">{{ $blog->title }}</a></h5>
+                  <h5><a href="{{ route('blogs.show', $blog->slug) }}">{{ $blog->title }}</a></h5>
                   <p class="mt-10 color-text-paragraph font-sm">{{ Str::limit(strip_tags($blog->description), $limit = 150, $end = '...') }}</p>
                   <div class="card-2-bottom mt-20">
                     <div class="row">

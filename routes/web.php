@@ -66,6 +66,8 @@ Route::get('job-bookmark/{id}', [CandidateJobBookmarkController::class, 'save'])
 
 /** Blog Routes */
 Route::get('blogs', [FrontendBlogPageController::class, 'index'])->name('blogs.index');
+Route::get('blogs/{slug}', [FrontendBlogPageController::class, 'show'])->name('blogs.show');
+
 
 
 

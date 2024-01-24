@@ -13,4 +13,9 @@ class FrontendBlogPageController extends Controller
         $blogs = Blog::where('status', 1)->latest()->paginate();
         return view('frontend.pages.blog-index', compact('blogs'));
     }
+
+    function show(string $slug) : View {
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+        return view('frontend.pages.blog-details', compact('blog'));
+    }
 }
