@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CompanyOrderController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
 use App\Http\Controllers\Frontend\CompnayOrderController;
+use App\Http\Controllers\Frontend\FrontendBlogPageController;
 use App\Http\Controllers\Frontend\FrontendCandidatePageController;
 use App\Http\Controllers\Frontend\FrontendCompanyPageController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -63,7 +64,8 @@ Route::get('jobs/{slug}', [FrontendJobPageController::class, 'show'])->name('job
 Route::post('apply-job/{id}', [FrontendJobPageController::class, 'applyJob'])->name('apply-job.store');
 Route::get('job-bookmark/{id}', [CandidateJobBookmarkController::class, 'save'])->name('job.bookmark');
 
-
+/** Blog Routes */
+Route::get('blogs', [FrontendBlogPageController::class, 'index'])->name('blogs.index');
 
 
 

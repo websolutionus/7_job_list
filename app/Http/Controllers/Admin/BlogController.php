@@ -8,18 +8,22 @@ use App\Http\Requests\Admin\BlogUpdateRequest;
 use App\Models\Blog;
 use App\Services\Notify;
 use App\Traits\FileUploadTrait;
+use App\Traits\Searchable;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class BlogController extends Controller
 {
-    use FileUploadTrait;
+    use FileUploadTrait, Searchable;
     /**
      * Display a listing of the resource.
      */
     public function index() : View
     {
-        $blogs = Blog::latest()->paginate(20);
+        $query = Blog::query();
+        $this->search($query, ['title', 'slug']);
+        $blogs = $query->orderBy('id', 'DESC')->paginate(20);
+
         return view('admin.blog.index', compact('blogs'));
     }
 
