@@ -20,6 +20,8 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
+                                        <x-image-preview :height="200" :width="300" :source="$hero->image" />
+
                                         <label for="">Image</label>
                                         <input type="file" class="form-control {{ hasError($errors, 'image') }}" name="image">
                                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
@@ -27,6 +29,8 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group">
+                                        <x-image-preview :height="200" :width="300" :source="$hero->background_image" />
+
                                         <label for="">Background Image</label>
                                         <input type="file" class="form-control {{ hasError($errors, 'background_image') }}" name="background_image">
                                         <x-input-error :messages="$errors->get('background_image')" class="mt-2" />
@@ -35,12 +39,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Title</label>
-                                <input type="text" class="form-control {{ hasError($errors, 'title') }}" name="title" value="{{ old('title') }}">
+                                <input type="text" class="form-control {{ hasError($errors, 'title') }}" name="title" value="{{ old('title', $hero->title) }}">
                                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
                             </div>
                             <div class="form-group">
                                 <label for="">Sub Title</label>
-                                <input type="text" class="form-control {{ hasError($errors, 'sub_title') }}" name="sub_title" value="{{ old('sub_title') }}">
+                                <input type="text" class="form-control {{ hasError($errors, 'sub_title') }}" name="sub_title" value="{{ old('sub_title', $hero->sub_title) }}">
                                 <x-input-error :messages="$errors->get('sub_title')" class="mt-2" />
                             </div>
                             <div class="form-group">
