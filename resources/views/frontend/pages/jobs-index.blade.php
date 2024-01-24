@@ -89,13 +89,13 @@
                                                     </div>
                                                     @endif
                                                     @php
-                                                        $bookmarkedIds = \App\Models\JobBookmark::where('candidate_id', auth()->user()->candidateProfile->id)->pluck('job_id')->toArray();
+                                                        $bookmarkedIds = \App\Models\JobBookmark::where('candidate_id', auth()?->user()?->candidateProfile->id)->pluck('job_id')->toArray();
 
                                                     @endphp
 
                                                     <div class="col-lg-5 col-5 text-end">
                                                         <div class="btn bookmark-btn job-bookmark" data-id="{{ $job->id }}">
-                                                            
+
                                                             @if (in_array($job->id, $bookmarkedIds))
                                                             <i class="fas fa-bookmark"></i>
                                                             @else
