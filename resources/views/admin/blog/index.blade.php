@@ -27,21 +27,31 @@
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Title</th>
                                     <th>slug</th>
+                                    <th>Status</th>
+
                                     <th style="width: 10%">Action</th>
                                 </tr>
                             <tbody>
-                                {{-- @foreach ($industryTypes as $type)
+                                @foreach ($blogs as $blog)
                                 <tr>
-                                    <td>{{ $type->name }}</td>
-                                    <td>{{ $type->slug }}</td>
+                                    <td>{{ $blog->title }}</td>
+                                    <td>{{ $blog->slug }}</td>
                                     <td>
-                                        <a href="{{ route('admin.industry-types.edit', $type->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ route('admin.industry-types.destroy', $type->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
+                                        @if ($blog->status == 1)
+                                            <span class="badge bg-green">Active</span>
+                                        @else
+                                            <span class="badge bg-danger">Inactive</span>
+                                        @endif
+                                    </td>
+
+                                    <td>
+                                        <a href="{{ route('admin.blogs.edit', $blog->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('admin.blogs.destroy', $blog->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
-                                @endforeach --}}
+                                @endforeach
 
                             </tbody>
 
@@ -50,9 +60,9 @@
                     </div>
                     <div class="card-footer text-right">
                         <nav class="d-inline-block">
-                            {{-- @if ($industryTypes->hasPages())
-                                {{ $industryTypes->withQueryString()->links() }}
-                            @endif --}}
+                            @if ($blogs->hasPages())
+                                {{ $blogs->withQueryString()->links() }}
+                            @endif
                         </nav>
                     </div>
                 </div>

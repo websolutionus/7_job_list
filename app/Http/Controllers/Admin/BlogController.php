@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BlogCreateRequest;
+use App\Http\Requests\Admin\BlogUpdateRequest;
 use App\Models\Blog;
 use App\Services\Notify;
 use App\Traits\FileUploadTrait;
@@ -18,7 +19,8 @@ class BlogController extends Controller
      */
     public function index() : View
     {
-        return view('admin.blog.index');
+        $blogs = Blog::latest()->paginate(20);
+        return view('admin.blog.index', compact('blogs'));
     }
 
     /**
@@ -48,28 +50,34 @@ class BlogController extends Controller
         return to_route('admin.blogs.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $blog = Blog::findOrFail($id);
+        return view('admin.blog.edit', compact('blog'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BlogUpdateRequest $request, string $id)
     {
-        //
+        $imagePath = $this->uploadFile($request, 'image');
+
+        $blog = Blog::findOrFail($id);
+
+        if($imagePath) $blog->image = $imagePath;
+        $blog->title = $request->title;
+        $blog->author_id = auth()->user()->id;
+        $blog->description = $request->description;
+        $blog->status = $request->status;
+        $blog->save();
+        Notify::updatedNotification();
+
+        return to_route('admin.blogs.index');
     }
 
     /**
@@ -77,6 +85,14 @@ class BlogController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Blog::findOrFail($id)->delete();
+            Notify::deletedNotification();
+            return response(['message' => 'success'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
     }
 }
