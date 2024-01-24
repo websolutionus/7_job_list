@@ -42,6 +42,30 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('status')" class="mt-2" />
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Featured</label>
+
+                                        <select class="form-control {{ hasError($errors, 'featured') }}" name="featured">
+                                            <option @selected($blog->featured == 0) value="0">No</option>
+                                            <option @selected($blog->featured == 1) value="1">Yes</option>
+                                        </select>
+                                        <x-input-error :messages="$errors->get('featured')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Status</label>
+
+                                        <select class="form-control {{ hasError($errors, 'status') }}" name="status">
+                                            <option @selected($blog->status == 1) value="1">Active</option>
+                                            <option @selected($blog->status == 0) value="0">Inactive</option>
+                                        </select>
+                                        <x-input-error :messages="$errors->get('status')" class="mt-2" />
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>

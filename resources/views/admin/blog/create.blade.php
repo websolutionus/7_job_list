@@ -30,14 +30,29 @@
                                 <label for="">Description <span class="text-danger">*</span> </label>
                                 <textarea id="editor" name="description" ></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="">Status</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Featured</label>
 
-                                <select class="form-control {{ hasError($errors, 'status') }}" name="status">
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                                <x-input-error :messages="$errors->get('status')" class="mt-2" />
+                                        <select class="form-control {{ hasError($errors, 'featured') }}" name="featured">
+                                            <option value="0">No</option>
+                                            <option value="1">Yes</option>
+                                        </select>
+                                        <x-input-error :messages="$errors->get('featured')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Status</label>
+
+                                        <select class="form-control {{ hasError($errors, 'status') }}" name="status">
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
+                                        <x-input-error :messages="$errors->get('status')" class="mt-2" />
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Create</button>

@@ -29,6 +29,7 @@
                                 <tr>
                                     <th>Title</th>
                                     <th>slug</th>
+                                    <th>Featured</th>
                                     <th>Status</th>
 
                                     <th style="width: 10%">Action</th>
@@ -39,10 +40,17 @@
                                     <td>{{ $blog->title }}</td>
                                     <td>{{ $blog->slug }}</td>
                                     <td>
-                                        @if ($blog->status == 1)
-                                            <span class="badge bg-green">Active</span>
+                                        @if ($blog->featured == 1)
+                                            <span class="badge badge-success">Yes</span>
                                         @else
-                                            <span class="badge bg-danger">Inactive</span>
+                                            <span class="badge badge-danger">No</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($blog->status == 1)
+                                            <span class="badge badge-success">Active</span>
+                                        @else
+                                            <span class="badge badge-danger">Inactive</span>
                                         @endif
                                     </td>
 
