@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\SalaryTypeController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\WhyChooseUsController;
 use App\Models\JobExperience;
 use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Route;
@@ -116,9 +117,12 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('jobs', JobController::class);
     /** Blogs */
     Route::resource('blogs', BlogController::class);
-    
+
     /** Hero Section */
     Route::resource('hero', HeroController::class);
+
+    /** Why Choose Us Section */
+    Route::resource('why-choose-us', WhyChooseUsController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');

@@ -15,7 +15,7 @@
 <!-- Featured Job Section End -->
 
 <!-- Why Choose Us Section Start -->
-{{-- @include('frontend.home.sections.why-choose-us-section') --}}
+@include('frontend.home.sections.why-choose-us-section')
 <!-- Why Choose Us Section End -->
 
 <!-- Learn More Section Start -->
