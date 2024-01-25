@@ -12,14 +12,14 @@
 
                 <div class="swiper-slide hover-up">
                     @foreach ($pair as $category)
-                    <a href="jobs-list.html">
+                    <a href="{{ route('jobs.index', ['category' => $category->slug]) }}">
                       <div class="item-logo">
                         <div class="image-left">
                           <i class="{{ $category->icon }}"></i>
                         </div>
                         <div class="text-info-right">
                           <h4>{{ Str::limit($category->name, 20, '...') }}</h4>
-                          <p class="font-xs">1526<span> Jobs Available</span></p>
+                          <p class="font-xs">{{ $category->jobs_count }}<span> Jobs Available</span></p>
                         </div>
                       </div>
                     </a>
