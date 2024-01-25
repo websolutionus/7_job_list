@@ -29,6 +29,8 @@
                                 <tr>
                                     <th>Icon</th>
                                     <th>Name</th>
+                                    <th>Show at Popular</th>
+
                                     <th style="width: 10%">Action</th>
                                 </tr>
                             <tbody>
@@ -37,6 +39,14 @@
                                     <td><i style="font-size:40px" class="{{ $category->icon }}"></i></td>
 
                                     <td>{{ $category->name }}</td>
+                                    <td>
+                                        @if ($category->show_at_popular === 1)
+                                            <span class="badge badge-success">Yes</span>
+                                        @else
+                                            <span class="badge badge-danger">No</span>
+                                        @endif
+                                    </td>
+
 
                                     <td>
                                         <a href="{{ route('admin.job-categories.edit', $category->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
