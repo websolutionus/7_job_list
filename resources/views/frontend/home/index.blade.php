@@ -11,7 +11,7 @@
 <!-- Category Section End -->
 
 <!-- Featured Job Section Start -->
-{{-- @include('frontend.home.sections.featured-job-section') --}}
+@include('frontend.home.sections.featured-job-section')
 <!-- Featured Job Section End -->
 
 <!-- Why Choose Us Section Start -->
