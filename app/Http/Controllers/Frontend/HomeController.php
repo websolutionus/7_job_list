@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\Hero;
 use App\Models\Job;
 use App\Models\JobCategory;
+use App\Models\LearnMore;
 use App\Models\Plan;
 use App\Models\WhyChooseUs;
 use Illuminate\Http\Request;
@@ -26,7 +27,8 @@ class HomeController extends Controller
         $featuredCategories = JobCategory::where('show_at_featured', 1)->take(10)->get();
         $jobCount = Job::count();
         $whyChooseUs = WhyChooseUs::first();
+        $learnMore = LearnMore::first();
         $plans = Plan::where(['frontend_show' => 1, 'show_at_home' => 1])->get();
-        return view('frontend.home.index', compact('plans', 'hero', 'jobCategories', 'countries', 'jobCount', 'popularJobCategories', 'featuredCategories', 'whyChooseUs'));
+        return view('frontend.home.index', compact('plans', 'hero', 'jobCategories', 'countries', 'jobCount', 'popularJobCategories', 'featuredCategories', 'whyChooseUs', 'learnMore'));
     }
 }
