@@ -12,24 +12,17 @@
                 <div class="swiper-wrapper pt-5">
                     <div class="swiper-slide">
                         @foreach ($companies as $company)
-                        <div class="item-5 hover-up wow animate__animated animate__fadeIn"><a href="#">
+                        <div class="item-5 hover-up wow animate__animated animate__fadeIn">
+                            <a href="{{ route('companies.show', $company->slug) }}">
                                 <div class="item-logo">
-                                    <div class="image-left"><img alt="joblist" src="assets/imgs/brands/brand-1.png">
+                                    <div class="image-left"><img alt="joblist" src="{{ asset($company->logo) }}">
                                     </div>
                                     <div class="text-info-right">
-                                        <h4>Linkedin</h4><img alt="joblist"
-                                            src="assets/imgs/template/icons/star.svg"><img alt="joblist"
-                                            src="assets/imgs/template/icons/star.svg"><img alt="joblist"
-                                            src="assets/imgs/template/icons/star.svg"><img alt="joblist"
-                                            src="assets/imgs/template/icons/star.svg"><img alt="joblist"
-                                            src="assets/imgs/template/icons/star.svg"><span
-                                            class="font-xs color-text-mutted ml-10"><span>(</span><span>68</span><span>)</span></span>
+                                        <h4>{{ $company->name }}</h4>
                                     </div>
                                     <div class="text-info-bottom mt-5"><span
-                                            class="font-xs color-text-mutted icon-location">New York,
-                                            US</span><span class="font-xs color-text-mutted float-end mt-5">25<span>
-                                                Open
-                                                Jobs</span></span></div>
+                                            class="font-xs color-text-mutted icon-location">{{ $company->companyCountry->name }}</span><span class="font-xs color-text-mutted float-end mt-5">{{ $company->jobs_count }} <span>
+                                                Open Jobs</span></span></div>
                                 </div>
                             </a>
                         </div>
