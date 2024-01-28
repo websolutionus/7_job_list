@@ -3,18 +3,18 @@
 @section('contents')
     <section class="section">
         <div class="section-header">
-            <h1>Hero Section</h1>
+            <h1>Counter Section</h1>
         </div>
 
         <div class="section-body">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Update Hero Section</h4>
+                        <h4>Update Counter Section</h4>
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.hero.update', 1) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.counter.update', 1) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
