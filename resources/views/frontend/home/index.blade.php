@@ -23,7 +23,7 @@
 <!-- Learn More Section End -->
 
 <!-- Counter Section Start -->
-{{-- @include('frontend.home.sections.counter-section') --}}
+@include('frontend.home.sections.counter-section')
 <!-- Counter Section End -->
 
 <!-- Top Recruiters Section Start -->

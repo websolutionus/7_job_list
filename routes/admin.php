@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\StateContriller;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\JobCategoryController;
@@ -124,8 +125,10 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Why Choose Us Section */
     Route::resource('why-choose-us', WhyChooseUsController::class);
-    /** Why Choose Us Section */
+    /** learn more Section */
     Route::resource('learn-more', LearnMoreController::class);
+    /** Counter Section */
+    Route::resource('counter', CounterController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
