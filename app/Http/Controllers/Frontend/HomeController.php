@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Counter;
 use App\Models\Country;
 use App\Models\Hero;
@@ -30,7 +31,9 @@ class HomeController extends Controller
         $whyChooseUs = WhyChooseUs::first();
         $learnMore = LearnMore::first();
         $counter = Counter::first();
+        $companies = Company::select('logo', 'name', 'slug')->where(['profile_completion' => 1, 'visibility' => 1])->latest()->take(45)->get();
+
         $plans = Plan::where(['frontend_show' => 1, 'show_at_home' => 1])->get();
-        return view('frontend.home.index', compact('plans', 'hero', 'jobCategories', 'countries', 'jobCount', 'popularJobCategories', 'featuredCategories', 'whyChooseUs', 'learnMore', 'counter'));
+        return view('frontend.home.index', compact('plans', 'hero', 'jobCategories', 'countries', 'jobCount', 'popularJobCategories', 'featuredCategories', 'whyChooseUs', 'learnMore', 'counter', 'companies'));
     }
 }

@@ -27,7 +27,7 @@
 <!-- Counter Section End -->
 
 <!-- Top Recruiters Section Start -->
-{{-- @include('frontend.home.sections.top-recruiters-section') --}}
+@include('frontend.home.sections.top-recruiters-section')
 <!-- Top Recruiters Section End -->
 
 <!-- Price Plan Section Start -->
