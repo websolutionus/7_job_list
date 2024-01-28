@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\JobExperienceController;
+use App\Http\Controllers\Admin\JobLocationController;
 use App\Http\Controllers\Admin\JobRoleController;
 use App\Http\Controllers\Admin\JobTypeController;
 use App\Http\Controllers\Admin\LanguageController;
@@ -129,6 +130,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('learn-more', LearnMoreController::class);
     /** Counter Section */
     Route::resource('counter', CounterController::class);
+    /** Job Location Section */
+    Route::resource('job-location', JobLocationController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
