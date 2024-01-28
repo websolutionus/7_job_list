@@ -19,7 +19,7 @@
 <!-- Why Choose Us Section End -->
 
 <!-- Learn More Section Start -->
-{{-- @include('frontend.home.sections.learn-more-section') --}}
+@include('frontend.home.sections.learn-more-section')
 <!-- Learn More Section End -->
 
 <!-- Counter Section Start -->
