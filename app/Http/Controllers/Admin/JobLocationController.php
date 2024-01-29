@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\JobLocationCreateRequest;
+use App\Http\Requests\Admin\JobLocationUpdateRequest;
 use App\Models\Country;
 use App\Models\JobLocation;
 use App\Services\Notify;
@@ -19,7 +20,9 @@ class JobLocationController extends Controller
      */
     public function index() : View
     {
-        return view('admin.job-location.index');
+
+        $locations = JobLocation::paginate(20);
+        return view('admin.job-location.index', compact('locations'));
     }
 
     /**
@@ -50,28 +53,33 @@ class JobLocationController extends Controller
         return to_route('admin.job-location.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $location = JobLocation::findOrFail($id);
+        $countries = Country::all();
+        return view('admin.job-location.edit', compact('location', 'countries'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(JobLocationUpdateRequest $request, string $id)
     {
-        //
+        $imagePath = $this->uploadFile($request, 'image');
+
+        $location = JobLocation::findOrFail($id);
+        if(!empty($imagePath)) $location->image = $imagePath;
+        $location->country_id = $request->country;
+        $location->status = $request->status;
+        $location->save();
+
+        Notify::updatedNotification();
+
+        return to_route('admin.job-location.index');
     }
 
     /**
@@ -79,6 +87,14 @@ class JobLocationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            JobLocation::findOrFail($id)->delete();
+            Notify::deletedNotification();
+            return response(['message' => 'success'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
     }
 }
