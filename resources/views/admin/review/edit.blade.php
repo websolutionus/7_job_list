@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Title</label>
-                                <input type="text" class="form-control {{ hasError($errors, 'title') }}" name="title" value="{{ old('title', $review->name) }}">
+                                <input type="text" class="form-control {{ hasError($errors, 'title') }}" name="title" value="{{ old('title', $review->title) }}">
                                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
                             </div>
 

@@ -12,6 +12,7 @@ use App\Models\JobCategory;
 use App\Models\JobLocation;
 use App\Models\LearnMore;
 use App\Models\Plan;
+use App\Models\Review;
 use App\Models\WhyChooseUs;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -38,8 +39,9 @@ class HomeController extends Controller
                 ->where('deadline', '>=', date('Y-m-d'));
         }])->where(['profile_completion' => 1, 'visibility' => 1])->latest()->take(45)->get();
         $locations = JobLocation::latest()->take(8)->get();
+        $reviews = Review::latest()->take(10)->get();
 
         $plans = Plan::where(['frontend_show' => 1, 'show_at_home' => 1])->get();
-        return view('frontend.home.index', compact('plans', 'hero', 'jobCategories', 'countries', 'jobCount', 'popularJobCategories', 'featuredCategories', 'whyChooseUs', 'learnMore', 'counter', 'companies', 'locations'));
+        return view('frontend.home.index', compact('plans', 'hero', 'jobCategories', 'countries', 'jobCount', 'popularJobCategories', 'featuredCategories', 'whyChooseUs', 'learnMore', 'counter', 'companies', 'locations', 'reviews'));
     }
 }
