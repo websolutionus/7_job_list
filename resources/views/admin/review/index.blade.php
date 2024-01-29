@@ -28,24 +28,30 @@
                             <table class="table table-striped">
                                 <tr>
                                     <th>Name</th>
-                                    <th>slug</th>
+                                    <th>title</th>
+                                    <th>review</th>
+                                    <th>rating</th>
+
                                     <th style="width: 10%">Action</th>
                                 </tr>
                             <tbody>
-                                {{-- @forelse ($skills as $skill)
+                                @forelse ($reviews as $review)
                                     <tr>
-                                        <td>{{ $skill->name }}</td>
-                                        <td>{{ $skill->slug }}</td>
+                                        <td>{{ $review->name }}</td>
+                                        <td>{{ $review->title }}</td>
+                                        <td>{{ $review->review }}</td>
+                                        <td>{{ $review->rating }}</td>
+
                                         <td>
-                                            <a href="{{ route('admin.skills.edit', $skill->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('admin.skills.destroy', $skill->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="{{ route('admin.reviews.edit', $review->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.reviews.destroy', $review->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="3" class="text-center">No result found!</td>
+                                        <td colspan="5" class="text-center">No result found!</td>
                                     </tr>
-                                @endforelse --}}
+                                @endforelse
 
                             </tbody>
 
@@ -54,9 +60,9 @@
                     </div>
                     <div class="card-footer text-right">
                         <nav class="d-inline-block">
-                            {{-- @if ($skills->hasPages())
-                                {{ $skills->withQueryString()->links() }}
-                            @endif --}}
+                            @if ($reviews->hasPages())
+                                {{ $reviews->withQueryString()->links() }}
+                            @endif
                         </nav>
                     </div>
                 </div>
