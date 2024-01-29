@@ -3,11 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\JobLocationCreateRequest;
+use App\Models\Country;
+use App\Models\JobLocation;
+use App\Services\Notify;
+use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class JobLocationController extends Controller
 {
+    use FileUploadTrait;
     /**
      * Display a listing of the resource.
      */
@@ -21,15 +27,27 @@ class JobLocationController extends Controller
      */
     public function create() : View
     {
-        return view('admin.job-location.create');
+        $countries = Country::all();
+
+        return view('admin.job-location.create', compact('countries'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(JobLocationCreateRequest $request)
     {
-        //
+        $imagePath = $this->uploadFile($request, 'image');
+
+        $location = new JobLocation();
+        $location->image = $imagePath;
+        $location->country_id = $request->country;
+        $location->status = $request->status;
+        $location->save();
+
+        Notify::createdNotification();
+
+        return to_route('admin.job-location.index');
     }
 
     /**
