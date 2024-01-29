@@ -39,7 +39,7 @@
 <!-- Job By Location Section End -->
 
 <!-- Review Section Start -->
-{{-- @include('frontend.home.sections.review-section') --}}
+@include('frontend.home.sections.review-section')
 <!-- Review Section End -->
 
 <!-- Blog Section Start -->

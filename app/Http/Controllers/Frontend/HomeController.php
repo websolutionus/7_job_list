@@ -37,7 +37,7 @@ class HomeController extends Controller
             $query->where(['status' => 'active'])
                 ->where('deadline', '>=', date('Y-m-d'));
         }])->where(['profile_completion' => 1, 'visibility' => 1])->latest()->take(45)->get();
-        $locations = JobLocation::all();
+        $locations = JobLocation::latest()->take(8)->get();
 
         $plans = Plan::where(['frontend_show' => 1, 'show_at_home' => 1])->get();
         return view('frontend.home.index', compact('plans', 'hero', 'jobCategories', 'countries', 'jobCount', 'popularJobCategories', 'featuredCategories', 'whyChooseUs', 'learnMore', 'counter', 'companies', 'locations'));
