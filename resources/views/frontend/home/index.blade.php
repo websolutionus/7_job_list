@@ -43,7 +43,7 @@
 <!-- Review Section End -->
 
 <!-- Blog Section Start -->
-{{-- @include('frontend.home.sections.blog-section') --}}
+@include('frontend.home.sections.blog-section')
 <!-- Blog Section Start -->
 
 @endsection

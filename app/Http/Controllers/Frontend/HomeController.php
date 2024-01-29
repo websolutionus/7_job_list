@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Company;
 use App\Models\Counter;
 use App\Models\Country;
@@ -42,6 +43,7 @@ class HomeController extends Controller
         $reviews = Review::latest()->take(10)->get();
 
         $plans = Plan::where(['frontend_show' => 1, 'show_at_home' => 1])->get();
-        return view('frontend.home.index', compact('plans', 'hero', 'jobCategories', 'countries', 'jobCount', 'popularJobCategories', 'featuredCategories', 'whyChooseUs', 'learnMore', 'counter', 'companies', 'locations', 'reviews'));
+        $blogs = Blog::latest()->take(6)->get();
+        return view('frontend.home.index', compact('plans', 'hero', 'jobCategories', 'countries', 'jobCount', 'popularJobCategories', 'featuredCategories', 'whyChooseUs', 'learnMore', 'counter', 'companies', 'locations', 'reviews', 'blogs'));
     }
 }
