@@ -35,7 +35,7 @@
 <!-- Price Plan Section End -->
 
 <!-- Job By Location Section Start -->
-{{-- @include('frontend.home.sections.job-by-location-section') --}}
+@include('frontend.home.sections.job-by-location-section')
 <!-- Job By Location Section End -->
 
 <!-- Review Section Start -->
