@@ -25,6 +25,14 @@
                         <x-input-error :messages="$errors->get('site_phone')" class="mt-2" />
                     </div>
                 </div>
+                {{-- @dd(config('settings')) --}}
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="">Site Map</label>
+                        <input type="text" class="form-control {{ hasError($errors, 'site_map') }}" name="site_map"  value="{{ config('settings.site_map') }}">
+                        <x-input-error :messages="$errors->get('site_map')" class="mt-2" />
+                    </div>
+                </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
