@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CompanyOrderController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
 use App\Http\Controllers\Frontend\CompnayOrderController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FrontendBlogPageController;
 use App\Http\Controllers\Frontend\FrontendCandidatePageController;
 use App\Http\Controllers\Frontend\FrontendCompanyPageController;
@@ -72,6 +73,8 @@ Route::get('blogs/{slug}', [FrontendBlogPageController::class, 'show'])->name('b
 /** About Routes */
 Route::get('about-us', [AboutUsPageController::class, 'index'])->name('about.index');
 
+/** Count Routes */
+Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
 
 
 /** Candidate Dashboard Routes */
