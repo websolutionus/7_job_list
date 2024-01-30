@@ -17,5 +17,7 @@ class ContactController extends Controller
 
     function sendMail(ContactMailRequest $request) {
         Mail::to(config('settings.site_email'))->send(new ContactMail($request->name, $request->email, $request->subject, $request->message));
+
+        return response(['message' => 'Message sent successfully'], 200);
     }
 }
