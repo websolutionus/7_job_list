@@ -75,6 +75,8 @@ Route::get('about-us', [AboutUsPageController::class, 'index'])->name('about.ind
 
 /** Count Routes */
 Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('contact', [ContactController::class, 'sendMail'])->name('send-mail');
+
 
 
 /** Candidate Dashboard Routes */

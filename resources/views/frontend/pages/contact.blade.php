@@ -79,7 +79,26 @@
     $(document).ready(function() {
         $("#contact-form").on('submit', function(e){
             e.preventDefault();
-            alert('working!')
+            let formData = $(this).serialize();
+            $.ajax({
+                method: 'POST',
+                url: '{{ route("send-mail") }}',
+                data: formData,
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+
+                },
+                error: function(xhr, status, error) {
+                    let erorrs = xhr.responseJSON.errors;
+                    console.log(xhr)
+                    $.each(erorrs, function(index, value) {
+                        
+                        notyf.error(value[0]);
+                    });
+                }
+            })
         });
     })
   </script>
