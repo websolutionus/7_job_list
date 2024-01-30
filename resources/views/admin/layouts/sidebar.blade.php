@@ -164,6 +164,7 @@
                     <span>Pages</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setSidebarActive(['admin.about-us.*']) }}"><a class="nav-link" href="{{ route('admin.about-us.index') }}">About us</a></li>
+                    <li class="{{ setSidebarActive(['admin.page-builder.*']) }}"><a class="nav-link" href="{{ route('admin.page-builder.index') }}">Page Builder</a></li>
 
                 </ul>
             </li>
