@@ -3,6 +3,7 @@
 use App\Http\Controllers\Frontend\FrontendJobPageController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Fronted\CandidateDashboardController;
+use App\Http\Controllers\Frontend\AboutUsPageController;
 use App\Http\Controllers\Frontend\CandidateEductionController;
 use App\Http\Controllers\Frontend\CandidateExperienceController;
 use App\Http\Controllers\Frontend\CandidateJobBookmarkController;
@@ -68,6 +69,8 @@ Route::get('job-bookmark/{id}', [CandidateJobBookmarkController::class, 'save'])
 Route::get('blogs', [FrontendBlogPageController::class, 'index'])->name('blogs.index');
 Route::get('blogs/{slug}', [FrontendBlogPageController::class, 'show'])->name('blogs.show');
 
+/** About Routes */
+Route::get('about-us', [AboutUsPageController::class, 'index'])->name('about.index');
 
 
 
