@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('custom_page_builders', function (Blueprint $table) {
             $table->id();
             $table->string('page_name');
+            $table->string('slug');
             $table->text('content');
             $table->timestamps();
         });

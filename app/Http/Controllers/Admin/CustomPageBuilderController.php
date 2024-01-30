@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomPageBuilder;
+use App\Services\Notify;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -13,7 +15,8 @@ class CustomPageBuilderController extends Controller
      */
     public function index() : View
     {
-        return view('admin.page-builder.index');
+        $pages = CustomPageBuilder::all();
+        return view('admin.page-builder.index', compact('pages'));
     }
 
     /**
@@ -29,7 +32,19 @@ class CustomPageBuilderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'page_name' => ['required', 'max:255'],
+            'content' => ['required']
+        ]);
+
+        $page = new CustomPageBuilder();
+        $page->page_name = $request->page_name;
+        $page->content = $request->content;
+        $page->save();
+
+        Notify::createdNotification();
+
+        return to_route('admin.page-builder.index');
     }
 
     /**

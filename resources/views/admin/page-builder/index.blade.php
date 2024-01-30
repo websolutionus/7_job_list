@@ -27,38 +27,32 @@
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>slug</th>
+                                    <th>Page Name</th>
+                                    <th>Url</th>
                                     <th style="width: 10%">Action</th>
                                 </tr>
                             <tbody>
-                                {{-- @forelse ($skills as $skill)
+                                @forelse ($pages as $page)
                                     <tr>
-                                        <td>{{ $skill->name }}</td>
-                                        <td>{{ $skill->slug }}</td>
+                                        <td>{{ $page->page_name }}</td>
+                                        <td><code>/{{ $page->slug }}</code></td>
                                         <td>
-                                            <a href="{{ route('admin.skills.edit', $skill->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('admin.skills.destroy', $skill->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="{{ route('admin.page-builder.edit', $page->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.page-builder.destroy', $page->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
                                         <td colspan="3" class="text-center">No result found!</td>
                                     </tr>
-                                @endforelse --}}
+                                @endforelse
 
                             </tbody>
 
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer text-right">
-                        <nav class="d-inline-block">
-                            {{-- @if ($skills->hasPages())
-                                {{ $skills->withQueryString()->links() }}
-                            @endif --}}
-                        </nav>
-                    </div>
+                    
                 </div>
             </div>
         </div>

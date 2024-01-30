@@ -23,8 +23,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Content</label>
-                                <textarea name="content" id="editor"></textarea>
-                                <x-input-error :messages="$errors->get('page_name')" class="mt-2" />
+                                <textarea name="content" id="editor" class="{{ hasError($errors, 'content') }}"></textarea>
+                                <x-input-error :messages="$errors->get('content')" class="mt-2" />
                             </div>
 
                             <div class="form-group">
