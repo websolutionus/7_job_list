@@ -23,6 +23,11 @@
     var csrftoken = "{{ csrf_token() }}";
     var menuwr = "{{ url()->current() }}";
 
+    $('.menu-builder-select').on('change', function() {
+        let url = $(this).val();
+        $('#custom-menu-item-url').val(url);
+    })
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': csrftoken

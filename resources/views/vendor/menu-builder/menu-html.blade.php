@@ -72,7 +72,9 @@ $currentUrl = url()->current();
                                                                         <label class="howto"
                                                                             for="custom-menu-item-name">
                                                                             <span>Pages</span>&nbsp;
-
+                                                                            @php
+                                                                                $customPages = \App\Models\CustomPageBuilder::all();
+                                                                            @endphp
                                                                             <select name=""
                                                                                 class="menu-builder-select regular-text menu-item-textbox input-with-default-title"
                                                                                 id="">
@@ -86,8 +88,10 @@ $currentUrl = url()->current();
                                                                                 <option value="/blogs">Blogs Page</option>
                                                                                 <option value="/about-us">About us Page</option>
                                                                                 <option value="/contact">Contact Page</option>
-                                                                                <option value="/contact">Contact Page</option>
 
+                                                                                @foreach ($customPages as $page)
+                                                                                <option value="/page/{{ $page->slug }}">{{ $page->page_name }}</option>
+                                                                                @endforeach
                                                                             </select>
                                                                         </label>
                                                                     </p>
