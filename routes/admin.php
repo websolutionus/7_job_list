@@ -148,6 +148,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /** Newsletter route */
     Route::get('newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
     Route::delete('newsletter/{id}', [NewsletterController::class, 'destroy'])->name('newsletter.destroy');
+    Route::post('newsletter', [NewsletterController::class, 'sendMail'])->name('newsletter-send-mail');
+
 
 
     /** Payment Settings Routes */

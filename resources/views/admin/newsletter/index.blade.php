@@ -1,11 +1,41 @@
 @extends('admin.layouts.master')
 
 @section('contents')
-    <section class="section">
-        <div class="section-header">
-            <h1>Newsletter Subscribers</h1>
-        </div>
+<section class="section">
+    <div class="section-header">
+        <h1>Newsletter Subscribers</h1>
+    </div>
 
+    <div class="section-body">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Send Newsletter</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('admin.newsletter-send-mail') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="">Subject</label>
+                            <input type="text" class="form-control {{ hasError($errors, 'subject') }}" name="subject" value="{{ old('subject') }}">
+                            <x-input-error :messages="$errors->get('subject')" class="mt-2" />
+                        </div>
+                        <div class="form-group">
+                            <label for="">Message</label>
+                            <textarea name="message" {{ hasError($errors, 'message') }} id="editor"> </textarea>
+                            <x-input-error :messages="$errors->get('message')" class="mt-2" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+    <section class="section">
         <div class="section-body">
             <div class="col-12">
                 <div class="card">
