@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\Company;
 use App\Models\Counter;
 use App\Models\Country;
+use App\Models\CustomPageBuilder;
 use App\Models\Hero;
 use App\Models\Job;
 use App\Models\JobCategory;
@@ -45,5 +46,11 @@ class HomeController extends Controller
         $plans = Plan::where(['frontend_show' => 1, 'show_at_home' => 1])->get();
         $blogs = Blog::latest()->take(6)->get();
         return view('frontend.home.index', compact('plans', 'hero', 'jobCategories', 'countries', 'jobCount', 'popularJobCategories', 'featuredCategories', 'whyChooseUs', 'learnMore', 'counter', 'companies', 'locations', 'reviews', 'blogs'));
+    }
+
+    function customPage(string $slug) : View {
+        $page = CustomPageBuilder::where('slug', $slug)->firstOrFail();
+
+        return view('frontend.pages.custom-page', compact('page'));
     }
 }

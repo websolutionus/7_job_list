@@ -35,7 +35,7 @@
                                 @forelse ($pages as $page)
                                     <tr>
                                         <td>{{ $page->page_name }}</td>
-                                        <td><code>/{{ $page->slug }}</code></td>
+                                        <td><code>/page/{{ $page->slug }}</code></td>
                                         <td>
                                             <a href="{{ route('admin.page-builder.edit', $page->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="{{ route('admin.page-builder.destroy', $page->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
@@ -52,7 +52,7 @@
                             </table>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
