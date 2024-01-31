@@ -5,17 +5,21 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\CustomPageBuilder;
 use App\Services\Notify;
+use App\Traits\Searchable;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CustomPageBuilderController extends Controller
 {
+    use Searchable;
     /**
      * Display a listing of the resource.
      */
     public function index() : View
     {
-        $pages = CustomPageBuilder::all();
+        $query = CustomPageBuilder::query();
+        $this->search($query, ['page_name']);
+        $pages = $query->orderBy('id', 'DESC')->paginate(20);
         return view('admin.page-builder.index', compact('pages'));
     }
 
@@ -48,19 +52,12 @@ class CustomPageBuilderController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $page = CustomPageBuilder::findOrFail($id);
+        return view('admin.page-builder.edit', compact('page'));
     }
 
     /**
@@ -68,7 +65,19 @@ class CustomPageBuilderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'page_name' => ['required', 'max:255'],
+            'content' => ['required']
+        ]);
+
+        $page = CustomPageBuilder::findOrFail($id);
+        $page->page_name = $request->page_name;
+        $page->content = $request->content;
+        $page->save();
+
+        Notify::updatedNotification();
+
+        return to_route('admin.page-builder.index');
     }
 
     /**
@@ -76,6 +85,14 @@ class CustomPageBuilderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            CustomPageBuilder::findOrFail($id)->delete();
+            Notify::deletedNotification();
+            return response(['message' => 'success'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
     }
 }
