@@ -21,6 +21,7 @@ use App\Http\Controllers\Frontend\FrontendCompanyPageController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\jobController;
 use App\Http\Controllers\Frontend\LocationController;
+use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\PricingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Models\CandidateExperience;
@@ -80,7 +81,8 @@ Route::post('contact', [ContactController::class, 'sendMail'])->name('send-mail'
 /** Custom Page Routes */
 Route::get('page/{slug}', [HomeController::class, 'customPage'])->name('custom-page');
 
-
+/** Newsletter Routes */
+Route::post('newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 
 /** Candidate Dashboard Routes */
 Route::group(
