@@ -3,7 +3,7 @@
 @section('contents')
     <section class="section">
         <div class="section-header">
-            <h1>Skills</h1>
+            <h1>Menu Builder</h1>
         </div>
 
         <div class="section-body">
