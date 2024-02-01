@@ -4,10 +4,9 @@
             <li><a class="btn btn-border mb-20 active" href="{{ route('candidate.dashboard') }}">Dashboard</a>
             </li>
             <li><a class="btn btn-border mb-20" href="{{ route('candidate.applied-jobs.index') }}">Applied Jobs</a></li>
-            <li><a class="btn btn-border mb-20 active" href="{{ route('candidate.bookmarked-jobs.index') }}">Bookmarked</a>
+            <li><a class="btn btn-border mb-20" href="{{ route('candidate.bookmarked-jobs.index') }}">Bookmarked</a>
             </li>
             <li><a class="btn btn-border mb-20" href="{{ route('candidate.profile.index') }}">My Profile</a></li>
-            <li><a class="btn btn-border mb-20" href="candidate-profile-save-jobs.html">Saved Jobs</a></li>
             <li>
                  <!-- Authentication -->
                  <form method="POST" action="{{ route('logout') }}">
