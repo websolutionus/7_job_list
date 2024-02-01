@@ -25,25 +25,26 @@
 <footer class="footer pt-165">
     <div class="container">
         <div class="row justify-content-between">
+            @php
+                $footerDetails = \App\Models\Footer::first();
+                $footerOne = \Menu::getByName('Footer Menu One');
+                $footerTwo = \Menu::getByName('Footer Menu Two');
+                $footerThree = \Menu::getByName('Footer Menu Three');
+                $footerFour = \Menu::getByName('Footer Menu Four');
+            @endphp
+
             <div class="footer-col-1 col-md-3 col-sm-12">
                 <a class="footer_logo" href="index.html">
-                    <img alt="joblist" src="assets/imgs/template/logo_2.png">
+                    <img alt="joblist" src="{{ $footerDetails?->logo }}">
                 </a>
-                <div class="mt-20 mb-20 font-xs color-text-paragraph-2">joblist is the heart of the design community and
-                    the
-                    best resource to discover and connect with designers and jobs worldwide.</div>
+                <div class="mt-20 mb-20 font-xs color-text-paragraph-2">{{ $footerDetails?->details }}</div>
                 <div class="footer-social">
                     <a class="icon-socials icon-facebook" href="#"><i class="fab fa-facebook-f"></i></a>
                     <a class="icon-socials icon-twitter" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="icon-socials icon-linkedin" href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            @php
-                $footerOne = \Menu::getByName('Footer Menu One');
-                $footerTwo = \Menu::getByName('Footer Menu Two');
-                $footerThree = \Menu::getByName('Footer Menu Three');
-                $footerFour = \Menu::getByName('Footer Menu Four');
-            @endphp
+
             <div class="footer-col-2 col-md-2 col-xs-6">
                 <h6 class="mb-20">Resources</h6>
                 <ul class="menu-footer">

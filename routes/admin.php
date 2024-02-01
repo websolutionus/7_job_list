@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\CustomPageBuilderController;
 use App\Http\Controllers\Admin\EducationController;
+use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\JobController;
@@ -153,7 +154,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Menu Builder route */
     Route::resource('menu-builder', MenuBuilderController::class);
-
+    /** Footer route */
+    Route::resource('footer', FooterController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
