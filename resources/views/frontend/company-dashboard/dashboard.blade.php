@@ -30,20 +30,20 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6">
                                     <div class="dash_overview_item bg-info-subtle">
-                                        <h2>12 <span>job applied</span></h2>
+                                        <h2>{{ $jobPosts }} <span>Pending Jobs</span></h2>
                                         <span class="icon"><i class="fas fa-briefcase"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
                                     <div class="dash_overview_item bg-danger-subtle">
-                                        <h2>12 <span>job applied</span></h2>
+                                        <h2>{{ $totalJobs }} <span>Total Jobs</span></h2>
                                         <span class="icon"><i class="fas fa-briefcase"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
                                     <div class="dash_overview_item bg-warning-subtle">
-                                        <h2>12 <span>job applied</span></h2>
-                                        <span class="icon"><i class="fas fa-briefcase"></i></span>
+                                        <h2>{{ $totalOrders }} <span>Total Orders</span></h2>
+                                        <span class="icon"><i class="fas fa-cart-plus"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -63,6 +63,41 @@
                                     </div>
                                 </div>
                             @endif
+                            <br>
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">First</th>
+                                            <th scope="col">Last</th>
+                                            <th scope="col">Handle</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">3</th>
+                                            <td colspan="2">Larry the Bird</td>
+                                            <td>@twitter</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
