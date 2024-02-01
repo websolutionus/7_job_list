@@ -14,10 +14,10 @@
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Total Admin</h4>
+              <h4>Total Earnings</h4>
             </div>
             <div class="card-body">
-              10
+             {{ config('settings.site_currency_icon') }} {{ $totalEarnings }}
             </div>
           </div>
         </div>

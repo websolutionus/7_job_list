@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
     function index() : View {
-        return view('admin.dashboard.index');
+        $amounts = Order::pluck('default_amount')->toArray();
+        $totalEarnings = calculateEarnings($amounts);
+
+        return view('admin.dashboard.index', compact('totalEarnings'));
     }
 }
