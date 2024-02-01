@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <h4>All Icons</h4>
                         <div class="card-header-form">
-                           
+
                         </div>
                         <a href="{{ route('admin.social-icon.create') }}" class="btn btn-primary"> <i class="fas fa-plus-circle"></i> Create new</a>
                     </div>
@@ -25,9 +25,9 @@
                                     <th style="width: 10%">Action</th>
                                 </tr>
                             <tbody>
-                                {{-- @forelse ($icons as $icon)
+                                @forelse ($icons as $icon)
                                     <tr>
-                                        <td>{{ $icon->icon }}</td>
+                                        <td><i style="font-size: 40px" class="{{ $icon->icon }}"></i></td>
                                         <td>{{ $icon->url }}</td>
                                         <td>
                                             <a href="{{ route('admin.social-icon.edit', $icon->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
@@ -38,7 +38,7 @@
                                     <tr>
                                         <td colspan="3" class="text-center">No result found!</td>
                                     </tr>
-                                @endforelse --}}
+                                @endforelse
 
                             </tbody>
 
@@ -47,9 +47,9 @@
                     </div>
                     <div class="card-footer text-right">
                         <nav class="d-inline-block">
-                            {{-- @if ($icons->hasPages())
+                            @if ($icons->hasPages())
                                 {{ $icons->withQueryString()->links() }}
-                            @endif --}}
+                            @endif
                         </nav>
                     </div>
                 </div>

@@ -27,6 +27,7 @@
         <div class="row justify-content-between">
             @php
                 $footerDetails = \App\Models\Footer::first();
+                $footerIcons = \App\Models\SocialIcon::all();
                 $footerOne = \Menu::getByName('Footer Menu One');
                 $footerTwo = \Menu::getByName('Footer Menu Two');
                 $footerThree = \Menu::getByName('Footer Menu Three');
@@ -39,9 +40,10 @@
                 </a>
                 <div class="mt-20 mb-20 font-xs color-text-paragraph-2">{{ $footerDetails?->details }}</div>
                 <div class="footer-social">
-                    <a class="icon-socials icon-facebook" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="icon-socials icon-twitter" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="icon-socials icon-linkedin" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    @foreach ($footerIcons as $icon)
+                    <a class="icon-socials icon-facebook" href="{{ $icon->url }}"><i class="{{ $icon->icon }}"></i></a>
+                    @endforeach
+
                 </div>
             </div>
 

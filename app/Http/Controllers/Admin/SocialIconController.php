@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SocialIcon;
+use App\Services\Notify;
 use Illuminate\Http\Request;
 
 class SocialIconController extends Controller
@@ -31,23 +32,29 @@ class SocialIconController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'icon' => ['required', 'string'],
+            'url' => ['required']
+        ]);
+
+        $social = new SocialIcon();
+        $social->icon = $request->icon;
+        $social->url = $request->url;
+        $social->save();
+
+        Notify::createdNotification();
+        return to_route('admin.social-icon.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $icon = SocialIcon::findOrFail($id);
+        return view('admin.social-icon.edit', compact('icon'));
+
     }
 
     /**
@@ -55,7 +62,17 @@ class SocialIconController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'url' => ['required']
+        ]);
+
+        $social = SocialIcon::findOrFail($id);
+        if($request->filled('icon')) $social->icon = $request->icon;
+        $social->url = $request->url;
+        $social->save();
+
+        Notify::updatedNotification();
+        return to_route('admin.social-icon.index');
     }
 
     /**
@@ -63,6 +80,14 @@ class SocialIconController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            SocialIcon::findOrFail($id)->delete();
+            Notify::deletedNotification();
+            return response(['message' => 'success'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
     }
 }
