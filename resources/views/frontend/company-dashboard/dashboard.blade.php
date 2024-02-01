@@ -67,31 +67,27 @@
                             <div class="card">
                                 <div class="card-body">
                                     <table class="table">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
-                                          </tr>
-                                        </thead>
+
                                         <tbody>
                                           <tr>
                                             <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <td><b>Current Package</b></td>
+                                            <td>{{ $userPlan->plan->label }} Package</td>
                                           </tr>
                                           <tr>
                                             <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
+                                            <td>Job Post Available</td>
+                                            <td>{{ $userPlan->job_limit }}</td>
                                           </tr>
                                           <tr>
                                             <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
+                                            <td>Featured Post Available</td>
+                                            <td>{{ $userPlan->featured_job_limit }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">4</th>
+                                            <td>Highlight Post Available</td>
+                                            <td>{{ $userPlan->highlight_job_limit }}</td>
                                           </tr>
                                         </tbody>
                                       </table>
