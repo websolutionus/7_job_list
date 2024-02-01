@@ -26,12 +26,15 @@ class FooterController extends Controller
     public function update(Request $request, string $id)
     {
         $imagePath = $this->uploadFile($request, 'logo');
+        $data = [
+            'copyright' => $request->copyright,
+            'details' => $request->details
+        ];
+        if($imagePath) $data['logo'] = $imagePath;
+
         Footer::updateOrCreate(
             ['id' => 1],
-            [
-                'logo' => $imagePath,
-                'details' => $request->details
-            ]
+            $data
         );
 
         Notify::updatedNotification();

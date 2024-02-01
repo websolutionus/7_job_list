@@ -9,5 +9,5 @@ class Footer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'logo', 'details'];
+    protected $fillable = ['id', 'logo', 'details', 'copyright'];
 }
