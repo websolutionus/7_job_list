@@ -42,10 +42,12 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SalaryTypeController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\SocialIconController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 use App\Models\JobExperience;
 use App\Models\SiteSetting;
+use App\Models\SocialIcon;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -156,6 +158,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('menu-builder', MenuBuilderController::class);
     /** Footer route */
     Route::resource('footer', FooterController::class);
+    /** Social Icon route */
+    Route::resource('social-icon', SocialIconController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
