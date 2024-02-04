@@ -10,7 +10,7 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-primary">
-            <i class="far fa-user"></i>
+            <i class="fas fa-dollar-sign"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
@@ -25,14 +25,14 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-danger">
-            <i class="far fa-newspaper"></i>
+            <i class="fas fa-users"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>News</h4>
+              <h4>Total Candidates</h4>
             </div>
             <div class="card-body">
-              42
+              {{ $totalCandidates }}
             </div>
           </div>
         </div>
@@ -40,14 +40,14 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-warning">
-            <i class="far fa-file"></i>
+            <i class="fas fa-users"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Reports</h4>
+              <h4>Total Companies</h4>
             </div>
             <div class="card-body">
-              1,201
+              {{ $totalCompanies }}
             </div>
           </div>
         </div>
@@ -59,10 +59,70 @@
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Online Users</h4>
+              <h4>Total Jobs</h4>
             </div>
             <div class="card-body">
-              47
+              {{ $totalJobs }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div class="card card-statistic-1">
+          <div class="card-icon bg-info">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <div class="card-wrap">
+            <div class="card-header">
+              <h4>Active Jobs</h4>
+            </div>
+            <div class="card-body">
+              {{ $activeJobs }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div class="card card-statistic-1">
+          <div class="card-icon bg-warning">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <div class="card-wrap">
+            <div class="card-header">
+              <h4>Expired Jobs</h4>
+            </div>
+            <div class="card-body">
+              {{ $expiredJobs }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div class="card card-statistic-1">
+          <div class="card-icon bg-danger">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <div class="card-wrap">
+            <div class="card-header">
+              <h4>Pending Jobs</h4>
+            </div>
+            <div class="card-body">
+              {{ $pendingJobs }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div class="card card-statistic-1">
+          <div class="card-icon bg-primary">
+            <i class="fab fa-blogger-b"></i>
+          </div>
+          <div class="card-wrap">
+            <div class="card-header">
+              <h4>Total Blogs</h4>
+            </div>
+            <div class="card-body">
+              {{ $totalBlogs }}
             </div>
           </div>
         </div>
