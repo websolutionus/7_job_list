@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\State;
 use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\RedirectResponse;
@@ -84,6 +85,12 @@ class CountryController extends Controller
      */
     public function destroy(string $id)
     {
+        $stateExist = State::where('country_id', $id)->exists();
+
+        if($stateExist) {
+            return response(['message' => 'This item is already been used can\'t delete!'], 500);
+        }
+
         try {
             Country::findOrFail($id)->delete();
             Notify::deletedNotification();

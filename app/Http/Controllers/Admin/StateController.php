@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\Country;
 use App\Models\State;
 use App\Services\Notify;
@@ -92,6 +93,12 @@ class StateController extends Controller
      */
     public function destroy(string $id) : Response
     {
+        $cityExist = City::where('state_id', $id)->exists();
+
+        if($cityExist) {
+            return response(['message' => 'This item is already been used can\'t delete!'], 500);
+        }
+
         try {
             State::findOrFail($id)->delete();
             Notify::deletedNotification();
