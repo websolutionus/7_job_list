@@ -84,6 +84,7 @@ class IndustryTypeController extends Controller
      */
     public function destroy(string $id)
     {
+        
         try {
             IndustryType::findOrFail($id)->delete();
             Notify::deletedNotification();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Education;
+use App\Models\Job;
 use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\RedirectResponse;
@@ -84,6 +85,13 @@ class EducationController extends Controller
      */
     public function destroy(string $id)
     {
+        // validation
+        $jobExist = Job::where('education_id', $id)->exists();
+
+        if($jobExist) {
+            return response(['message' => 'This item is already been used can\'t delete!'], 500);
+        }
+
         try {
             Education::findOrFail($id)->delete();
             Notify::deletedNotification();
