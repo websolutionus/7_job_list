@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Copyright</label>
-                                <input type="text" class="form-control {{ hasError($errors, 'copyright') }}" name="copyright" value="{{ old('copyright', $footer->copyright) }}">
+                                <input type="text" class="form-control {{ hasError($errors, 'copyright') }}" name="copyright" value="{{ old('copyright', $footer?->copyright) }}">
                                 <x-input-error :messages="$errors->get('copyright')" class="mt-2" />
                             </div>
 
