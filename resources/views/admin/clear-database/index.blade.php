@@ -54,6 +54,10 @@
                             url: "{{ route('admin.clear-database') }}",
                             data: {_token: "{{ csrf_token() }}"},
                             success: function(response) {
+                                swal(response.message, {
+                                    icon: 'success',
+                                });
+
                                 window.location.reload();
                             },
                             error: function(xhr, status, error) {
