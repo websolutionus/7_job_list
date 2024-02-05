@@ -40,6 +40,7 @@ use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\SalaryTypeController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SkillController;
@@ -165,7 +166,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::get('clear-database', [ClearDatabaseController::class, 'index'])->name('clear-database.index');
     Route::post('clear-database', [ClearDatabaseController::class, 'clearDatabase'])->name('clear-database');
 
-
+    /** role permission route */
+    Route::resource('role', RolePermissionController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
