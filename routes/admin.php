@@ -163,6 +163,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('social-icon', SocialIconController::class);
 
     Route::get('clear-database', [ClearDatabaseController::class, 'index'])->name('clear-database.index');
+    Route::post('clear-database', [ClearDatabaseController::class, 'clearDatabase'])->name('clear-database');
+
 
 
     /** Payment Settings Routes */

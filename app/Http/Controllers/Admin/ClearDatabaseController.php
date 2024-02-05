@@ -11,4 +11,8 @@ class ClearDatabaseController extends Controller
     function index() : View {
         return view('admin.clear-database.index');
     }
+
+    function clearDatabase() {
+        dd('working');
+    }
 }

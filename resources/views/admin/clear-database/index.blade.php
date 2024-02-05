@@ -32,3 +32,40 @@
     </section>
 
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.clear_db').on('submit', function(e) {
+                e.preventDefault();
+
+                swal({
+                    title: 'Are you sure?',
+                    text: 'This action will wipe your entire database!',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        $.ajax({
+                            method: 'POST',
+                            url: "{{ route('admin.clear-database') }}",
+                            data: {_token: "{{ csrf_token() }}"},
+                            success: function(response) {
+                                window.location.reload();
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(xhr);
+                                swal(xhr.responseJSON.message, {
+                                    icon: 'error',
+                                });
+                            }
+                        })
+                    }
+                });
+            })
+        })
+    </script>
+@endpush
