@@ -21,7 +21,8 @@ class RolePermissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.access-management.role.create');
+
     }
 
     /**
