@@ -53,6 +53,13 @@
                             method: 'POST',
                             url: "{{ route('admin.clear-database') }}",
                             data: {_token: "{{ csrf_token() }}"},
+                            beforeSend: function() {
+                                swal('Clearing database please don\'t refresh the page!', {
+                                    icon: 'info',
+                                    buttons: false,
+                                    closeOnClickOutside: false
+                                });
+                            },
                             success: function(response) {
                                 swal(response.message, {
                                     icon: 'success',
