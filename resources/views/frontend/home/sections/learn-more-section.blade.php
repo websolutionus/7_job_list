@@ -9,7 +9,7 @@
               <div class="wow animate__animated animate__fadeInUp"><a class="btn btn-default"
                   href="jobs-grid.html">Search Jobs</a>
                   @if ($learnMore?->url)
-                    <a class="btn btn-link" href="{{ $learnMore->url }}">Learn More</a>
+                    <a class="btn btn-link" href="{{ $learnMore?->url }}">Learn More</a>
                   @endif
               </div>
             </div>
@@ -18,7 +18,7 @@
         <div class="col-lg-5 col-sm-12">
           <div class="box-image-job">
             <figure class="wow animate__animated animate__fadeIn">
-              <img alt="joblist" src="{{ asset($learnMore->image) }}" style="height: 540px; object-fit:cover">
+              <img alt="joblist" src="{{ asset($learnMore?->image) }}" style="height: 540px; object-fit:cover">
             </figure>
           </div>
         </div>
