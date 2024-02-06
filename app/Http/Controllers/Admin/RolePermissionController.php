@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\Notify;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RolePermissionController extends Controller
 {
@@ -33,7 +35,19 @@ class RolePermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:50', 'unique:roles,name']
+        ]);
+
+        /** create role */
+        $role = Role::create(['guard_name' => 'admin', 'name' => $request->name]);
+
+        /** assign permissions to the role */
+        $role->syncPermissions($request->permissions);
+
+        Notify::createdNotification();
+
+        return to_route('admin.role.index');
     }
 
     /**

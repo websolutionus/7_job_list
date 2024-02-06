@@ -30,7 +30,7 @@
                                     @foreach ($permission as $item)
                                     <div class="col-md-2">
                                         <label class="custom-switch mt-2">
-                                            <input type="checkbox" name="permission[]"
+                                            <input type="checkbox" name="permissions[]"
                                                 class="custom-switch-input" value="{{ $item->name }}">
                                             <span class="custom-switch-indicator"></span>
                                             <span class="custom-switch-description">{{ $item->name }}</span>
