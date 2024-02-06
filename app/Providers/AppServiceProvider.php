@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\UserPlan;
+use Gate;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,5 +24,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('Super Admin') ? true : null;
+        });
     }
 }

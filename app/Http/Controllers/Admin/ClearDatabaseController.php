@@ -19,10 +19,12 @@ class ClearDatabaseController extends Controller
             // wipe database
             Artisan::call('migrate:fresh');
             // seed default data
+            Artisan::call('db:seed', ['--class' => 'RolePermissionSeeder']);
             Artisan::call('db:seed', ['--class' => 'AdminSeeder']);
             Artisan::call('db:seed', ['--class' => 'SiteSettingSeeder']);
             Artisan::call('db:seed', ['--class' => 'MenuSeeder']);
             Artisan::call('db:seed', ['--class' => 'PaymentSettingSeeder']);
+
             // delete files
             $this->deleteFiles();
 
