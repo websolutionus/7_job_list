@@ -6,6 +6,7 @@
     <div class="section-header">
       <h1>Dashboard</h1>
     </div>
+    @if (canAccess(['dashboard analytics']))
     <div class="row">
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
@@ -128,7 +129,9 @@
         </div>
       </div>
     </div>
+    @endif
 
+    @if (canAccess(['dashboard pending posts']))
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -143,7 +146,7 @@
                         </div>
                     </form>
                 </div>
-                
+
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -235,6 +238,7 @@
             </div>
         </div>
     </div>
+    @endif
 
   </section>
 @endsection

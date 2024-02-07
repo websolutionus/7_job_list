@@ -10,6 +10,11 @@ use File;
 
 class ClearDatabaseController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['permission:database clear']);
+    }
+
     function index() : View {
         return view('admin.clear-database.index');
     }

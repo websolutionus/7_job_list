@@ -17,6 +17,11 @@ class ProfessionController extends Controller
 {
     use Searchable;
 
+    function __construct()
+    {
+        $this->middleware(['permission:job attributes']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -92,7 +97,7 @@ class ProfessionController extends Controller
         if($candidateExist) {
             return response(['message' => 'This item is already been used can\'t delete!'], 500);
         }
-        
+
         try {
             Profession::findOrFail($id)->delete();
             Notify::deletedNotification();

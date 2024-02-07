@@ -13,6 +13,12 @@ use Illuminate\View\View;
 class AboutController extends Controller
 {
     use FileUploadTrait;
+
+    function __construct()
+    {
+        $this->middleware(['permission:site pages']);
+    }
+
     /**
      * Display a listing of the resource.
      */
