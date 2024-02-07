@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\RolePermissionController;
+use App\Http\Controllers\Admin\RoleUserController;
 use App\Http\Controllers\Admin\SalaryTypeController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SkillController;
@@ -168,6 +169,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** role permission route */
     Route::resource('role', RolePermissionController::class);
+    /** role user route */
+    Route::resource('role-user', RoleUserController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
