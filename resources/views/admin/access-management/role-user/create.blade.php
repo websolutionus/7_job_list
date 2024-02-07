@@ -51,7 +51,7 @@
                                         <option value="{{ $role->name }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select>
-                                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('role')" class="mt-2" />
                             </div>
 
 
