@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\Notify;
+use App\Traits\Searchable;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Permission;
@@ -11,6 +12,7 @@ use Spatie\Permission\Models\Role;
 
 class RolePermissionController extends Controller
 {
+    use Searchable;
     /**
      * Display a listing of the resource.
      */

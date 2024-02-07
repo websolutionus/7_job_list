@@ -100,19 +100,29 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
+
             <li class="{{ setSidebarActive(['admin.dashboard']) }}">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
 
             </li>
             <li class="menu-header">Starter</li>
-
+            @if (canAccess(['order index']))
             <li class="{{ setSidebarActive(['admin.orders.*']) }}"><a class="nav-link" href="{{ route('admin.orders.index') }}"><i class="far fa-square"></i> <span>Orders</span></a></li>
+            @endif
 
+            @if (canAccess(['job category create', 'job category update', 'job category delete']))
             <li class="{{ setSidebarActive(['admin.job-categories.*']) }}"><a class="nav-link" href="{{ route('admin.job-categories.index') }}"><i class="far fa-square"></i> <span>Job Category</span></a></li>
+            @endif
 
+            @if (canAccess(['job create', 'job update', 'job delete']))
             <li class="{{ setSidebarActive(['admin.jobs.*']) }}"><a class="nav-link" href="{{ route('admin.jobs.index') }}"><i class="far fa-square"></i> <span>Job Post</span></a></li>
+            @endif
 
+            @if (canAccess(['job role']))
             <li class="{{ setSidebarActive(['admin.job-roles.*']) }}"><a class="nav-link" href="{{ route('admin.job-roles.index') }}"><i class="far fa-square"></i> <span>Job Roles</span></a></li>
+            @endif
+
+            @if (canAccess(['job attributes']))
 
             <li class="dropdown {{ setSidebarActive(['admin.industry-types.*', 'admin.organization-types.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
@@ -133,8 +143,9 @@
                     <li class="{{ setSidebarActive(['admin.job-experiences.*']) }}"><a class="nav-link" href="{{ route('admin.job-experiences.index') }}">Experiences</a></li>
                 </ul>
             </li>
+            @endif
 
-
+            @if (canAccess(['job locations']))
             <li class="dropdown {{ setSidebarActive(['admin.countries.*', 'admin.states.*', 'admin.cities.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Locations</span></a>
@@ -146,6 +157,9 @@
 
                 </ul>
             </li>
+            @endif
+
+            @if (canAccess(['sections']))
             <li class="dropdown {{ setSidebarActive(['admin.countries.*', 'admin.states.*', 'admin.cities.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Sections</span></a>
@@ -158,7 +172,9 @@
                     <li class="{{ setSidebarActive(['admin.reviews.*']) }}"><a class="nav-link" href="{{ route('admin.reviews.index') }}">Reviews</a></li>
                 </ul>
             </li>
+            @endif
 
+            @if (canAccess(['site pages']))
             <li class="dropdown {{ setSidebarActive(['admin.countries.*', 'admin.states.*', 'admin.cities.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Pages</span></a>
@@ -168,7 +184,9 @@
 
                 </ul>
             </li>
+            @endif
 
+            @if (canAccess(['site footer']))
             <li class="dropdown {{ setSidebarActive(['admin.countries.*', 'admin.states.*', 'admin.cities.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Footer</span></a>
@@ -178,43 +196,46 @@
                     <li class="{{ setSidebarActive(['admin.social-icon.*']) }}"><a class="nav-link" href="{{ route('admin.social-icon.index') }}">Social Icons</a></li>
                 </ul>
             </li>
+            @endif
 
+            @if (canAccess(['blogs']))
             <li class="{{ setSidebarActive(['admin.blogs.*']) }}"><a class="nav-link" href="{{ route('admin.blogs.index') }}"><i class="far fa-square"></i> <span>Blogs</span></a></li>
-
+            @endif
+            @if (canAccess(['price plan']))
             <li class="{{ setSidebarActive(['admin.plans.*']) }}"><a class="nav-link" href="{{ route('admin.plans.index') }}"><i class="far fa-square"></i> <span>Price Plan</span></a></li>
+            @endif
 
+            @if (canAccess(['news letter']))
             <li class="{{ setSidebarActive(['admin.newsletter.*']) }}"><a class="nav-link" href="{{ route('admin.newsletter.index') }}"><i class="far fa-square"></i> <span>Newsletter</span></a></li>
+            @endif
 
+            @if (canAccess(['menu builder']))
             <li class="{{ setSidebarActive(['admin.menu-builder.*']) }}"><a class="nav-link" href="{{ route('admin.menu-builder.index') }}"><i class="far fa-square"></i> <span>Menu Builder</span></a></li>
+            @endif
 
+            @if (canAccess(['access management']))
             <li class="dropdown {{ setSidebarActive(['admin.countries.*', 'admin.states.*', 'admin.cities.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Access Management</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setSidebarActive(['admin.role-user.*']) }}"><a class="nav-link" href="{{ route('admin.role-user.index') }}">Role Users</a></li>
                     <li class="{{ setSidebarActive(['admin.role.*']) }}"><a class="nav-link" href="{{ route('admin.role.index') }}">Roles</a></li>
-
-
                 </ul>
             </li>
+            @endif
 
+            @if (canAccess(['payment settings']))
             <li class="{{ setSidebarActive(['admin.payment-settings.index']) }}"><a class="nav-link" href="{{ route('admin.payment-settings.index') }}"><i class="far fa-square"></i> <span>Payment Settings</span></a></li>
+            @endif
+
+            @if (canAccess(['payment settings']))
 
             <li class="{{ setSidebarActive(['admin.payment-settings.index']) }}"><a class="nav-link" href="{{ route('admin.site-settings.index') }}"><i class="far fa-square"></i> <span>Site Settings</span></a></li>
+            @endif
 
+            @if (canAccess(['database clear']))
             <li class="{{ setSidebarActive(['admin.clear-database.index']) }}"><a class="nav-link" href="{{ route('admin.clear-database.index') }}"><i class="far fa-square"></i> <span>Clear Database</span></a></li>
-
-
-            {{-- <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Layout</span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
-                </ul>
-            </li> --}}
-            {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
+            @endif
 
         </ul>
     </aside>
