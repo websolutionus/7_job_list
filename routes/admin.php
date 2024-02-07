@@ -182,6 +182,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /** Site Settings Routes */
     Route::get('site-settings', [SiteSettingController::class, 'index'])->name('site-settings.index');
     Route::post('general-settings', [SiteSettingController::class, 'updateGeneralSetting'])->name('general-settings.update');
+    Route::post('logo-settings', [SiteSettingController::class, 'updateLogoSetting'])->name('logo-settings.update');
 
 
 });
