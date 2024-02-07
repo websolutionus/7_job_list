@@ -27,23 +27,25 @@
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tr>
-                                    <th>Role Name</th>
-                                    <th>Permissions</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
                                     <th style="width: 10%">Action</th>
                                 </tr>
                             <tbody>
-                                {{-- @forelse ($roles as $role)
+                                @forelse ($admins as $admin)
                                     <tr>
-                                        <td>{{ $role->name }}</td>
-                                        <td style="width: 70%">
-                                            @foreach ($role->permissions as $permission)
-                                                <span class="badge bg-primary text-light m-1">{{ $permission->name }}</span>
-                                            @endforeach
+                                        <td>{{ $admin->name }}</td>
+                                        <td >
+                                            {{ $admin->email }}
+                                        </td>
+                                        <td >
+                                            {{ $admin->getRoleNames()->first() }}
                                         </td>
                                         <td>
-                                            @if ($role->name !== 'Super Admin')
-                                            <a href="{{ route('admin.role.edit', $role->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('admin.role.destroy', $role->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
+                                            @if ($admin->getRoleNames()->first() !== 'Super Admin')
+                                            <a href="{{ route('admin.role-user.edit', $admin->id) }}" class="btn-sm btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.role-user.destroy', $admin->id) }}" class="btn-sm btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
                                             @endif
                                         </td>
                                     </tr>
@@ -51,7 +53,7 @@
                                     <tr>
                                         <td colspan="3" class="text-center">No result found!</td>
                                     </tr>
-                                @endforelse --}}
+                                @endforelse
 
                             </tbody>
 

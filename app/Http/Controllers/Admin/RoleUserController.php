@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Services\Notify;
+use App\Traits\Searchable;
 use Flasher\Notyf\Laravel\Facade\Notyf;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -12,12 +13,14 @@ use Spatie\Permission\Models\Role;
 
 class RoleUserController extends Controller
 {
+    use Searchable;
     /**
      * Display a listing of the resource.
      */
     public function index(): View
     {
-        return view('admin.access-management.role-user.index');
+        $admins = Admin::all();
+        return view('admin.access-management.role-user.index', compact('admins'));
     }
 
     /**
@@ -56,20 +59,16 @@ class RoleUserController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+        $roles = Role::all();
+
+        return view('admin.access-management.role-user.edit', compact('admin', 'roles'));
     }
 
     /**
@@ -77,7 +76,25 @@ class RoleUserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'max:255', 'email', 'unique:admins,email,'.$id],
+            'password' => ['confirmed'],
+            'role' => ['required']
+        ]);
+
+        $user = Admin::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if($request->password) $user->password = bcrypt($request->password);
+        $user->save();
+
+        // assign role
+        $user->syncRoles($request->role);
+
+        Notify::updatedNotification();
+
+        return to_route('admin.role-user.index');
     }
 
     /**
@@ -85,6 +102,21 @@ class RoleUserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $admin = Admin::findOrFail($id);
+        if($admin->getRoleNames()->first() === 'Super Admin') {
+            return response(['message' => 'You can\'t delete super admin!'], 500);
+        }
+
+        try {
+            Admin::findOrFail($id)->delete();
+            Notify::deletedNotification();
+            return response(['message' => 'success'], 200);
+
+        }catch(\Exception $e) {
+            logger($e);
+            return response(['message' => 'Something Went Wrong Please Try Again!'], 500);
+        }
+
     }
 }
