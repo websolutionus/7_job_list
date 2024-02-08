@@ -39,7 +39,7 @@ class jobController extends Controller
         $query = Job::query();
         $query->withCount('applications');
         $this->search($query, ['title', 'slug']);
-        $jobs = $query->where('company_id', auth()->user()->company->id)->orderBy('id', 'DESC')->paginate(20);
+        $jobs = $query->where('company_id', auth()->user()->company?->id)->orderBy('id', 'DESC')->paginate(20);
         return view('frontend.company-dashboard.job.index', compact('jobs'));
     }
 

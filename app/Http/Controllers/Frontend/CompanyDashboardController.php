@@ -12,10 +12,10 @@ use Illuminate\View\View;
 class CompanyDashboardController extends Controller
 {
     function index() : View {
-        $jobPosts = Job::where('company_id', auth()->user()->company->id)->where('status', 'pending')->count();
-        $totalJobs = Job::where('company_id', auth()->user()->company->id)->count();
-        $totalOrders = Order::where('company_id', auth()->user()->company->id)->count();
-        $userPlan = UserPlan::where('company_id', auth()->user()->company->id)->first();
+        $jobPosts = Job::where('company_id', auth()->user()->company?->id)->where('status', 'pending')->count();
+        $totalJobs = Job::where('company_id', auth()->user()->company?->id)->count();
+        $totalOrders = Order::where('company_id', auth()->user()->company?->id)->count();
+        $userPlan = UserPlan::where('company_id', auth()->user()->company?->id)->first();
 
         return view('frontend.company-dashboard.dashboard', compact('jobPosts', 'totalJobs', 'totalOrders', 'userPlan'));
     }

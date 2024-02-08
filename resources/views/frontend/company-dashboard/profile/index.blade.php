@@ -78,7 +78,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Bio *</label>
-                                            <textarea class="{{ $errors->has('bio') ? 'is-invalid' : '' }}" name="bio">{{ $companyInfo?->bio }}</textarea>
+                                            <textarea id="editor" class="{{ $errors->has('bio') ? 'is-invalid' : '' }}" name="bio">{{ $companyInfo?->bio }}</textarea>
                                             <x-input-error :messages="$errors->get('bio')" class="mt-2" />
                                         </div>
                                     </div>
@@ -196,7 +196,7 @@
                                                 value="{{ $companyInfo?->country }}">
                                                 <option value="">Select</option>
                                                 @foreach ($countries as $country)
-                                                    <option @selected($country->id === $companyInfo->country) value="{{ $country->id }}">{{ $country->name }}</option>
+                                                    <option @selected($country->id === $companyInfo?->country) value="{{ $country->id }}">{{ $country->name }}</option>
                                                 @endforeach
                                             </select>
                                             <x-input-error :messages="$errors->get('country')" class="mt-2" />

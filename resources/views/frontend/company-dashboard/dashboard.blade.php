@@ -72,22 +72,22 @@
                                           <tr>
                                             <th scope="row">1</th>
                                             <td><b>Current Package</b></td>
-                                            <td>{{ $userPlan->plan->label }} Package</td>
+                                            <td>{{ $userPlan?->plan?->label }} Package</td>
                                           </tr>
                                           <tr>
                                             <th scope="row">2</th>
                                             <td>Job Post Available</td>
-                                            <td>{{ $userPlan->job_limit }}</td>
+                                            <td>{{ $userPlan?->job_limit }}</td>
                                           </tr>
                                           <tr>
                                             <th scope="row">3</th>
                                             <td>Featured Post Available</td>
-                                            <td>{{ $userPlan->featured_job_limit }}</td>
+                                            <td>{{ $userPlan?->featured_job_limit }}</td>
                                           </tr>
                                           <tr>
                                             <th scope="row">4</th>
                                             <td>Highlight Post Available</td>
-                                            <td>{{ $userPlan->highlight_job_limit }}</td>
+                                            <td>{{ $userPlan?->highlight_job_limit }}</td>
                                           </tr>
                                         </tbody>
                                       </table>

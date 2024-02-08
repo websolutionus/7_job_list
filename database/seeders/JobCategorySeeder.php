@@ -14,19 +14,39 @@ class JobCategorySeeder extends Seeder
     public function run(): void
     {
         $top_job_categories = array(
-            "Healthcare",
-            "Technology",
-            "Business and Finance",
-            "Education",
+            "Accounting/Finance",
+            "Administration",
+            "Advertising",
+            "Agriculture",
+            "Arts/Entertainment",
+            "Banking",
             "Construction",
+            "Customer Service",
+            "Education/Training",
+            "Engineering",
+            "Government/Military",
+            "Healthcare",
+            "Human Resources",
+            "Information Technology",
+            "Legal",
+            "Management",
             "Manufacturing",
-            "Sales and Marketing",
-            "Transportation and Logistics",
-            "Green Jobs",
-            "Creative and Media"
+            "Communications",
+            "Nonprofit",
+            "Real Estate",
+            "Restaurant/Food Service",
+            "Retail",
+            "Sales",
+            "Science/Biotech",
+            "Telecommunications",
+            "Transportation",
+            "Travel/Hospitality",
+            "Warehousing",
+            "Writing/Editing",
+            "Other"
         );
 
-        foreach($top_job_categories as $item) {
+        foreach ($top_job_categories as $item) {
             $create = new JobCategory();
             $create->icon = 'fas fa-dot-circle';
             $create->name = $item;
