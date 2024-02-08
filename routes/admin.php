@@ -39,6 +39,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProfessionController;
+use App\Http\Controllers\Admin\ProfileUpdateController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\RoleUserController;
@@ -76,6 +77,11 @@ Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'adm
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
+
+    /** Profile update routes */
+    Route::get('profile', [ProfileUpdateController::class, 'index'])->name('profile.index');
+    Route::post('profile', [ProfileUpdateController::class, 'update'])->name('profile.update');
+
 
     /** Dashboard Route */
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
