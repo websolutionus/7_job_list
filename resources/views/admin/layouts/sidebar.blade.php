@@ -8,69 +8,18 @@
 
     </form>
     <ul class="navbar-nav navbar-right">
-        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
-                class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
-            <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                <div class="dropdown-header">Messages
-                    <div class="float-right">
-                        <a href="#">Mark All As Read</a>
-                    </div>
-                </div>
-                <div class="dropdown-list-content dropdown-list-message">
-                    <a href="#" class="dropdown-item dropdown-item-unread">
-                        <div class="dropdown-item-avatar">
-                            <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle">
-                            <div class="is-online"></div>
-                        </div>
-                        <div class="dropdown-item-desc">
-                            <b>Kusnaedi</b>
-                            <p>Hello, Bro!</p>
-                            <div class="time">10 Hours Ago</div>
-                        </div>
-                    </a>
 
-                </div>
-                <div class="dropdown-footer text-center">
-                    <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-        </li>
-        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
-                class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
-            <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                <div class="dropdown-header">Notifications
-                    <div class="float-right">
-                        <a href="#">Mark All As Read</a>
-                    </div>
-                </div>
-                <div class="dropdown-list-content dropdown-list-icons">
-                    <a href="#" class="dropdown-item dropdown-item-unread">
-                        <div class="dropdown-item-icon bg-primary text-white">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="dropdown-item-desc">
-                            Template update is available now!
-                            <div class="time text-primary">2 Min Ago</div>
-                        </div>
-                    </a>
-
-                </div>
-                <div class="dropdown-footer text-center">
-                    <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-        </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                <img alt="image" src="{{ asset(auth()->guard('admin')->user()->image) }}" class="rounded-circle mr-1">
+                <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->guard('admin')->user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
+
                 <a href="features-profile.html" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                <a href="features-settings.html" class="dropdown-item has-icon">
+                <a href="{{ route('admin.site-settings.index') }}" class="dropdown-item has-icon">
                     <i class="fas fa-cog"></i> Settings
                 </a>
                 <div class="dropdown-divider"></div>
@@ -107,24 +56,34 @@
             </li>
             <li class="menu-header">Starter</li>
             @if (canAccess(['order index']))
-            <li class="{{ setSidebarActive(['admin.orders.*']) }}"><a class="nav-link" href="{{ route('admin.orders.index') }}"><i class="far fa-square"></i> <span>Orders</span></a></li>
+            <li class="{{ setSidebarActive(['admin.orders.*']) }}"><a class="nav-link" href="{{ route('admin.orders.index') }}"><i class="fas fa-cart-plus"></i> <span>Orders</span></a></li>
             @endif
 
             @if (canAccess(['job category create', 'job category update', 'job category delete']))
-            <li class="{{ setSidebarActive(['admin.job-categories.*']) }}"><a class="nav-link" href="{{ route('admin.job-categories.index') }}"><i class="far fa-square"></i> <span>Job Category</span></a></li>
+            <li class="{{ setSidebarActive(['admin.job-categories.*']) }}"><a class="nav-link" href="{{ route('admin.job-categories.index') }}"><i class="fas fa-list"></i> <span>Job Category</span></a></li>
             @endif
 
             @if (canAccess(['job create', 'job update', 'job delete']))
-            <li class="{{ setSidebarActive(['admin.jobs.*']) }}"><a class="nav-link" href="{{ route('admin.jobs.index') }}"><i class="far fa-square"></i> <span>Job Post</span></a></li>
+            <li class="{{ setSidebarActive(['admin.jobs.*']) }}"><a class="nav-link" href="{{ route('admin.jobs.index') }}"><i class="fas fa-briefcase"></i> <span>Job Post</span></a></li>
             @endif
 
             @if (canAccess(['job role']))
-            <li class="{{ setSidebarActive(['admin.job-roles.*']) }}"><a class="nav-link" href="{{ route('admin.job-roles.index') }}"><i class="far fa-square"></i> <span>Job Roles</span></a></li>
+            <li class="{{ setSidebarActive(['admin.job-roles.*']) }}"><a class="nav-link" href="{{ route('admin.job-roles.index') }}"><i class="fas fa-user-md"></i> <span>Job Roles</span></a></li>
             @endif
 
             @if (canAccess(['job attributes']))
 
-            <li class="dropdown {{ setSidebarActive(['admin.industry-types.*', 'admin.organization-types.*']) }}">
+            <li class="dropdown {{ setSidebarActive(
+                ['admin.industry-types.*',
+                'admin.organization-types.*',
+                'admin.languages.*',
+                'admin.professions.*',
+                'admin.skills.*',
+                'admin.educations.*',
+                'admin.job-types.*',
+                'admin.salary-types.*',
+                'admin.tags.*',
+                'admin.job-experiences.*'] ) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Attributes</span></a>
                 <ul class="dropdown-menu">
@@ -147,7 +106,7 @@
 
             @if (canAccess(['job locations']))
             <li class="dropdown {{ setSidebarActive(['admin.countries.*', 'admin.states.*', 'admin.cities.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-map"></i>
                     <span>Locations</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setSidebarActive(['admin.countries.*']) }}"><a class="nav-link" href="{{ route('admin.countries.index') }}">Countries</a></li>
@@ -160,11 +119,18 @@
             @endif
 
             @if (canAccess(['sections']))
-            <li class="dropdown {{ setSidebarActive(['admin.countries.*', 'admin.states.*', 'admin.cities.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+            <li class="dropdown {{ setSidebarActive([
+                'admin.hero.index',
+                'admin.why-choose-us.index',
+                'admin.learn-more.*',
+                'admin.counter.*',
+                'admin.job-location.*',
+                'admin.reviews.*',
+                ]) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-puzzle-piece"></i>
                     <span>Sections</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ setSidebarActive(['admin.countries.*']) }}"><a class="nav-link" href="{{ route('admin.hero.index') }}">Hero</a></li>
+                    <li class="{{ setSidebarActive(['admin.hero.index']) }}"><a class="nav-link" href="{{ route('admin.hero.index') }}">Hero</a></li>
                     <li class="{{ setSidebarActive(['admin.why-choose-us.*']) }}"><a class="nav-link" href="{{ route('admin.why-choose-us.index') }}">Why Choose Us</a></li>
                     <li class="{{ setSidebarActive(['admin.learn-more.*']) }}"><a class="nav-link" href="{{ route('admin.learn-more.index') }}">Learn More</a></li>
                     <li class="{{ setSidebarActive(['admin.counter.*']) }}"><a class="nav-link" href="{{ route('admin.counter.index') }}">Counter</a></li>
@@ -175,8 +141,8 @@
             @endif
 
             @if (canAccess(['site pages']))
-            <li class="dropdown {{ setSidebarActive(['admin.countries.*', 'admin.states.*', 'admin.cities.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+            <li class="dropdown {{ setSidebarActive(['admin.about-us.*', 'admin.page-builder.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-file"></i>
                     <span>Pages</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setSidebarActive(['admin.about-us.*']) }}"><a class="nav-link" href="{{ route('admin.about-us.index') }}">About us</a></li>
@@ -187,8 +153,8 @@
             @endif
 
             @if (canAccess(['site footer']))
-            <li class="dropdown {{ setSidebarActive(['admin.countries.*', 'admin.states.*', 'admin.cities.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+            <li class="dropdown {{ setSidebarActive(['admin.footer.*', 'admin.social-icon.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-shoe-prints"></i>
                     <span>Footer</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setSidebarActive(['admin.footer.*']) }}"><a class="nav-link" href="{{ route('admin.footer.index') }}">Footer Details</a></li>
@@ -199,23 +165,23 @@
             @endif
 
             @if (canAccess(['blogs']))
-            <li class="{{ setSidebarActive(['admin.blogs.*']) }}"><a class="nav-link" href="{{ route('admin.blogs.index') }}"><i class="far fa-square"></i> <span>Blogs</span></a></li>
+            <li class="{{ setSidebarActive(['admin.blogs.*']) }}"><a class="nav-link" href="{{ route('admin.blogs.index') }}"><i class="fab fa-blogger-b"></i> <span>Blogs</span></a></li>
             @endif
             @if (canAccess(['price plan']))
-            <li class="{{ setSidebarActive(['admin.plans.*']) }}"><a class="nav-link" href="{{ route('admin.plans.index') }}"><i class="far fa-square"></i> <span>Price Plan</span></a></li>
+            <li class="{{ setSidebarActive(['admin.plans.*']) }}"><a class="nav-link" href="{{ route('admin.plans.index') }}"><i class="fas fa-box"></i> <span>Price Plan</span></a></li>
             @endif
 
             @if (canAccess(['news letter']))
-            <li class="{{ setSidebarActive(['admin.newsletter.*']) }}"><a class="nav-link" href="{{ route('admin.newsletter.index') }}"><i class="far fa-square"></i> <span>Newsletter</span></a></li>
+            <li class="{{ setSidebarActive(['admin.newsletter.*']) }}"><a class="nav-link" href="{{ route('admin.newsletter.index') }}"><i class="fas fa-mail-bulk"></i> <span>Newsletter</span></a></li>
             @endif
 
             @if (canAccess(['menu builder']))
-            <li class="{{ setSidebarActive(['admin.menu-builder.*']) }}"><a class="nav-link" href="{{ route('admin.menu-builder.index') }}"><i class="far fa-square"></i> <span>Menu Builder</span></a></li>
+            <li class="{{ setSidebarActive(['admin.menu-builder.*']) }}"><a class="nav-link" href="{{ route('admin.menu-builder.index') }}"><i class="fas fa-shapes"></i> <span>Menu Builder</span></a></li>
             @endif
 
             @if (canAccess(['access management']))
-            <li class="dropdown {{ setSidebarActive(['admin.countries.*', 'admin.states.*', 'admin.cities.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+            <li class="dropdown {{ setSidebarActive(['admin.role-user.*', 'admin.role.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user-shield"></i>
                     <span>Access Management</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setSidebarActive(['admin.role-user.*']) }}"><a class="nav-link" href="{{ route('admin.role-user.index') }}">Role Users</a></li>
@@ -225,16 +191,16 @@
             @endif
 
             @if (canAccess(['payment settings']))
-            <li class="{{ setSidebarActive(['admin.payment-settings.index']) }}"><a class="nav-link" href="{{ route('admin.payment-settings.index') }}"><i class="far fa-square"></i> <span>Payment Settings</span></a></li>
+            <li class="{{ setSidebarActive(['admin.payment-settings.index']) }}"><a class="nav-link" href="{{ route('admin.payment-settings.index') }}"><i class="fas fa-wrench"></i> <span>Payment Settings</span></a></li>
             @endif
 
-            @if (canAccess(['payment settings']))
+            @if (canAccess(['site settings']))
 
-            <li class="{{ setSidebarActive(['admin.payment-settings.index']) }}"><a class="nav-link" href="{{ route('admin.site-settings.index') }}"><i class="far fa-square"></i> <span>Site Settings</span></a></li>
+            <li class="{{ setSidebarActive(['admin.payment-settings.index']) }}"><a class="nav-link" href="{{ route('admin.site-settings.index') }}"><i class="fas fa-cog"></i> <span>Site Settings</span></a></li>
             @endif
 
             @if (canAccess(['database clear']))
-            <li class="{{ setSidebarActive(['admin.clear-database.index']) }}"><a class="nav-link" href="{{ route('admin.clear-database.index') }}"><i class="far fa-square"></i> <span>Clear Database</span></a></li>
+            <li class="{{ setSidebarActive(['admin.clear-database.index']) }}"><a class="nav-link" href="{{ route('admin.clear-database.index') }}"><i class="fas fa-skull-crossbones"></i> <span>Clear Database</span></a></li>
             @endif
 
         </ul>

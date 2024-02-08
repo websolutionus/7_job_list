@@ -22,7 +22,7 @@
                         <li class="nav-item">
                           <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#profile4" role="tab" aria-controls="profile" aria-selected="false">Logo Setting</a>
                         </li>
-                       
+
                       </ul>
                     </div>
                     <div class="col-12 col-sm-12 col-md-10">
@@ -31,9 +31,6 @@
                         @include('admin.site-setting.sections.general-section')
 
                         @include('admin.site-setting.sections.logo-section')
-
-
-
 
                       </div>
                     </div>
