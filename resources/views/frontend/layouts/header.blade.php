@@ -2,8 +2,8 @@
     <div class="container">
       <div class="main-header">
         <div class="header-left">
-          <div class="header-logo"><a class="d-flex" href="index.html"><img alt="joblist"
-                src="{{ asset('frontned/assets/imgs/template/logo.png') }}"></a></div>
+          <div class="header-logo"><a class="d-flex" href="{{ url('/') }}"><img alt="joblist"
+                src="{{ config('settings.site_logo') }}"></a></div>
         </div>
         <div class="header-nav">
           <nav class="nav-main-menu">
