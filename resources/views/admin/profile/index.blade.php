@@ -41,6 +41,42 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Update Password</h4>
+
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('admin.profile-password.update') }}" method="POST">
+                            @csrf
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Password</label>
+                                        <input type="password" class="form-control {{ hasError($errors, 'password') }}" name="password"
+                                            value="{{ old('password') }}">
+                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Confirm Password</label>
+                                        <input type="password" class="form-control {{ hasError($errors, 'password_confirmation') }}" name="password_confirmation"
+                                            value="{{ old('password_confirmation') }}">
+                                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

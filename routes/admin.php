@@ -81,6 +81,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /** Profile update routes */
     Route::get('profile', [ProfileUpdateController::class, 'index'])->name('profile.index');
     Route::post('profile', [ProfileUpdateController::class, 'update'])->name('profile.update');
+    Route::post('profile-password', [ProfileUpdateController::class, 'passwordUpdate'])->name('profile-password.update');
+
 
 
     /** Dashboard Route */
