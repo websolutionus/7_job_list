@@ -32,8 +32,10 @@ class DatabaseSeeder extends Seeder
         $this->call(IndustryTypeSeeder::class);
         $this->call(OrganizationTypeSeeder::class);
         $this->call(TeamSizeSeeder::class);
-
-
+        $this->call(JobSalaryTypeSeeder::class);
+        $this->call(JobEducationSeeder::class);
+        $this->call(JobTypeSeeder::class);
+        $this->call(JobTagSeeder::class);
 
 
 
