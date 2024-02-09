@@ -39,8 +39,8 @@
                             <div class="form-group">
                                 <label for="">Show At Featured</label>
                                 <select name="show_at_featured"  class="form-control {{ hasError($errors, 'show_at_featured') }}" >
-                                    <option value="0">No</option>
-                                    <option value="1">Yes</option>
+                                    <option @selected($category->show_at_featured === 0) value="0">No</option>
+                                    <option @selected($category->show_at_featured === 1) value="1">Yes</option>
 
                                 </select>
                                 <x-input-error :messages="$errors->get('show_at_featured')" class="mt-2" />

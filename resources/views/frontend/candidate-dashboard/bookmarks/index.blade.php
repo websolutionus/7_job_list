@@ -37,7 +37,7 @@
                             </tr>
                         </thead>
                         <tbody class="experience-tbody">
-                            @foreach ($bookmarks as $bookmark)
+                            @forelse ($bookmarks as $bookmark)
                                 <tr>
                                     <td>
                                         <div class="d-flex ">
@@ -81,7 +81,11 @@
                                     </td>
 
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">No data found!</td>
+                                </tr>
+                            @endforelse
 
 
                         </tbody>

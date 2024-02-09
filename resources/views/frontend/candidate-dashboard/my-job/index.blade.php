@@ -6,10 +6,10 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-12">
-                        <h2 class="mb-20">Blog</h2>
+                        <h2 class="mb-20">Applied Jobs</h2>
                         <ul class="breadcrumbs">
                             <li><a class="home-icon" href="index.html">Home</a></li>
-                            <li>Blog</li>
+                            <li>Applied Jobs</li>
                         </ul>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                 @include('frontend.candidate-dashboard.sidebar')
                 <div class="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">
                     <div class="mb-3">
-                        <h4>Applied Jobs (100)</h4>
+                        <h4>Applied Jobs ({{ count($appliedJobs) }})</h4>
 
                     </div>
                     <table class="table table-striped">
@@ -37,7 +37,7 @@
                             </tr>
                         </thead>
                         <tbody class="experience-tbody">
-                            @foreach ($appliedJobs as $appliedJob)
+                            @forelse ($appliedJobs as $appliedJob)
                                 <tr>
                                     <td>
                                         <div class="d-flex ">
@@ -81,7 +81,11 @@
                                     </td>
 
                                 </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="5" class="text-center">No data found!</td>
+                            </tr>
+                            @endforelse
 
 
                         </tbody>

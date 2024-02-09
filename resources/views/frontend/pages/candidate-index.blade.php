@@ -75,7 +75,7 @@
                     <div class="col-xl-9">
 
                         <div class="row">
-                            @foreach ($candidates as $candidate)
+                            @forelse ($candidates as $candidate)
                                 <div class="col-lg-4 col-md-6">
                                     <div class="card-grid-2 hover-up">
                                         <div class="card-grid-2-image-left d-flex">
@@ -121,7 +121,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <h4 class="text-center">No Data Found!</h4>
+                            @endforelse
 
                             <div class="col-12">
                                 <div class="paginations mt-35">
