@@ -138,12 +138,13 @@
             @endforelse
 
             </div>
-            <div class="paginations mt-60">
-                <nav class="d-inline-block">
+
+            <div class="paginations">
+                <ul class="pager">
                     @if ($openJobs->hasPages())
-                        {{ $openJobs->withQueryString()->links() }}
-                    @endif
-                </nav>
+                    {{ $openJobs->withQueryString()->links() }}
+                @endif
+                </ul>
             </div>
           </div>
         </div>

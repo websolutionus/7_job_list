@@ -113,12 +113,13 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer text-right">
-                        <nav class="d-inline-block">
+
+                    <div class="paginations">
+                        <ul class="pager">
                             @if ($jobs->hasPages())
                                 {{ $jobs->withQueryString()->links() }}
                             @endif
-                        </nav>
+                        </ul>
                     </div>
                 </div>
             </div>

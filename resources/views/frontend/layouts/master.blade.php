@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
 
-    <title>joblist - Job Portal HTML Template </title>
+    <title>{{ config('settings.site_name') }} </title>
 </head>
 
 <body>
@@ -32,13 +32,13 @@
         </div>
     </div>
 
-    {{-- <div id="preloader-active">
+    <div id="preloader-active">
     <div class="preloader d-flex align-items-center justify-content-center">
       <div class="preloader-inner position-relative">
         <div class="text-center"><img src="{{ asset('frontend/assets/imgs/template/loading.gif') }}" alt="joblist"></div>
       </div>
     </div>
-  </div> --}}
+  </div>
 
     @include('frontend.layouts.header')
 

@@ -93,11 +93,14 @@
 
                 </div>
 
-                    <nav class="d-inline-block">
+
+                <div class="paginations">
+                    <ul class="pager">
                         @if ($bookmarks->hasPages())
                             {{ $bookmarks->withQueryString()->links() }}
                         @endif
-                    </nav>
+                    </ul>
+                </div>
 
             </div>
         </div>

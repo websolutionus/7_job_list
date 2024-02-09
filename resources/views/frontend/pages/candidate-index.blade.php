@@ -126,12 +126,13 @@
                             @endforelse
 
                             <div class="col-12">
-                                <div class="paginations mt-35">
-                                    <nav class="d-inline-block">
+
+                                <div class="paginations">
+                                    <ul class="pager">
                                         @if ($candidates->hasPages())
                                             {{ $candidates->withQueryString()->links() }}
                                         @endif
-                                    </nav>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

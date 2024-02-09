@@ -115,18 +115,14 @@
 
                         </div>
                     </div>
-                    {{-- <div class="paginations">
-                        <nav class="d-inline-block">
 
-                        </nav>
-                    </div> --}}
                     <div class="paginations">
                         <ul class="pager">
                             @if ($jobs->hasPages())
                                 {{ $jobs->withQueryString()->links() }}
                             @endif
                         </ul>
-                      </div>
+                    </div>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 col-12">
                     <div class="sidebar-shadow none-shadow mb-30">
