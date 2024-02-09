@@ -9825,3 +9825,16 @@ ul.timeline>li:before {
     margin-top: 5px;
 }
 
+.page-item.active .page-link {
+    background: #1da774;
+    border: 1px solid beige;
+    padding: 8px 15px 7px 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .page-item.disabled .page-link {
+    border: 1px solid beige;
+    padding: 8px 15px 7px 15px;
+    margin-left: 5px;
+}

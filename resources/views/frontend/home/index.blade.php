@@ -31,7 +31,9 @@
 <!-- Top Recruiters Section End -->
 
 <!-- Price Plan Section Start -->
+@if (auth()->user()?->role != 'candidate')
 @include('frontend.home.sections.price-plan-section')
+@endif
 <!-- Price Plan Section End -->
 
 <!-- Job By Location Section Start -->

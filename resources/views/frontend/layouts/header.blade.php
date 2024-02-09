@@ -23,7 +23,9 @@
                     </ul>
                   </li>
                 @else
-                    <li class="has-children"><a class="" href="{{ $menu['link'] }}">{{ $menu['label'] }}</a></li>
+                  @if ($menu['link'] != '/pricing')
+                  <li class="has-children"><a class="" href="{{ $menu['link'] }}">{{ $menu['label'] }}</a></li>
+                  @endif
                 @endif
 
                 @endforeach
