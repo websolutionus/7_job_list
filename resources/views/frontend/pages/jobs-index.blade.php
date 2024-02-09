@@ -89,7 +89,7 @@
                                                     </div>
                                                     @endif
                                                     @php
-                                                        $bookmarkedIds = \App\Models\JobBookmark::where('candidate_id', auth()?->user()?->candidateProfile->id)->pluck('job_id')->toArray();
+                                                        $bookmarkedIds = \App\Models\JobBookmark::where('candidate_id', auth()?->user()?->candidateProfile?->id)->pluck('job_id')->toArray();
 
                                                     @endphp
 
