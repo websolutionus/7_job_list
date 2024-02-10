@@ -23,8 +23,11 @@
                     </ul>
                   </li>
                 @else
-                  @if ($menu['link'] != '/pricing')
+                  @if (auth()->user()?->role == 'candidate' && $menu['link'] != '/pricing')
                   <li class="has-children"><a class="" href="{{ $menu['link'] }}">{{ $menu['label'] }}</a></li>
+                  @else
+                  <li class="has-children"><a class="" href="{{ $menu['link'] }}">{{ $menu['label'] }}</a></li>
+
                   @endif
                 @endif
 
